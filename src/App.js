@@ -5,8 +5,12 @@ import CategoryItem from "./Components/CategoryItem/CategoryItem";
 function App() {
   return (
     <div className="categories-container">
-      {categories.map(({ title, id, imageUrl }) => (
-        <CategoryItem key={id} title={title} imageUrl={imageUrl} />
+      {categories.map((category) => (
+        <CategoryItem
+          key={category.id}
+          title={category.title}
+          imageUrl={category.imageUrl}
+        />
       ))}
     </div>
   );
