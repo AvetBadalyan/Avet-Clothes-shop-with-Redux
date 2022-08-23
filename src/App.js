@@ -1,18 +1,19 @@
-import { categories } from "./categories";
-import "./categories.styles.scss";
-import CategoryItem from "./Components/CategoryItem/CategoryItem";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home/Home.jsx";
+import Navigation from "./Pages/Navigation/Navigation.jsx";
+import Shop from "./Pages/Shop/Shop.jsx";
 
 function App() {
   return (
-    <div className="categories-container">
-      {categories.map((category) => (
-        <CategoryItem
-          key={category.id}
-          title={category.title}
-          imageUrl={category.imageUrl}
-        />
-      ))}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="shop" element={<Shop />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
