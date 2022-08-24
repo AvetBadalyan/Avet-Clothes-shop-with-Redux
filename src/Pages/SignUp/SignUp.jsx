@@ -47,9 +47,11 @@ export default function SignUp() {
     let url;
 
     if (isLoginModeActive) {
-      url = "";
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDZKBZUd-DI0xI0ImxMY1Ye2TR0ta5tnTI";
     } else {
-      url = "";
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDZKBZUd-DI0xI0ImxMY1Ye2TR0ta5tnTI";
     }
     fetch(url, {
       method: "POST",
