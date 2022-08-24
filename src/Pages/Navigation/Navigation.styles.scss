@@ -1,0 +1,29 @@
+.navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 10%;
+  padding: 1vh;
+  border: 1px solid rgba(200, 200, 200, 1);
+  position: sticky;
+
+  .logo-container {
+    img {
+      width: 6vw;
+      height: auto;
+    }
+  }
+
+  .nav-links-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .nav-link {
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+  }
+}
