@@ -2,8 +2,11 @@ import React from "react";
 import "./SignUp.styles.scss";
 import { useRef } from "react";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
+  const navigate = useNavigate();
   // take the login and password from input field with useRef
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -81,6 +84,8 @@ export default function SignUp() {
       })
       .then((data) => {
         setToken(data.idToken);
+        alert("succesfully logged in");
+        navigate("/shop");
       })
       .catch((err) => {
         alert(err.message);
