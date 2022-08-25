@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./SignUp.styles.scss";
 import { useRef } from "react";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { loginContext } from "../../contexts/user.context";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const { token, setToken, isLoggedIn } = useContext(loginContext);
+
   // take the login and password from input field with useRef
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
@@ -15,25 +18,11 @@ export default function SignUp() {
   const [isLoginModeActive, setIsLoginModeActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // check if the login process has successfully completed, in case of success the token must be truthy
-  const [token, setToken] = useState(null);
-  const isLoggedIn = !!token;
 
-  // on click the log out button
 
-  const logOutHandler = () => {
-    setToken(null);
-  };
 
-  // {
-  //   isLoggedIn && (
-  //     <div className="logout-actions">
-  //       <button className="logout" onClick={logOutHandler}>
-  //         Log out
-  //       </button>
-  //     </div>
-  //   );
-  // }
+
+
 
   const switchAuthModeHandler = () => {
     setIsLoginModeActive((prevState) => !prevState);
@@ -84,7 +73,7 @@ export default function SignUp() {
       })
       .then((data) => {
         setToken(data.idToken);
-        alert("succesfully logged in");
+        alert("successfully logged in");
         navigate("/shop");
       })
       .catch((err) => {
