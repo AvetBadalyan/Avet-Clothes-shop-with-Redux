@@ -1,20 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useMemo } from "react";
 
-const defaultState = {
-  token: null,
-  setToken: () => null,
-};
-
-export const loginContext = createContext(defaultState);
+export const loginContext = createContext();
 
 export const UserProvider = ({ children }) => {
   // check if the login process has successfully completed, in case of success the token must be truthy
-    const [token, setToken] = useState(null);
-    console.log(token, "token");
-  const isLoggedIn = !!token;
-  const value = { token, setToken, isLoggedIn };
+  const userData = useMemo(() => {
+    return {
+      token: null,
+      userCart: [],
+      balance: "",
+      email: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      isLoggedIn: false,
+    };
+  }, []);
 
   return (
-    <loginContext.Provider value={value}>{children}</loginContext.Provider>
+    <loginContext.Provider value={[userData]}>{children}</loginContext.Provider>
   );
 };

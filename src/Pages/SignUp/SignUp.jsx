@@ -1,14 +1,11 @@
-import React, { useContext } from "react";
 import "./SignUp.styles.scss";
-import { useRef } from "react";
-import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginContext } from "../../contexts/user.context";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { token, setToken, isLoggedIn } = useContext(loginContext);
+  const [userData] = useContext(loginContext);
 
   // take the login and password from input field with useRef
   const emailInputRef = useRef();
@@ -17,12 +14,6 @@ export default function SignUp() {
   // check if we are in login mode or in sign up mode
   const [isLoginModeActive, setIsLoginModeActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-
-
-
-
-
 
   const switchAuthModeHandler = () => {
     setIsLoginModeActive((prevState) => !prevState);
@@ -72,7 +63,8 @@ export default function SignUp() {
         }
       })
       .then((data) => {
-        setToken(data.idToken);
+        userData.token = data.idToken;
+        userData.isLoggedIn = true;
         alert("successfully logged in");
         navigate("/shop");
       })

@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import "./Navigation.styles.scss";
 import logo from "./../../assets/logo.jpg";
 import { loginContext } from "../../contexts/user.context";
 
 export default function Navigation() {
-  const { isLoggedIn, token, setToken } = useContext(loginContext);
+  const [userData] = useContext(loginContext);
+  console.log(userData)
+  const { pathname } = useLocation();
 
   // on click the log out button
 
   const logOutHandler = () => {
-    setToken(null);
+    userData.token = null;
+    userData.isLoggedIn = false;
   };
 
   return (
@@ -23,13 +26,13 @@ export default function Navigation() {
           <Link className="nav-link" to="/shop">
             SHOP
           </Link>
-          {!isLoggedIn && (
+          {!userData.isLoggedIn && (
             <Link className="nav-link" to="/sing-up">
               SIGN UP/SIGN IN
             </Link>
           )}
 
-          {isLoggedIn && (
+          {userData.isLoggedIn && (
             <div className="logout-actions">
               <Link className="logout" onClick={logOutHandler} to="/">
                 Log out
