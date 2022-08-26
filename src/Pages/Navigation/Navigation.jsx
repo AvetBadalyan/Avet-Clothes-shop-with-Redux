@@ -5,15 +5,13 @@ import logo from "./../../assets/logo.jpg";
 import { loginContext } from "../../contexts/user.context";
 
 export default function Navigation() {
-  const [userData] = useContext(loginContext);
-  console.log(userData)
-  const { pathname } = useLocation();
+  const { token, setToken, isLoggedIn } = useContext(loginContext);
 
   // on click the log out button
 
   const logOutHandler = () => {
-    userData.token = null;
-    userData.isLoggedIn = false;
+    setToken(null);
+    alert("Logged Out");
   };
 
   return (
@@ -26,13 +24,13 @@ export default function Navigation() {
           <Link className="nav-link" to="/shop">
             SHOP
           </Link>
-          {!userData.isLoggedIn && (
+          {!isLoggedIn && (
             <Link className="nav-link" to="/sing-up">
               SIGN UP/SIGN IN
             </Link>
           )}
 
-          {userData.isLoggedIn && (
+          {isLoggedIn && (
             <div className="logout-actions">
               <Link className="logout" onClick={logOutHandler} to="/">
                 Log out

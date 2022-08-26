@@ -5,7 +5,7 @@ import { loginContext } from "../../contexts/user.context";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const [userData] = useContext(loginContext);
+  const { token, setToken, isLoggedIn } = useContext(loginContext);
 
   // take the login and password from input field with useRef
   const emailInputRef = useRef();
@@ -63,8 +63,7 @@ export default function SignUp() {
         }
       })
       .then((data) => {
-        userData.token = data.idToken;
-        userData.isLoggedIn = true;
+        setToken(data.idToken);
         alert("successfully logged in");
         navigate("/shop");
       })
