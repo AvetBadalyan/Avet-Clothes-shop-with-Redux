@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation } from "react-router-dom";
 import "./Navigation.styles.scss";
 import logo from "./../../assets/logo.jpg";
 import { loginContext } from "../../contexts/user.context";
+import CartIcon from "../../Components/CartIcon/CartIcon";
 
 export default function Navigation() {
   const { token, setToken, isLoggedIn } = useContext(loginContext);
@@ -37,6 +38,8 @@ export default function Navigation() {
               </Link>
             </div>
           )}
+
+          <CartIcon />
         </div>
       </div>
       <Outlet />
