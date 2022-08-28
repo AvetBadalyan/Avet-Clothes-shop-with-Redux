@@ -4,9 +4,13 @@ import "./Navigation.styles.scss";
 import logo from "./../../assets/logo.jpg";
 import { loginContext } from "../../contexts/user.context";
 import CartIcon from "../../Components/CartIcon/CartIcon";
+import CartDropdown from "../../Components/CartDropdown/CartDropdown";
+import { CartContext } from "../../contexts/modal.context";
 
 export default function Navigation() {
   const { token, setToken, isLoggedIn } = useContext(loginContext);
+  const { isCarOpen, setIsCartOpen, toggleCartHandler } =
+    useContext(CartContext);
 
   // on click the log out button
 
@@ -41,7 +45,9 @@ export default function Navigation() {
 
           <CartIcon />
         </div>
+        {isCarOpen && <CartDropdown />}
       </div>
+
       <Outlet />
     </>
   );

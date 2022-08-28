@@ -7,20 +7,15 @@ export const UserProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const isLoggedIn = !!token;
 
-  // const userData = useMemo(() => {
-  //   return {
-  //     token: null,
-  //     userCart: [],
-  //     balance: "",
-  //     email: "",
-  //     firstName: "",
-  //     lastName: "",
-  //     password: "",
-  //     isLoggedIn: false,
-  //   };
-  // }, []);
-
   return (
-    <loginContext.Provider value={{token, setToken, isLoggedIn}}>{children}</loginContext.Provider>
+    <loginContext.Provider
+      value={{
+        token,
+        setToken,
+        isLoggedIn,
+      }}
+    >
+      {children}
+    </loginContext.Provider>
   );
 };
