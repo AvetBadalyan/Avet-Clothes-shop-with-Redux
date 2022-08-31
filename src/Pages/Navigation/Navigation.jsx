@@ -1,16 +1,12 @@
 import React, { useContext } from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./Navigation.styles.scss";
 import logo from "./../../assets/logo.jpg";
 import { loginContext } from "../../contexts/user.context";
 import CartIcon from "../../Components/CartIcon/CartIcon";
-import CartDropdown from "../../Components/CartDropdown/CartDropdown";
-import { CartContext } from "../../contexts/modal.context";
 
 export default function Navigation() {
-  const { token, setToken, isLoggedIn } = useContext(loginContext);
-  const { isCarOpen, setIsCartOpen, toggleCartHandler } =
-    useContext(CartContext);
+  const { setToken, isLoggedIn } = useContext(loginContext);
 
   // on click the log out button
 
@@ -23,7 +19,7 @@ export default function Navigation() {
     <>
       <div className="navigation">
         <Link className="logo-container" to="/">
-          <img src={logo} />
+          <img src={logo} alt="logo" />
         </Link>
         <div className="nav-links-container">
           <Link className="nav-link" to="/shop">
@@ -45,7 +41,6 @@ export default function Navigation() {
 
           <CartIcon />
         </div>
-        {isCarOpen && <CartDropdown />}
       </div>
 
       <Outlet />
