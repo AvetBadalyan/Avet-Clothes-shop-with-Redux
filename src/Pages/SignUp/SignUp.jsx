@@ -5,7 +5,7 @@ import { loginContext } from "../../contexts/user.context";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { token, setToken, isLoggedIn } = useContext(loginContext);
+  const { setToken } = useContext(loginContext);
 
   // take the login and password from input field with useRef
   const emailInputRef = useRef();
