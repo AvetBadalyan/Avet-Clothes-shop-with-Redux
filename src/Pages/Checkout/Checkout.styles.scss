@@ -1,5 +1,5 @@
 .checkout-container {
-  width: 55%;
+  width: 60%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
@@ -10,12 +10,14 @@
     width: 100%;
     padding: 10px 0;
     display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid darkgrey;
 
     .header-block {
       text-transform: capitalize;
       width: 23%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:last-child {
         width: 8%;
@@ -23,9 +25,12 @@
     }
   }
 
+  .checkout-body-container {
+    width: 100%;
+  }
+
   .total {
-    margin-top: 30px;
-    margin-left: auto;
+    margin: 30px auto;
     font-size: 36px;
   }
 }
