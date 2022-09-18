@@ -1,10 +1,9 @@
-import React from "react";
-
 export const categories = [
   {
     id: 1,
     title: "hats",
-    imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+    imageUrl:
+      "https://cdn.shoplightspeed.com/shops/636822/themes/17027/v/61477/assets/primary-hero.jpg?20220711195512",
   },
   {
     id: 2,
