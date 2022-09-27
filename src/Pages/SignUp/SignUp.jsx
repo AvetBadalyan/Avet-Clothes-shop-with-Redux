@@ -2,8 +2,12 @@ import "./SignUp.styles.scss";
 import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginContext } from "../../contexts/user.context";
+import { useDispatch, useSelector } from "react-redux";
+import { initCurrentUser } from "../../redux-store/userSlice";
 
 export default function SignUp() {
+  const isLoggedIn = useSelector(store => !!store.userSlice.token)
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const { setToken } = useContext(loginContext);
 
@@ -63,7 +67,8 @@ export default function SignUp() {
         }
       })
       .then((data) => {
-        setToken(data.idToken);
+        // setToken(data.idToken);
+        dispatch(initCurrentUser(data.idToken))
         alert("successfully logged in");
         navigate("/shop");
       })
