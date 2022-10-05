@@ -1,15 +1,13 @@
 import "./SignUp.styles.scss";
-import { useRef, useState, useContext } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginContext } from "../../contexts/user.context";
 import { useDispatch, useSelector } from "react-redux";
-import { initCurrentUser } from "../../redux-store/userSlice";
+import { USER_ACTION_TYPES } from "../../store/user/user.action";
 
 export default function SignUp() {
-  const isLoggedIn = useSelector(store => !!store.userSlice.token)
-  const dispatch = useDispatch()
+  const isLoggedIn = useSelector((store) => !!(store?.user?.token));
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { setToken } = useContext(loginContext);
 
   // take the login and password from input field with useRef
   const emailInputRef = useRef();
@@ -67,8 +65,7 @@ export default function SignUp() {
         }
       })
       .then((data) => {
-        // setToken(data.idToken);
-        dispatch(initCurrentUser(data.idToken))
+        dispatch({ type: USER_ACTION_TYPES.SET_TOKEN, payload: data.idToken });
         alert("successfully logged in");
         navigate("/shop");
       })

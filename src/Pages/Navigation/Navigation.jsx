@@ -1,17 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import "./Navigation.styles.scss";
 import logo from "./../../assets/logo.jpg";
-import { loginContext } from "../../contexts/user.context";
 import CartIcon from "../../Components/CartIcon/CartIcon";
+import { useSelector } from "react-redux";
 
 export default function Navigation() {
-  const { setToken, isLoggedIn } = useContext(loginContext);
-
+  const isLoggedIn = useSelector((state) => !!(state?.user?.token));
   // on click the log out button
 
   const logOutHandler = () => {
-    setToken(null);
+    // setToken(null);
     alert("Logged Out");
   };
 

@@ -1,11 +1,20 @@
-import React, { useContext } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../../Components/product-card/ProductCard";
-import { ProductsContext } from "../../contexts/products.context";
 import "./Shop.styles.scss";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Shop() {
-  const { products } = useContext(ProductsContext);
-  console.log((products));
+  const dispatch = useDispatch();
+  const products = useSelector((store) => store.productSlice?.value); // []
+
+  useEffect(() => {
+    fetch(
+      "https://avet-clothes-shop-f8267-default-rtdb.firebaseio.com/clothes.json"
+    )
+      .then((data) => data.json())
+      .then((shop) => console.log(shop));
+  }, []);
+
   return (
     <div className="products-container">
       {products &&
