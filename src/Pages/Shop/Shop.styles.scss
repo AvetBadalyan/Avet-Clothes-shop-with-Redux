@@ -1,7 +1,13 @@
-.products-container {
+.product-type-content {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 10px;
   row-gap: 50px;
   padding: 2vh;
+}
+
+.product-type {
+  h1 {
+    text-align: center;
+  }
 }

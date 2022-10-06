@@ -19,16 +19,24 @@ export default function Shop() {
   }, [dispatch]);
 
   useEffect(() => {
-    console.log("products: ",products)
-   }, [products, products?.length])
+    console.log("products: ", products);
+  }, [products, products?.length]);
 
   return (
     <div className="products-container">
       {products &&
         products.map((product) => {
-          return product.items.map((item) => (
-            <ProductCard key={item.id} item={item} />
-          ));
+          return (
+            <div className="product-type">
+              <h1>{product.title}</h1>
+              <div className="product-type-content">
+                {product.items.map((item) => (
+                  <ProductCard key={item.id} item={item} />
+                ))};
+              </div>
+            </div>
+          );
+         
         })}
     </div>
   );
