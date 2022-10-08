@@ -3,15 +3,17 @@ import { Outlet, Link } from "react-router-dom";
 import "./Navigation.styles.scss";
 import logo from "./../../assets/logo.jpg";
 import CartIcon from "../../Components/CartIcon/CartIcon";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { USER_ACTION_TYPES } from "./../../store/user/user.action";
 
 export default function Navigation() {
-  const isLoggedIn = useSelector((state) => !!(state?.user?.token));
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => !!state?.user?.token);
   // on click the log out button
 
   const logOutHandler = () => {
-    // setToken(null);
     alert("Logged Out");
+    dispatch({ type: USER_ACTION_TYPES.SET_TOKEN, payload: null });
   };
 
   return (
