@@ -6,9 +6,6 @@ import Shop from "./Pages/Shop/Shop.jsx";
 import SignUp from "./Pages/SignUp/SignUp.jsx";
 
 function App() {
-
-
-  
   return (
     <Routes>
       <Route path="/" element={<Navigation />}>

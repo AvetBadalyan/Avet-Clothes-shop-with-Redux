@@ -1,14 +1,12 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./CartDropdown.styles.scss";
-import Button from "../Button/Button";
-import { useContext } from "react";
-import { CartContext } from "./../../contexts/CartContext";
 import CartItem from "../Cart-Item/CartItem";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function CartDropdown() {
   const navigate = useNavigate();
-  const { cartItems } = useContext(CartContext);
+  const cartItems = useSelector((store) => store.cart.cartItems);
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
@@ -16,12 +14,14 @@ export default function CartDropdown() {
   return (
     <div className="cart-dropdown-container">
       <div className="cart-items">
-        cart items
-        {cartItems.map((item) => (
+        Cart Items
+        {cartItems && cartItems.map((item) => (
           <CartItem key={item.id} cartItem={item} />
         ))}
       </div>
-      <Button onClick={goToCheckoutHandler}>GO TO CHECKOUT</Button>
+      <button className="inverted" onClick={goToCheckoutHandler}>
+        GO TO CHECKOUT
+      </button>
     </div>
   );
 }

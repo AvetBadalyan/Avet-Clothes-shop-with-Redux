@@ -16,7 +16,7 @@ export default function Home() {
       .then((shop) =>
         dispatch({ type: PRODUCTS_ACTION_TYPES.SET_PRODUCTS, payload: shop })
       );
-  }, [dispatch]);
+  }, []);
 
   useSelector((state) => state.products.products);
 
@@ -24,7 +24,7 @@ export default function Home() {
     <div className="categories-container">
       {categories.map((category) => (
         <CategoryItem
-          key={category.id}
+          key={Math.random()}
           title={category.title}
           imageUrl={category.imageUrl}
         />

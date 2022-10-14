@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ProductCard from "../../Components/product-card/ProductCard";
 import "./Shop.styles.scss";
 import { useSelector } from "react-redux";
@@ -8,10 +8,10 @@ export default function Shop() {
 
   return (
     <div className="products-container">
-      {products &&
+      {products.length !== 0 &&
         products.map((product) => {
           return (
-            <div className="product-type">
+            <div key={Math.random()} className="product-type">
               <h1>{product.title}</h1>
               <div className="product-type-content">
                 {product.items.map((item) => (

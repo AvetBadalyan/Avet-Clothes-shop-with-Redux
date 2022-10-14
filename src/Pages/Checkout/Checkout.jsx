@@ -1,14 +1,29 @@
 import React from "react";
-import { useContext } from "react";
 import "./Checkout.styles.scss";
-import { CartContext } from "./../../contexts/CartContext";
 import CheckoutItem from "../../Components/Checkout-item/CheckoutItem";
+import { useDispatch, useSelector } from "react-redux";
+import { CART_ACTION_TYPES } from "../../store/Cart/cart.actions";
 
 export default function Checkout() {
-  const { cartItems, cartTotal } = useContext(CartContext);
+  const { cartItems } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const cartTotalPrice = cartItems.reduce(
+    (total, cartItem) => total + cartItem.quantity * cartItem.price,
+    0
+  );
+
   return (
     <div className="checkout-container">
       <h1>Checkout Page</h1>
+
+      {cartItems?.length > 0 && (
+        <button
+          className="inverted"
+          onClick={() => dispatch({ type: CART_ACTION_TYPES.CLEAR_CART })}
+        >
+          EMPTY THE CART
+        </button>
+      )}
       <div className="checkout-header">
         <div className="header-block">
           <span>Product</span>
@@ -27,11 +42,15 @@ export default function Checkout() {
         </div>
       </div>
       <div className="checkout-body-container">
-        {cartItems.map((cartItem) => {
-          return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
-        })}
+        {cartItems.length > 0 ? (
+          cartItems.map((cartItem) => {
+            return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
+          })
+        ) : (
+          <p className="emptyCartMessage">There is no products in your cart.</p>
+        )}
       </div>
-      <span className="total">Total: ${cartTotal}</span>
+      <span className="total">Total: ${cartTotalPrice}</span>
     </div>
   );
 }

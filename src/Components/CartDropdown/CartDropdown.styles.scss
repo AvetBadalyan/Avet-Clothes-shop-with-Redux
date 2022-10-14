@@ -15,10 +15,32 @@
     height: 48vh;
     display: flex;
     flex-direction: column;
-    overflow: scroll;
+    overflow-y: auto;
   }
 
-  button {
-    margin-top: auto;
+  .inverted {
+    position: absolute;
+    bottom: 10px;
+    min-width: 165px;
+    width: auto;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    padding: 0 35px;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Open Sans Condensed";
+    font-weight: bolder;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+
+    &:hover {
+      background-color: black;
+      color: white;
+      border: none;
+    }
   }
 }
