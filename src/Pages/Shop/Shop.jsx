@@ -4,7 +4,6 @@ import "./Shop.styles.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { PRODUCTS_ACTION_TYPES } from "../../store/products/products.actions";
 
-
 export default function Shop() {
   const { products, filtered } = useSelector((state) => state.productsSlice); // []
   const dispatch = useDispatch();
@@ -24,31 +23,29 @@ export default function Shop() {
 
   return (
     <div className="products-container">
-      {/* {filtered.length === 0
+      {filtered.length === 0
         ? products.length !== 0 &&
-          products.map((product) => {
+          Object.keys(products).map((product) => {
             return (
               <div key={Math.random()} className="product-type">
-                <h1>{product.title}</h1>
+                <h1>{product}</h1>
                 <div className="product-type-content">
-                  {product.items.map((item) => (
+                  {products[product].map((item) => (
                     <ProductCard key={item.id} item={item} />
                   ))}
                 </div>
               </div>
             );
           })
-        : filtered.map((item) =>
-            item.map((product) => {
-              return (
-                <div key={Math.random()} className="product-type">
-                  <div className="product-type-content">
-                    <ProductCard key={product.id} item={product} />
-                  </div>
-                </div>
-              );
-            })
-          )} */}
+        : filtered.map((item) => {
+            return (
+              <div key={Math.random()} className="filtered-type-content">
+                {item.map((product) => (
+                  <ProductCard key={product.id} item={product} />
+                ))}
+              </div>
+            );
+          })}
     </div>
   );
 }

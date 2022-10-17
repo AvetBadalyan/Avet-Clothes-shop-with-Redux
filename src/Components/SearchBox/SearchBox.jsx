@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { PRODUCTS_ACTION_TYPES } from "../../store/products/products.reducer";
 import "./SearchBox.scss";
 
 export default function SearchBox() {

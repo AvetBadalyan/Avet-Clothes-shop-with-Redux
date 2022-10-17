@@ -20,10 +20,14 @@ export const productsReducer = (state = PRODUCTS_INITIAL_STATE, action) => {
       return {
         ...state,
         filtered: [
-          ...state.products?.map((product) => {
-            return product.items?.filter((item) => {
-              return item.name.includes(action.payload);
-            });
+          ...Object.keys(state.products).map((product) => {
+            return state.products[product]
+              .filter((item) => {
+                return item.name
+                  .toLowerCase()
+                  .includes(action.payload.toLowerCase());
+              })
+              .flat();
           }),
         ],
       };

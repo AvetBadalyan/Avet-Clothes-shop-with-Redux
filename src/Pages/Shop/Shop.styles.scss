@@ -11,3 +11,11 @@
     text-align: center;
   }
 }
+
+.filtered-type-content{
+   display: grid;
+  grid-template-columns: (1fr 1fr 1fr 1fr);
+  column-gap: 10px;
+  row-gap: 50px;
+  padding: 2vh;
+}
