@@ -5,10 +5,11 @@ import logo from "./../../assets/logo.jpg";
 import CartIcon from "../../Components/CartIcon/CartIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { USER_ACTION_TYPES } from "./../../store/user/user.action";
+import SearchBox from "../../Components/SearchBox/SearchBox";
 
 export default function Navigation() {
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => !!state?.user?.token);
+  const isLoggedIn = useSelector((state) => !!state?.userSlice?.token);
   // on click the log out button
 
   const logOutHandler = () => {
@@ -19,28 +20,32 @@ export default function Navigation() {
   return (
     <>
       <div className="navigation">
-        <Link className="logo-container" to="/">
-          <img src={logo} alt="logo" />
-        </Link>
-        <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
-            SHOP
+        <div className="nav-container">
+          <Link className="logo-container" to="/">
+            <img src={logo} alt="logo" />
           </Link>
-          {!isLoggedIn && (
-            <Link className="nav-link" to="/sing-up">
-              SIGN UP/SIGN IN
-            </Link>
-          )}
-
-          {isLoggedIn && (
-            <div className="logout-actions">
-              <Link className="logout" onClick={logOutHandler} to="/">
-                Log out
+          <SearchBox />
+          <div className="nav-links-container">
+            {!isLoggedIn && (
+              <Link className="nav-link" to="/sing-up">
+                SIGN UP / SIGN IN
               </Link>
-            </div>
-          )}
+            )}
 
-          <CartIcon />
+            {isLoggedIn && (
+              <div className="logout-actions">
+                <Link className="logout" onClick={logOutHandler} to="/">
+                  Log out
+                </Link>
+              </div>
+            )}
+
+            <Link className="nav-link" to="/shop">
+              GO TO ENTIRE SHOP
+            </Link>
+
+            <CartIcon />
+          </div>
         </div>
       </div>
 

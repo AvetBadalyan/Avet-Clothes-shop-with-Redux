@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 export default function CartDropdown() {
   const navigate = useNavigate();
-  const cartItems = useSelector((store) => store.cart.cartItems);
+  const cartItems = useSelector((store) => store.cartSlice.cartItems);
 
   const goToCheckoutHandler = () => {
     navigate("/checkout");
@@ -16,7 +16,7 @@ export default function CartDropdown() {
       <div className="cart-items">
         Cart Items
         {cartItems && cartItems.map((item) => (
-          <CartItem key={item.id} cartItem={item} />
+          <CartItem key={Math.random()} cartItem={item} />
         ))}
       </div>
       <button className="inverted" onClick={goToCheckoutHandler}>

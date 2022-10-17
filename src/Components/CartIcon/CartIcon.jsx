@@ -5,7 +5,7 @@ import CartDropdown from "./../CartDropdown/CartDropdown";
 import { useSelector } from "react-redux";
 
 export default function CartIcon() {
-  const { cartItems } = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cartSlice);
 
   const CartCount = cartItems.reduce(
     (total, cartItem) => total + cartItem.quantity,
@@ -15,7 +15,6 @@ export default function CartIcon() {
     <Popup
       trigger={
         <div className="cart-icon-container">
-          <CartIconImage className="shopping-icon" />
           <span className="item-count">{CartCount}</span>
         </div>
       }

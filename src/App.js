@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import CategoryPage from "./Pages/CategoryPage/CategoryPage.jsx";
 import Checkout from "./Pages/Checkout/Checkout.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import Navigation from "./Pages/Navigation/Navigation.jsx";
@@ -13,6 +14,7 @@ function App() {
         <Route path="shop" element={<Shop />} />
         <Route path="sing-up" element={<SignUp />} />
         <Route path="checkout" element={<Checkout />} />
+        <Route path=":categoryId" element={<CategoryPage />} />
       </Route>
     </Routes>
   );

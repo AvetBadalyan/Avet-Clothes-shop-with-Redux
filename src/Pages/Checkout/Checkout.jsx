@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CART_ACTION_TYPES } from "../../store/Cart/cart.actions";
 
 export default function Checkout() {
-  const { cartItems } = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cartSlice);
   const dispatch = useDispatch();
   const cartTotalPrice = cartItems.reduce(
     (total, cartItem) => total + cartItem.quantity * cartItem.price,
@@ -44,7 +44,7 @@ export default function Checkout() {
       <div className="checkout-body-container">
         {cartItems.length > 0 ? (
           cartItems.map((cartItem) => {
-            return <CheckoutItem key={cartItem.id} cartItem={cartItem} />;
+            return <CheckoutItem key={Math.random()} cartItem={cartItem} />;
           })
         ) : (
           <p className="emptyCartMessage">There is no products in your cart.</p>

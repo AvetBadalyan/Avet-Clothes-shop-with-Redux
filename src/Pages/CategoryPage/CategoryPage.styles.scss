@@ -1,0 +1,14 @@
+.products-container-content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 10px;
+  row-gap: 50px;
+  padding: 2vh;
+}
+
+.products-container {
+  h1 {
+    text-align: center;
+  }
+  padding: 6vh 0;
+}

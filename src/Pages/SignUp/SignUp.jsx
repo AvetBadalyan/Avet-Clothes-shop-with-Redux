@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { USER_ACTION_TYPES } from "../../store/user/user.action";
 
 export default function SignUp() {
-  const isLoggedIn = useSelector((store) => !!(store?.user?.token));
+  const isLoggedIn = useSelector((store) => !!store?.userSlice?.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

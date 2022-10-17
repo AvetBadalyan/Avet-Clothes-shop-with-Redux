@@ -1,27 +1,54 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../../Components/product-card/ProductCard";
 import "./Shop.styles.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { PRODUCTS_ACTION_TYPES } from "../../store/products/products.actions";
+
 
 export default function Shop() {
-  const products = useSelector((state) => state.products?.products); // []
+  const { products, filtered } = useSelector((state) => state.productsSlice); // []
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetch(
+      "https://avet-clothes-shop-f8267-default-rtdb.firebaseio.com/clothes.json"
+    )
+      .then((data) => data.json())
+      .then((products) =>
+        dispatch({
+          type: PRODUCTS_ACTION_TYPES.SET_PRODUCTS,
+          payload: products,
+        })
+      );
+  }, []);
 
   return (
     <div className="products-container">
-      {products.length !== 0 &&
-        products.map((product) => {
-          return (
-            <div key={Math.random()} className="product-type">
-              <h1>{product.title}</h1>
-              <div className="product-type-content">
-                {product.items.map((item) => (
-                  <ProductCard key={item.id} item={item} />
-                ))}
-                ;
+      {/* {filtered.length === 0
+        ? products.length !== 0 &&
+          products.map((product) => {
+            return (
+              <div key={Math.random()} className="product-type">
+                <h1>{product.title}</h1>
+                <div className="product-type-content">
+                  {product.items.map((item) => (
+                    <ProductCard key={item.id} item={item} />
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        : filtered.map((item) =>
+            item.map((product) => {
+              return (
+                <div key={Math.random()} className="product-type">
+                  <div className="product-type-content">
+                    <ProductCard key={product.id} item={product} />
+                  </div>
+                </div>
+              );
+            })
+          )} */}
     </div>
   );
 }
