@@ -1,0 +1,25 @@
+// breakpoints
+
+@mixin BP($point) {
+	@if $point == mobile {
+		@media screen and (max-width: 500px) { @content; }
+	}
+	@else if $point == tablet {
+		@media screen and (max-width: 768px) { @content; }
+	}
+	@else if $point == laptop {
+		@media screen and (max-width: 1024px) { @content; }
+	}
+	@else if $point == desktop {
+		@media screen and (max-width: 1280px) { @content; }
+	}
+	@else if $point == wideScreen {
+		@media screen and (min-width: 1281px) { @content; }
+	}
+	
+}
+
+// mobile 	   0 --> 480 px
+// tablet	 481 --> 768 px
+// laptop	 769 --> 1024 px
+// desktop	1025 --> 1280 px

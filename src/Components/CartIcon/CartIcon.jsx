@@ -1,5 +1,5 @@
 import "./CartIcon.styles.scss";
-import { ReactComponent as CartIconImage } from "./../../assets/shopping-bag.svg";
+import cartIcon from "../../assets/cart-shopping-solid.svg"
 import Popup from "reactjs-popup";
 import CartDropdown from "./../CartDropdown/CartDropdown";
 import { useSelector } from "react-redux";
@@ -11,11 +11,13 @@ export default function CartIcon() {
     (total, cartItem) => total + cartItem.quantity,
     0
   );
+  
   return (
     <Popup
       trigger={
         <div className="cart-icon-container">
           <span className="item-count">{CartCount}</span>
+          <img src={cartIcon} alt="icon" />
         </div>
       }
       arrow={false}

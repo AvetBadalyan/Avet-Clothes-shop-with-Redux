@@ -21,13 +21,11 @@ export const productsReducer = (state = PRODUCTS_INITIAL_STATE, action) => {
         ...state,
         filtered: [
           ...Object.keys(state.products).map((product) => {
-            return state.products[product]
-              .filter((item) => {
-                return item.name
-                  .toLowerCase()
-                  .includes(action.payload.toLowerCase());
-              })
-              .flat();
+            return state.products[product].filter((item) => {
+              return item.name
+                .toLowerCase()
+                .includes(action.payload.toLowerCase());
+            });
           }),
         ],
       };

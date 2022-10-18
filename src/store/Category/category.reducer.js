@@ -22,7 +22,11 @@ export const singleCategoryReducer = (
       }
       return {
         ...state,
-        filtered: [],
+        filtered: [
+          ...state.products.filter((item) =>
+            item.name.toLowerCase().includes(action.payload.toLowerCase())
+          ),
+        ],
       };
     default:
       return state;

@@ -21,10 +21,13 @@ export default function Navigation() {
     <>
       <div className="navigation">
         <div className="nav-container">
-          <Link className="logo-container" to="/">
-            <img src={logo} alt="logo" />
-          </Link>
-          <SearchBox />
+          <div className="logo-and-search-container">
+            <Link className="logo-container" to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+            <SearchBox />
+          </div>
+
           <div className="nav-links-container">
             {!isLoggedIn && (
               <Link className="nav-link" to="/sing-up">
@@ -43,8 +46,9 @@ export default function Navigation() {
             <Link className="nav-link" to="/shop">
               GO TO ENTIRE SHOP
             </Link>
-
-            <CartIcon />
+            <div className="nav-link">
+              <CartIcon />
+            </div>
           </div>
         </div>
       </div>
