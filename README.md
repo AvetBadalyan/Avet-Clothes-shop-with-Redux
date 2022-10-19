@@ -1,3 +1,19 @@
+# ONLINE CLOTHES SHOP CREATED WITH REACT REDUX (includes Responsive & Adaptive design both for Web and Tablets and Mobile)
+
+## This is an online clothes store with principal functions - view items menu with each item's name, price and description, click on add button to add the product to the cart, control the amount of chosen item, add or remove items to/from the cart. Also Authentication with Firebase - Sign up and login
+
+(Some features are on the way, like to make an order, send order data to server, get confirmation about receiving the order etc.)
+
+Link to the Website - [https://avet-clothes-shop-f8267.web.app/](https://avet-clothes-shop-f8267.web.app/).
+
+![screenshot](./src/assets/screenshots/home.jpg)
+![screenshot](./src/assets/Screenshots/shop.jpg)
+![screenshot](./src/assets/Screenshots/login.jpg)
+![screenshot](./src/assets/Screenshots/cart.jpg)
+![screenshot](./src/assets/Screenshots/order.jpg)
+![screenshot](./src/assets/Screenshots/mob%20shop.jpg)
+![screenshot](./src/assets/Screenshots/mob%20checkout.jpg)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
