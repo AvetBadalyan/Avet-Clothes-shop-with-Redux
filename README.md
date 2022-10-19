@@ -7,7 +7,7 @@
 Link to the Website - [https://avet-clothes-shop-f8267.web.app/](https://avet-clothes-shop-f8267.web.app/).
 
 ![screenshot](./src/assets/screenshots/home.jpg)
-![screenshot](./src/assets/Screenshots/shop.jpg)
+![screenshot](./src/assets//screenshots//shop.jpg)
 ![screenshot](./src/assets/Screenshots/login.jpg)
 ![screenshot](./src/assets/Screenshots/cart.jpg)
 ![screenshot](./src/assets/Screenshots/order.jpg)
