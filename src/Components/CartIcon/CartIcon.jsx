@@ -14,6 +14,7 @@ export default function CartIcon() {
   
   return (
     <Popup
+      className="popup"
       trigger={
         <div className="cart-icon-container">
           <span className="item-count">{CartCount}</span>

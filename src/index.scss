@@ -6,8 +6,13 @@
 
 body {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: rgb(75, 30, 73);
 }
+
+button:active, Link:active {
+  transform: scale(1.1);
+}
+

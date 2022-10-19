@@ -12,45 +12,39 @@ export default function Checkout() {
     0
   );
 
+  const checkoutHeader = ["Product", "Description", "Quantity", "Price", ""];
+
   return (
     <div className="checkout-container">
       <h1>Checkout Page</h1>
 
       {cartItems?.length > 0 && (
         <button
-          className="inverted"
+          className="empty-cart-button"
           onClick={() => dispatch({ type: CART_ACTION_TYPES.CLEAR_CART })}
         >
           EMPTY THE CART
         </button>
       )}
+
       <div className="checkout-header">
-        <div className="header-block">
-          <span>Product</span>
-        </div>
-        <div className="header-block">
-          <span>Description</span>
-        </div>
-        <div className="header-block">
-          <span>Quantity</span>
-        </div>
-        <div className="header-block">
-          <span>Price</span>
-        </div>
-        <div className="header-block">
-          <span>Remove</span>
-        </div>
+        {checkoutHeader.map((header) => (
+          <div className="header-block">{header}</div>
+        ))}
       </div>
+
       <div className="checkout-body-container">
         {cartItems.length > 0 ? (
           cartItems.map((cartItem) => {
             return <CheckoutItem key={Math.random()} cartItem={cartItem} />;
           })
         ) : (
-          <p className="emptyCartMessage">There is no products in your cart.</p>
+          <p className="empty-Cart-Message"> YOUR CART IS EMPTY 🧺 </p>
         )}
       </div>
       <span className="total">Total: ${cartTotalPrice}</span>
+
+      {cartItems?.length > 0 && <button className="order-button">ORDER</button>}
     </div>
   );
 }

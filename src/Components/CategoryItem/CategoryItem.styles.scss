@@ -1,3 +1,5 @@
+@import "./../../SASS/mixings";
+
 .category-container {
   width: 30%;
   height: 40vh;
@@ -13,9 +15,15 @@
   background-size: cover;
   background-position: center;
 
-  &:nth-child(1) {
-    object-fit: scale-down;
-    object-position: center;
+  
+
+  &:active {
+  transform: scale(1.1);
+}
+
+  @include BP(tablet) {
+    width: 95%;
+    margin: 1vh 0;
   }
 
   &:hover {
@@ -28,7 +36,8 @@
   }
 
   .category-body-container {
-    height: 90px;
+    height: 100px;
+    width: 200px;
     padding: 0 25px;
     display: flex;
     flex-direction: column;
@@ -37,17 +46,20 @@
     border: 1px solid black;
     background-color: white;
     transition: 0.33s;
+    color: rgba(75, 30, 73, 1);
 
     h2 {
       font-weight: bold;
+      font-style: italic;
+        color: rgba(75, 30, 73, 1);
       margin: 0 6px 0;
-      font-size: 22px;
-      color: rgb(74, 74, 74);
+      font-size: 30px;
+    
+      
     }
 
     p {
-      font-weight: lighter;
-      font-size: 16px;
+      font-size: 24px;
     }
   }
 }

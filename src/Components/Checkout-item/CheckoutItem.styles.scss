@@ -1,3 +1,5 @@
+@import "./../../SASS/mixings";
+
 .checkout-item-container {
   width: 100%;
   height: 33vh;
@@ -9,8 +11,12 @@
   font-size: 20px;
   align-items: center;
 
+  @include BP(tablet) {
+    height: 150px;
+  }
+
   .image-container {
-    width: 23%;
+    width: 26%;
     padding: 0 2px;
     height: 100%;
     display: flex;
@@ -31,6 +37,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .name {
+    width: 20%;
+    text-align: center;
   }
 
   .quantity {

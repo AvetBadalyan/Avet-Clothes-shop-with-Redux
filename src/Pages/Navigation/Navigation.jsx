@@ -31,22 +31,20 @@ export default function Navigation() {
           <div className="nav-links-container">
             {!isLoggedIn && (
               <Link className="nav-link" to="/sing-up">
-                SIGN UP / SIGN IN
+                SIGN UP / LOGIN
               </Link>
             )}
 
             {isLoggedIn && (
-              <div className="logout-actions">
-                <Link className="logout" onClick={logOutHandler} to="/">
-                  Log out
-                </Link>
-              </div>
+              <Link className="nav-link" onClick={logOutHandler} to="/">
+                Log out
+              </Link>
             )}
 
             <Link className="nav-link" to="/shop">
-              GO TO ENTIRE SHOP
+              GO TO SHOP
             </Link>
-            <div className="nav-link">
+            <div>
               <CartIcon />
             </div>
           </div>

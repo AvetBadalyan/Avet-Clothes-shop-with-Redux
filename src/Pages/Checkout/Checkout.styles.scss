@@ -1,13 +1,19 @@
+@import "./../../SASS/mixings";
+
 .checkout-container {
-  width: 60%;
+  width: 70%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
 
+  @include BP(tablet) {
+    width: 99%;
+  }
+
   .checkout-header {
-    width: 100%;
+    width: 90%;
     padding: 10px 0;
     display: flex;
     border-bottom: 1px solid darkgrey;
@@ -26,7 +32,7 @@
   }
 
   .checkout-body-container {
-    width: 100%;
+    width: 90%;
   }
 
   .total {
@@ -34,11 +40,53 @@
     font-size: 36px;
   }
 }
-.emptyCartMessage {
+
+.empty-Cart-Message {
   text-align: center;
   padding: 5px 12px;
-  border: 1px solid;
   width: fit-content;
   font-weight: 600;
   margin: 10px auto;
+}
+
+.empty-cart-button {
+  margin: 10px;
+  width: 60%;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed";
+  font-weight: bolder;
+  cursor: pointer;
+  background-color: rgb(237, 192, 234);
+  color: rgba(75, 30, 73, 1);
+  border: 1px solid rgba(75, 30, 73, 1);
+
+  &:hover {
+    background-color: rgba(75, 30, 73, 1);
+    color: rgb(237, 192, 234);
+  }
+}
+
+.order-button {
+  margin: 10px;
+  width: 60%;
+  letter-spacing: 0.5px;
+  line-height: 50px;
+  padding: 0 35px;
+  font-size: large;
+  text-transform: uppercase;
+  font-family: "Open Sans Condensed";
+  font-weight: bold;
+  cursor: pointer;
+  background-color: rgba(75, 30, 73, 1);
+  color: rgba(237, 192, 234, 0.8);
+
+  &:hover {
+    color: rgba(237, 192, 234, 1);
+    font-size: larger;
+    font-weight: bolder;
+  }
 }

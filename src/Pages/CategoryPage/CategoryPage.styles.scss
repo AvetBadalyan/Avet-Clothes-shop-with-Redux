@@ -1,9 +1,18 @@
+@import "./../../SASS/mixings";
+
 .products-container-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 10px;
   row-gap: 50px;
   padding: 2vh;
+
+  @include BP(tablet) {
+    grid-template-columns: (1fr 1fr);
+  }
+  @include BP(mobile) {
+    grid-template-columns: (1fr);
+  }
 }
 
 .products-container {

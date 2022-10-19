@@ -33,27 +33,27 @@ export default function CheckoutItem({ cartItem }) {
       </div>
       <div className="name">{name}</div>
       <div className="quantity">
-        <div
+        <button
           className="arrow"
           onClick={removeFromCartHandler}
         >
           &#10094;
-        </div>
+        </button>
         <span className="value">{quantity}</span>
-        <div
+        <button
           className="arrow"
           onClick={addToCartHandler}
         >
           &#10095;
-        </div>
+        </button>
       </div>
       <div className="price">{price}</div>
-      <div
+      <button
         className="remove-button"
         onClick={clearItemFromCartHandler}
       >
         &#10005;
-      </div>
+      </button>
     </div>
   );
 }

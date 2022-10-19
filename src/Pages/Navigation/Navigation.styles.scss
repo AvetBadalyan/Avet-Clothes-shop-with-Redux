@@ -1,19 +1,17 @@
 @import "../../SASS/_mixings";
 
 .navigation {
-  height: 10%;
-  padding: 1vh;
-  border: 1px solid rgba(200, 200, 200, 1);
+  max-height: 10%;
+  padding: 1vw;
   position: sticky;
   background-color: rgba(75, 30, 73, 1);
   color: white;
+  font-style: italic;
 
   .nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80%;
-   
 
     @include BP(tablet) {
       flex-direction: column;
@@ -26,20 +24,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      cursor: pointer;
 
       @include BP(tablet) {
         width: 100%;
         padding: 5px 0;
+        justify-content: center;
       }
 
       .logo-container {
-        width: 15%;
+        width: 10%;
         display: flex;
         justify-content: center;
         align-items: center;
-        // height: min-content;
-        // margin-top: 6px;
+        cursor: pointer;
 
         img {
           width: 100%;
@@ -55,13 +52,17 @@
       height: 100%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       padding: 10px 15px;
 
+      > * {
+        margin: 0 15px;
+      }
+
       @include BP(tablet) {
-        // flex-direction: column;
         width: 100%;
         padding: 10px 5px;
+        justify-content: space-between;
 
         & a {
           font-size: 16px;
@@ -73,10 +74,21 @@
 
 a {
   text-decoration: none;
-  font-size: 2vw;
+  font-size: 2.5vmin;
   color: white;
 }
 
-Link {
+.nav-link {
+  border: 1px solid rgb(237, 192, 234);
+  padding: 1.4vmin;
+  margin: 1vmin;
+  font-weight: bolder;
   cursor: pointer;
+  color: rgb(237, 192, 234);
+  border-radius: 6px;
+
+  &:hover {
+    background-color: rgb(237, 192, 234);
+    color: rgba(75, 30, 73, 1);
+  }
 }

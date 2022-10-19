@@ -1,6 +1,13 @@
+@import "./../../SASS/mixings";
+
 .categories-container {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+
+  @include BP(tablet) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

@@ -2,7 +2,7 @@
 
 .product-type-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 10px;
   row-gap: 50px;
   padding: 2vh;
@@ -19,6 +19,8 @@
   h1 {
     text-align: center;
   }
+
+  margin: 20px 0;
 }
 
 .filtered-type-content {

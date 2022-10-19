@@ -14,12 +14,13 @@ export default function CartDropdown() {
   return (
     <div className="cart-dropdown-container">
       <div className="cart-items">
-        Cart Items
-        {cartItems && cartItems.map((item) => (
-          <CartItem key={Math.random()} cartItem={item} />
-        ))}
+        <p> Your Items in Cart</p>
+        {cartItems &&
+          cartItems.map((item) => (
+            <CartItem key={Math.random()} cartItem={item} />
+          ))}
       </div>
-      <button className="inverted" onClick={goToCheckoutHandler}>
+      <button className="checkout-button" onClick={goToCheckoutHandler}>
         GO TO CHECKOUT
       </button>
     </div>
