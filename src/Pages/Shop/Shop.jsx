@@ -37,7 +37,6 @@ export default function Shop() {
               </div>
             );
           })
-        
         : filtered.map((item) => {
             return (
               <div key={Math.random()} className="filtered-type-content">
