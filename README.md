@@ -8,11 +8,11 @@ Link to the Website - [https://avet-clothes-shop-f8267.web.app/](https://avet-cl
 
 ![screenshot](./src/assets/screenshots/home.jpg)
 ![screenshot](./src/assets//screenshots//shop.jpg)
-![screenshot](./src/assets/Screenshots/login.jpg)
-![screenshot](./src/assets/Screenshots/cart.jpg)
-![screenshot](./src/assets/Screenshots/order.jpg)
-![screenshot](./src/assets/Screenshots/mob%20shop.jpg)
-![screenshot](./src/assets/Screenshots/mob%20checkout.jpg)
+![screenshot](./src//assets/screenshots/login.jpg)
+![screenshot](./src/assets/screenshots/cart.jpg)
+![screenshot](./src/assets/screenshots/order.jpg)
+![screenshot](./src/assets/screenshots/mob%20shop.jpg)
+![screenshot](./src/assets/screenshots/mob%20checkout.jpg)
 
 # Getting Started with Create React App
 
