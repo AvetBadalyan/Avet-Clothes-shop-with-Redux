@@ -1,4 +1,3 @@
-import React, {useEffect} from "react";
 import "./CartDropdown.styles.scss";
 import CartItem from "../Cart-Item/CartItem";
 import { useNavigate } from "react-router-dom";
