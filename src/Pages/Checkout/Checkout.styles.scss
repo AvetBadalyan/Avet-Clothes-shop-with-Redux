@@ -2,11 +2,15 @@
 
 .checkout-container {
   width: 70%;
-  min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
+  font-size: 4vmin;
+
+  h1 {
+    margin: 20px auto;
+  }
 
   @include BP(tablet) {
     width: 99%;
@@ -50,11 +54,10 @@
 }
 
 .empty-cart-button {
-  margin: 10px;
-  width: 60%;
+  margin: 10px auto;
+  width: 50%;
   letter-spacing: 0.5px;
-  line-height: 50px;
-  padding: 0 35px;
+  padding: 5px;
   font-size: 15px;
   text-transform: uppercase;
   font-family: "Open Sans Condensed";
@@ -70,11 +73,10 @@
   }
 }
 
-.order-button {
-  margin: 10px;
-  width: 60%;
-  letter-spacing: 0.5px;
-  line-height: 50px;
+.order-button,
+.go-back-to-shop-button {
+  margin: 10px auto;
+  min-height: 50px;
   padding: 0 35px;
   font-size: large;
   text-transform: uppercase;
@@ -83,10 +85,20 @@
   cursor: pointer;
   background-color: rgba(75, 30, 73, 1);
   color: rgba(237, 192, 234, 0.8);
+  border-radius: 8px;
 
   &:hover {
     color: rgba(237, 192, 234, 1);
     font-size: larger;
     font-weight: bolder;
   }
+}
+
+.success-message {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 1px solid rgba(75, 30, 73, 1);
+  font-size: 24px;
+  border-radius: 8px;
 }

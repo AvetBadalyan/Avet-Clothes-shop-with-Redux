@@ -26,6 +26,7 @@ export default function CategoryPage() {
       );
   }, []);
 
+  
   return (
     <div className="products-container">
       <h1>{categoryId}</h1>

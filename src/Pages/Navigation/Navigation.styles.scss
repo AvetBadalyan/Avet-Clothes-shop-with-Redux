@@ -26,6 +26,7 @@
       justify-content: space-between;
 
       @include BP(tablet) {
+        height: 50%;
         width: 100%;
         padding: 5px 0;
         justify-content: center;
@@ -33,10 +34,15 @@
 
       .logo-container {
         width: 10%;
+        height: 6vmin;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+
+        @include BP(tablet) {
+          height: 10vmin;
+        }
 
         img {
           width: 100%;

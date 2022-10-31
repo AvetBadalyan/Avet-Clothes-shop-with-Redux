@@ -14,7 +14,7 @@ export default function SignUp() {
   const passwordInputRef = useRef();
 
   // check if we are in login mode or in sign up mode
-  const [isLoginModeActive, setIsLoginModeActive] = useState(false);
+  const [isLoginModeActive, setIsLoginModeActive] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
@@ -67,7 +67,7 @@ export default function SignUp() {
       .then((data) => {
         dispatch({ type: USER_ACTION_TYPES.SET_TOKEN, payload: data.idToken });
         alert("successfully logged in");
-        navigate("/shop");
+        navigate(-1);
       })
       .catch((err) => {
         alert(err.message);

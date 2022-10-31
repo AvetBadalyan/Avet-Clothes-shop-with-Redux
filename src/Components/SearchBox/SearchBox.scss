@@ -3,10 +3,6 @@
 .search-box {
   width: 80%;
 
-  @include BP(tablet) {
-    width: 80%;
-  }
-
   .search {
     padding: 0 5px;
     outline: none;
@@ -19,6 +15,7 @@
     @include BP(tablet) {
       font-size: large;
       margin-left: 8px;
+      height: 10vmin;
     }
   }
 }
