@@ -10,6 +10,7 @@ import SearchBox from "../../Components/SearchBox/SearchBox";
 export default function Navigation() {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => !!state?.userSlice?.token);
+  const currentUser = useSelector((state) => state.userSlice.currentUser);
   // on click the log out button
 
   const logOutHandler = () => {
@@ -33,6 +34,10 @@ export default function Navigation() {
               <Link className="nav-link" to="/sing-up">
                 SIGN UP / LOGIN
               </Link>
+            )}
+
+            {isLoggedIn && (
+              <p className="current-user-info">User: {currentUser}</p>
             )}
 
             {isLoggedIn && (

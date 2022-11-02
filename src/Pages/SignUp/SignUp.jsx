@@ -65,6 +65,10 @@ export default function SignUp() {
         }
       })
       .then((data) => {
+        dispatch({
+          type: USER_ACTION_TYPES.SET_CURRENT_USER,
+          payload: data.email,
+        });
         dispatch({ type: USER_ACTION_TYPES.SET_TOKEN, payload: data.idToken });
         alert("successfully logged in");
         navigate(-1);

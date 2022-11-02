@@ -2,7 +2,7 @@
 
 .navigation {
   max-height: 10%;
-  padding: 1vw;
+  padding: 2px;
   position: sticky;
   background-color: rgba(75, 30, 73, 1);
   color: white;
@@ -24,16 +24,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 2px;
 
       @include BP(tablet) {
         height: 50%;
         width: 100%;
-        padding: 5px 0;
-        justify-content: center;
+        padding: 4px 2px;
+        justify-content: space-between;
       }
 
       .logo-container {
-        width: 10%;
         height: 6vmin;
         display: flex;
         justify-content: center;
@@ -47,7 +47,7 @@
         img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           object-position: center;
         }
       }
@@ -59,19 +59,18 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding: 10px 15px;
+      padding: 2px;
 
       > * {
-        margin: 0 15px;
+        margin: 0 10px;
       }
 
       @include BP(tablet) {
         width: 100%;
-        padding: 10px 5px;
         justify-content: space-between;
 
-        & a {
-          font-size: 16px;
+        > * {
+          margin: 0;
         }
       }
     }
@@ -80,15 +79,34 @@
 
 a {
   text-decoration: none;
-  font-size: 2.5vmin;
+  font-size: 1rem;
   color: white;
 }
 
 .nav-link {
   border: 1px solid rgb(237, 192, 234);
-  padding: 1.4vmin;
-  margin: 1vmin;
-  font-weight: bolder;
+  padding: 10px;
+  word-wrap: break-word;
+  font-weight: bold;
+  cursor: pointer;
+  color: rgb(237, 192, 234);
+  border-radius: 6px;
+  max-height: 60px;
+
+  &:hover {
+    background-color: rgb(237, 192, 234);
+    color: rgba(75, 30, 73, 1);
+  }
+}
+
+.current-user-info {
+  width: 35%;
+  text-align: center;
+  border: 1px solid rgb(237, 192, 234);
+  padding: 2px;
+  margin: 2px;
+  word-wrap: break-word;
+  font-weight: bold;
   cursor: pointer;
   color: rgb(237, 192, 234);
   border-radius: 6px;

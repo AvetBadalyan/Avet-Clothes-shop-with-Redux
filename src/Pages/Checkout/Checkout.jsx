@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Checkout.styles.scss";
 import CheckoutItem from "../../Components/Checkout-item/CheckoutItem";
 import { useDispatch, useSelector } from "react-redux";
