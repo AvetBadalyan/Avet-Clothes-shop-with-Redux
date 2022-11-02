@@ -88,6 +88,7 @@ a {
 .nav-link {
   border: 1px solid rgb(237, 192, 234);
   padding: 8px;
+  min-height: 35px;
   word-wrap: break-word;
   font-weight: bold;
   cursor: pointer;
@@ -102,7 +103,8 @@ a {
 }
 
 .current-user-info {
-  width: 35%;
+  width: 30%;
+  min-height: 35px;
   text-align: center;
   padding: 8px;
   margin: 8px;
@@ -112,11 +114,13 @@ a {
   color: rgba(75, 30, 73, 1);
   border-radius: 8px;
 
-  @include BP(tablet) {
+  @include BP(laptop) {
     font-size: 1rem;
+    padding: 1px;
   }
 
-  @include BP(tablet) {
-    font-size: 10px;
+  @include BP(mobile) {
+    font-size: 0.8rem;
+    padding: 0;
   }
 }
