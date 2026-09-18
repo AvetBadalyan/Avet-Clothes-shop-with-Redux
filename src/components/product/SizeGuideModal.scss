@@ -1,0 +1,138 @@
+.sizeguide {
+	position: fixed;
+	inset: 0;
+	z-index: $z-modal;
+	display: grid;
+	place-items: center;
+	padding: $space-4;
+	background: var(--color-overlay);
+	backdrop-filter: blur(3px);
+	overflow-y: auto;
+
+	&__panel {
+		position: relative;
+		width: min(560px, 100%);
+		background: var(--color-canvas);
+		border-radius: $radius-lg;
+		padding: $space-6;
+		max-height: 90vh;
+		overflow-y: auto;
+		box-shadow: var(--shadow-lg);
+
+		[data-theme='dark'] & {
+			background: var(--color-card-bg);
+		}
+	}
+
+	&__head {
+		@include flex-between;
+		align-items: flex-start;
+		margin-bottom: $space-5;
+
+		h2 {
+			font-family: $font-body;
+			font-size: 1.3rem;
+			font-weight: $fw-semibold;
+			color: var(--color-ink);
+		}
+	}
+
+	&__close {
+		display: grid;
+		place-items: center;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		color: var(--color-ink);
+		transition: background $transition-fast;
+		@include focus-ring;
+
+		&:hover {
+			background: var(--color-cloud);
+		}
+	}
+
+	&__table-wrap {
+		overflow-x: auto;
+	}
+
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: 0.9rem;
+
+		th,
+		td {
+			padding: $space-3 $space-2;
+			text-align: left;
+			border-bottom: 1px solid var(--color-line);
+		}
+
+		th {
+			font-weight: $fw-semibold;
+			color: var(--color-ink);
+			white-space: nowrap;
+		}
+
+		td {
+			color: var(--color-charcoal);
+		}
+
+		tbody tr:last-child td {
+			border-bottom: none;
+		}
+
+		// First column (the size label) reads as the row heading.
+		td:first-child {
+			font-weight: $fw-semibold;
+			color: var(--color-ink);
+		}
+	}
+
+	&__note {
+		margin-top: $space-5;
+		font-size: 0.82rem;
+		line-height: 1.5;
+		color: var(--color-slate);
+	}
+
+	// On small screens, collapse the table into stacked rows with labels.
+	@include bp-down(sm) {
+		&__table {
+			thead {
+				display: none;
+			}
+
+			tr {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: $space-1 $space-3;
+				padding: $space-3 0;
+				border-bottom: 1px solid var(--color-line);
+			}
+
+			td {
+				border: none;
+				padding: 2px 0;
+				display: flex;
+				justify-content: space-between;
+				gap: $space-3;
+
+				&::before {
+					content: attr(data-label);
+					font-weight: $fw-medium;
+					color: var(--color-slate);
+				}
+			}
+
+			td:first-child {
+				grid-column: 1 / -1;
+				font-size: 1rem;
+
+				&::before {
+					content: 'Size';
+				}
+			}
+		}
+	}
+}

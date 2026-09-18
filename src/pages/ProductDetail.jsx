@@ -3,12 +3,14 @@ import Icon from '@/components/common/Icon.jsx'
 import Price from '@/components/common/Price.jsx'
 import StarRating from '@/components/common/StarRating.jsx'
 import ProductCard from '@/components/product/ProductCard.jsx'
+import SizeGuideModal from '@/components/product/SizeGuideModal.jsx'
 import SizeSelector from '@/components/product/SizeSelector.jsx'
 import {
 	getCompleteTheLook,
 	getProductById,
 	getRelated
 } from '@/data/products.js'
+import { recentlyViewedService } from '@/services/recentlyViewedService.js'
 import { addToCart } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { addToast, openCart } from '@/store/uiSlice.js'
@@ -36,6 +38,8 @@ export default function ProductDetail() {
 	const [qty, setQty] = useState(1)
 	const [error, setError] = useState(false)
 	const [activeImg, setActiveImg] = useState(0)
+	const [sizeGuideOpen, setSizeGuideOpen] = useState(false)
+	const [recentIds, setRecentIds] = useState([])
 
 	useEffect(() => {
 		if (product) {
@@ -44,6 +48,9 @@ export default function ProductDetail() {
 			setQty(1)
 			setError(false)
 			setActiveImg(0)
+			// Capture what was viewed *before* this product, then record this one.
+			setRecentIds(recentlyViewedService.list())
+			recentlyViewedService.add(product.id)
 		}
 	}, [productId, product])
 
@@ -72,10 +79,21 @@ export default function ProductDetail() {
 	const related = getRelated(product)
 	const look = getCompleteTheLook(product)
 	const isAccessory = product.sizes.length === 1 && product.sizes[0] === 'OS'
+	const recentlyViewed = recentIds
+		.filter(id => id !== product.id)
+		.map(getProductById)
+		.filter(Boolean)
+		.slice(0, 4)
 
 	const handleAdd = () => {
 		if (!size) {
 			setError(true)
+			// Toast + scroll so the shopper gets feedback even when adding from
+			// the sticky bar with the size selector scrolled out of view.
+			dispatch(addToast('Please select a size', 'error'))
+			document
+				.querySelector('.pdp__selector .size-selector')
+				?.scrollIntoView({ behavior: 'smooth', block: 'center' })
 			return
 		}
 		dispatch(addToCart({ product, size, color, quantity: qty }))
@@ -183,7 +201,13 @@ export default function ProductDetail() {
 										<em className="pdp__err"> · please select a size</em>
 									)}
 								</span>
-								<button className="pdp__guide">Size guide</button>
+								<button
+									type="button"
+									className="pdp__guide"
+									onClick={() => setSizeGuideOpen(true)}
+								>
+									Size guide
+								</button>
 							</div>
 							<SizeSelector
 								sizes={product.sizes}
@@ -315,6 +339,55 @@ export default function ProductDetail() {
 					</div>
 				</section>
 			)}
+
+			{/* Recently viewed */}
+			{recentlyViewed.length > 0 && (
+				<section className="section container">
+					<header className="section-head">
+						<div>
+							<p className="overline">Pick up where you left off</p>
+							<h2 className="section-head__title">Recently viewed</h2>
+						</div>
+					</header>
+					<div className="product-grid">
+						{recentlyViewed.map((p, i) => (
+							<ProductCard
+								key={p.id}
+								product={p}
+								index={i}
+							/>
+						))}
+					</div>
+				</section>
+			)}
+
+			{/* Sticky add-to-bag bar — mobile only, keeps the primary action
+			    reachable while scrolling the long product page. */}
+			<div className="pdp__sticky-bar">
+				<div className="pdp__sticky-info">
+					<span className="pdp__sticky-name">{product.name}</span>
+					<Price
+						value={product.price}
+						was={product.priceWas}
+					/>
+				</div>
+				<button
+					className="btn pdp__sticky-add"
+					onClick={handleAdd}
+				>
+					<Icon
+						name="bag"
+						size={18}
+					/>{' '}
+					Add to bag
+				</button>
+			</div>
+
+			<SizeGuideModal
+				open={sizeGuideOpen}
+				onClose={() => setSizeGuideOpen(false)}
+				category={product.category}
+			/>
 		</div>
 	)
 }
