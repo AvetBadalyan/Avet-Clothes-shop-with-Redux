@@ -129,9 +129,11 @@ self-contained and deployable as a static site.
 - **Route-level code splitting** — each page loads as a separate chunk
 - **Memoized selectors** — `createSelector` for derived state
 - **Typed Redux hooks** — `useAppDispatch` / `useAppSelector` pattern
+- **Service layer abstraction** — mock services easily swappable for real APIs
 - **Modular SCSS** — design tokens auto-injected via Vite
 - **Manual chunk splitting** — vendor, redux, motion separated for caching
 - **Error boundary** — graceful error recovery at app level
+- **Accessibility** — skip-to-content link, focus traps, ARIA attributes
 
 ---
 
@@ -173,7 +175,8 @@ src/
 ├── pages/              # Home, Shop, ProductDetail, Wishlist, Checkout, Auth, NotFound, StaticPages
 ├── services/           # authService, orderService, recentlyViewedService
 ├── store/              # Redux slices (cart, wishlist, filters, auth, ui)
-└── styles/             # SCSS architecture (abstracts, base)
+├── styles/             # SCSS architecture (abstracts, base)
+└── utils/              # formatPrice helper
 ```
 
 ### State Management

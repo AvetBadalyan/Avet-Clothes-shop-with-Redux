@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Icon from "@/components/common/Icon.jsx";
-import { formatPrice } from "@/components/common/Price.jsx";
+import { formatPrice } from "@/utils/formatPrice.js";
 import { useAppDispatch } from "@/store/hooks.js";
 import {
   incrementLine,

@@ -1,10 +1,4 @@
-export const formatPrice = (n) =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(n);
+import { formatPrice } from "@/utils/formatPrice.js";
 
 export default function Price({ value, was, className = "" }) {
   return (

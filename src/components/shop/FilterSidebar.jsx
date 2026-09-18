@@ -11,7 +11,7 @@ import {
   resetFilters,
 } from "@/store/filtersSlice.js";
 import { BRANDS, PRICE_BOUNDS, PRODUCTS } from "@/data/products.js";
-import { formatPrice } from "@/components/common/Price.jsx";
+import { formatPrice } from "@/utils/formatPrice.js";
 import Icon from "@/components/common/Icon.jsx";
 import "./FilterSidebar.scss";
 

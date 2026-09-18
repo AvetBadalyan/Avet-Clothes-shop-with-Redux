@@ -36,10 +36,6 @@
 		border-radius: 50%;
 		background: rgba(255, 255, 255, 0.14);
 		flex-shrink: 0;
-
-		[data-theme='dark'] & {
-			background: rgba(0, 0, 0, 0.2);
-		}
 	}
 
 	&__msg {
@@ -51,16 +47,8 @@
 		color: rgba(255, 255, 255, 0.6);
 		display: inline-flex;
 
-		[data-theme='dark'] & {
-			color: rgba(0, 0, 0, 0.6);
-		}
-
 		&:hover {
 			color: #ffffff;
-
-			[data-theme='dark'] & {
-				color: #000000;
-			}
 		}
 	}
 

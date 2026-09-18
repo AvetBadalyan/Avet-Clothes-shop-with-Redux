@@ -1,5 +1,4 @@
 import Icon from '@/components/common/Icon.jsx'
-import { formatPrice } from '@/components/common/Price.jsx'
 import {
 	getCompleteTheLook,
 	getProductById,
@@ -12,6 +11,7 @@ import {
 } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { closeCart, openQuickView, selectCartOpen } from '@/store/uiSlice.js'
+import { formatPrice } from '@/utils/formatPrice.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'

@@ -10,9 +10,12 @@ import "./Layout.scss";
 export default function Layout() {
   return (
     <div className="layout">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <AnnouncementBar />
       <Navbar />
-      <main className="layout__main">
+      <main id="main-content" className="layout__main">
         <Outlet />
       </main>
       <Footer />

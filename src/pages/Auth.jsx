@@ -1,5 +1,4 @@
 import Icon from '@/components/common/Icon.jsx'
-import { formatPrice } from '@/components/common/Price.jsx'
 import { getProductById, img } from '@/data/products.js'
 import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { orderService } from '@/services/orderService.js'
@@ -15,6 +14,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { addToast } from '@/store/uiSlice.js'
 import { selectWishlistIds } from '@/store/wishlistSlice.js'
+import { formatPrice } from '@/utils/formatPrice.js'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'

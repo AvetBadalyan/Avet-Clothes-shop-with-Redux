@@ -7,3 +7,18 @@
     flex: 1;
   }
 }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-ink);
+  color: var(--color-canvas);
+  padding: $space-2 $space-4;
+  z-index: $z-modal + 1;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 0;
+  }
+}
