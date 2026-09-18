@@ -2,6 +2,7 @@ import Icon from '@/components/common/Icon.jsx'
 import ProductCard from '@/components/product/ProductCard.jsx'
 import FilterSidebar from '@/components/shop/FilterSidebar.jsx'
 import { CATEGORIES, SORT_OPTIONS } from '@/data/products.js'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import {
 	resetFilters,
 	selectActiveFilterCount,
@@ -47,7 +48,7 @@ export default function Shop() {
 	const heading = category ? category.title : 'All Products'
 	const tagline = category
 		? category.tagline
-		: 'The full LUXE collection, curated for the season.'
+		: 'The full collection, curated for the season.'
 	usePageTitle(heading)
 
 	return (

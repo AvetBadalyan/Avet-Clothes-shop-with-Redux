@@ -1,4 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="7" fill="#0f0f10"/>
-  <path d="M8 9h4l4 8 4-8h4l-6 12h-4L8 9z" fill="#fff"/>
+  <!-- Stylized hanger / clothing icon -->
+  <path d="M16 8a2 2 0 1 1 0 4 2 2 0 0 1 0-4z" fill="#fff"/>
+  <path d="M16 11v2M8 18l8-5 8 5M8 18v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5" 
+        stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>

@@ -77,9 +77,9 @@ export default function Navbar() {
 					<Link
 						to="/"
 						className="navbar__logo"
-						aria-label="LUXE home"
+						aria-label="Home"
 					>
-						LUXE
+						MODERN
 					</Link>
 
 					{/* Desktop navigation - next to logo */}
@@ -211,7 +211,7 @@ export default function Navbar() {
 							transition={{ type: 'tween', duration: 0.3 }}
 						>
 							<div className="navbar__mobile-head">
-								<span className="navbar__logo">LUXE</span>
+								<span className="navbar__logo">MODERN</span>
 								<button
 									className="navbar__icon-btn"
 									aria-label="Close menu"

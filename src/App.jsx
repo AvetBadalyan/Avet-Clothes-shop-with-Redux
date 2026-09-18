@@ -15,6 +15,17 @@ const Checkout = lazy(() => import('@/pages/Checkout.jsx'))
 const Auth = lazy(() => import('@/pages/Auth.jsx'))
 const NotFound = lazy(() => import('@/pages/NotFound.jsx'))
 
+// Static pages (shipping, size guide, contact) - named exports need wrapper
+const ShippingReturns = lazy(() =>
+	import('@/pages/StaticPages.jsx').then(m => ({ default: m.ShippingReturns }))
+)
+const SizeGuidePage = lazy(() =>
+	import('@/pages/StaticPages.jsx').then(m => ({ default: m.SizeGuidePage }))
+)
+const Contact = lazy(() =>
+	import('@/pages/StaticPages.jsx').then(m => ({ default: m.Contact }))
+)
+
 export default function App() {
 	return (
 		<ErrorBoundary>
@@ -52,6 +63,18 @@ export default function App() {
 						<Route
 							path="account"
 							element={<Auth />}
+						/>
+						<Route
+							path="shipping-returns"
+							element={<ShippingReturns />}
+						/>
+						<Route
+							path="size-guide"
+							element={<SizeGuidePage />}
+						/>
+						<Route
+							path="contact"
+							element={<Contact />}
 						/>
 						<Route
 							path="*"

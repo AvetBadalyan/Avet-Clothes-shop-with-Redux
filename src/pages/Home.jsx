@@ -1,6 +1,7 @@
 import Icon from '@/components/common/Icon.jsx'
 import ProductCard from '@/components/product/ProductCard.jsx'
 import { CATEGORIES, PRODUCTS, img } from '@/data/products.js'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { setCategory, setNewOnly, setSearch } from '@/store/filtersSlice.js'
 import { useAppDispatch } from '@/store/hooks.js'
 import { motion } from 'framer-motion'
@@ -16,7 +17,7 @@ const fadeUp = {
 export default function Home() {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-	usePageTitle(null) // Home — use base title "LUXE"
+	usePageTitle(null) // Home — use base title
 
 	// Memoized: PRODUCTS is a static module-level constant so these never
 	// change, but useMemo documents intent and guards against future mutations.

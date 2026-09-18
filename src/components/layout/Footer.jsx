@@ -1,7 +1,5 @@
 import Icon from '@/components/common/Icon.jsx'
 import { CATEGORIES } from '@/data/products.js'
-import { useAppDispatch } from '@/store/hooks.js'
-import { addToast } from '@/store/uiSlice.js'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Footer.scss'
@@ -15,7 +13,6 @@ const perks = [
 export default function Footer() {
 	const [email, setEmail] = useState('')
 	const [done, setDone] = useState(false)
-	const dispatch = useAppDispatch()
 
 	const subscribe = e => {
 		e.preventDefault()
@@ -23,11 +20,6 @@ export default function Footer() {
 			setDone(true)
 			setEmail('')
 		}
-	}
-
-	const comingSoon = label => e => {
-		e.preventDefault()
-		dispatch(addToast(`${label} — coming soon`, 'info'))
 	}
 
 	return (
@@ -52,7 +44,7 @@ export default function Footer() {
 
 			<div className="footer__main container">
 				<div className="footer__brand">
-					<span className="footer__logo">LUXE</span>
+					<span className="footer__logo">MODERN</span>
 					<p>
 						Considered fashion for the modern wardrobe. Designed to last, styled
 						to move.
@@ -74,25 +66,10 @@ export default function Footer() {
 
 				<div className="footer__col">
 					<h4>Help</h4>
-					<a
-						href="#"
-						onClick={comingSoon('Shipping & Returns')}
-					>
-						Shipping &amp; Returns
-					</a>
-					<a
-						href="#"
-						onClick={comingSoon('Size Guide')}
-					>
-						Size Guide
-					</a>
+					<Link to="/shipping-returns">Shipping &amp; Returns</Link>
+					<Link to="/size-guide">Size Guide</Link>
 					<Link to="/account">Track Order</Link>
-					<a
-						href="#"
-						onClick={comingSoon('Contact Us')}
-					>
-						Contact Us
-					</a>
+					<Link to="/contact">Contact Us</Link>
 				</div>
 
 				<div className="footer__newsletter">
@@ -131,7 +108,7 @@ export default function Footer() {
 			</div>
 
 			<div className="footer__bottom container">
-				<span>© {new Date().getFullYear()} LUXE. All rights reserved.</span>
+				<span>© {new Date().getFullYear()} MODERN. All rights reserved.</span>
 				<span className="footer__made">Built with React & Redux Toolkit</span>
 			</div>
 		</footer>

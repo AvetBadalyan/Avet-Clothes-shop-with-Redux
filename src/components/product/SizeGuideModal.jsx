@@ -1,6 +1,7 @@
 import Icon from '@/components/common/Icon.jsx'
+import { useFocusTrap } from '@/hooks/useFocusTrap.js'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import './SizeGuideModal.scss'
 
 // Reference measurement tables. Values are illustrative for a demo store.

@@ -10,6 +10,7 @@ import {
 	getProductById,
 	getRelated
 } from '@/data/products.js'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { recentlyViewedService } from '@/services/recentlyViewedService.js'
 import { addToCart } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
@@ -32,6 +33,9 @@ export default function ProductDetail() {
 	const wishlistIds = useAppSelector(selectWishlistIds)
 
 	const product = getProductById(productId)
+
+	// Hooks must be called unconditionally — use a fallback title when no product
+	usePageTitle(product?.name ?? 'Product Not Found')
 
 	const [size, setSize] = useState(null)
 	const [color, setColor] = useState(null)
@@ -76,7 +80,6 @@ export default function ProductDetail() {
 
 	const wished = wishlistIds.includes(product.id)
 	const gallery = [product.imageUrl, product.hoverImageUrl]
-	usePageTitle(product.name)
 	const related = getRelated(product)
 	const look = getCompleteTheLook(product)
 	const isAccessory = product.sizes.length === 1 && product.sizes[0] === 'OS'

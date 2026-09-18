@@ -1,5 +1,5 @@
 // ============================================================
-//  LUXE catalog — self-contained product data.
+//  Modern Fashion Store catalog — self-contained product data.
 //  Images are served from the Unsplash CDN with responsive params.
 // ============================================================
 

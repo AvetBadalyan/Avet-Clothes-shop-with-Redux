@@ -28,7 +28,7 @@ const issueToken = email => {
 			exp: Date.now() + 1000 * 60 * 60 * 24 * 7 // 7 days
 		})
 	)
-	const signature = btoa(`luxe-mock-${email}`)
+	const signature = btoa(`modern-mock-${email}`)
 	return `${header}.${payload}.${signature}`
 }
 

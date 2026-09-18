@@ -1,5 +1,7 @@
 import { authService } from '@/services/authService.js'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { clearCart } from './cartSlice.js'
+import { clearWishlist } from './wishlistSlice.js'
 
 // Rehydrate from any persisted session on load.
 const persisted = authService.getSession()

@@ -1,7 +1,7 @@
 import Icon from '@/components/common/Icon.jsx'
-import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { formatPrice } from '@/components/common/Price.jsx'
 import { getProductById, img } from '@/data/products.js'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { orderService } from '@/services/orderService.js'
 import {
 	clearAuthError,
@@ -22,7 +22,6 @@ import './Auth.scss'
 
 export default function Auth() {
 	const dispatch = useAppDispatch()
-	usePageTitle(user ? 'My Account' : mode === 'login' ? 'Sign In' : 'Create Account')
 	const navigate = useNavigate()
 	const location = useLocation()
 	const user = useAppSelector(selectUser)
@@ -50,6 +49,11 @@ export default function Auth() {
 	const [showPassword, setShowPassword] = useState(false)
 	const [formErrors, setFormErrors] = useState({})
 	const [activeTab, setActiveTab] = useState(initialTab ?? 'overview') // 'overview' | 'orders' | 'wishlist'
+
+	// Set page title based on auth state - must be after state is defined
+	usePageTitle(
+		user ? 'My Account' : mode === 'login' ? 'Sign In' : 'Create Account'
+	)
 
 	// Order history for the signed-in user (empty when logged out).
 	const orders = orderService.list(user?.email)
@@ -342,7 +346,7 @@ export default function Auth() {
 			>
 				<div className="auth__aside-overlay" />
 				<div className="auth__aside-content">
-					<span className="auth__logo">LUXE</span>
+					<span className="auth__logo">MODERN</span>
 					<p>
 						Members enjoy early access, saved wishlists and faster checkout.
 					</p>
@@ -362,7 +366,7 @@ export default function Auth() {
 			>
 				<div className="auth__box">
 					<p className="overline">
-						{mode === 'login' ? 'Welcome back' : 'Join LUXE'}
+						{mode === 'login' ? 'Welcome back' : 'Join us'}
 					</p>
 					<h1>{mode === 'login' ? 'Sign in' : 'Create account'}</h1>
 
@@ -469,7 +473,7 @@ export default function Auth() {
 					<p className="auth__switch">
 						{mode === 'login' ? (
 							<>
-								New to LUXE?{' '}
+								New here?{' '}
 								<button onClick={() => setMode('signup')}>
 									Create an account
 								</button>
