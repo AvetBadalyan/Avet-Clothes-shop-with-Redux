@@ -1,6 +1,7 @@
 import Icon from '@/components/common/Icon.jsx'
 import { formatPrice } from '@/components/common/Price.jsx'
 import { getProductById, img } from '@/data/products.js'
+import { orderService } from '@/services/orderService.js'
 import {
 	clearAuthError,
 	selectAuthError,
@@ -11,35 +12,57 @@ import {
 	signUp
 } from '@/store/authSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
-import { loadState } from '@/store/storage.js'
 import { addToast } from '@/store/uiSlice.js'
 import { selectWishlistIds } from '@/store/wishlistSlice.js'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Auth.scss'
 
 export default function Auth() {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
+	const location = useLocation()
 	const user = useAppSelector(selectUser)
 	const status = useAppSelector(selectAuthStatus)
 	const error = useAppSelector(selectAuthError)
 	const wishlistIds = useAppSelector(selectWishlistIds)
 
-	const [mode, setMode] = useState('login') // 'login' | 'signup'
-	const [form, setForm] = useState({ name: '', email: '', password: '' })
+	// Check for pre-filled data from checkout redirect
+	const prefillData = location.state || {}
+	const { prefillEmail, prefillName, mode: initialMode } = prefillData
+
+	const [mode, setMode] = useState(
+		initialMode === 'signup' ? 'signup' : 'login'
+	)
+	const [form, setForm] = useState({
+		name: prefillName || '',
+		email: prefillEmail || '',
+		password: ''
+	})
 	const [showPassword, setShowPassword] = useState(false)
 	const [activeTab, setActiveTab] = useState('overview') // 'overview' | 'orders' | 'wishlist'
 
-	// Load mock orders from localStorage
-	const orders = loadState('orders', [])
+	// Order history for the signed-in user (empty when logged out).
+	const orders = orderService.list(user?.email)
 
 	useEffect(() => {
 		dispatch(clearAuthError())
 	}, [mode, dispatch])
 
+	// Clear location state after consuming it (prevents stale prefill on refresh)
+	useEffect(() => {
+		if (prefillEmail || prefillName) {
+			window.history.replaceState({}, document.title)
+		}
+	}, [prefillEmail, prefillName])
+
 	const update = key => e => setForm(f => ({ ...f, [key]: e.target.value }))
+
+	// Users arriving from the post-checkout prompt carry prefill state; send
+	// them to their account so they land on the now-populated order history,
+	// not back on the stale confirmation screen. Everyone else goes back.
+	const cameFromCheckout = Boolean(prefillEmail || prefillName)
 
 	const submit = async e => {
 		e.preventDefault()
@@ -47,7 +70,11 @@ export default function Auth() {
 		const result = await dispatch(action(form))
 		if (action.fulfilled.match(result)) {
 			dispatch(addToast(`Welcome${mode === 'signup' ? '' : ' back'}!`))
-			navigate(-1)
+			if (cameFromCheckout) {
+				navigate('/account', { replace: true })
+			} else {
+				navigate(-1)
+			}
 		}
 	}
 

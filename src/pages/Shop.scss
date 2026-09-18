@@ -196,6 +196,10 @@
 		display: flex;
 		flex-direction: column;
 		box-shadow: var(--shadow-lg);
+
+		[data-theme='dark'] & {
+			background: var(--color-card-bg);
+		}
 	}
 
 	&__drawer-head {

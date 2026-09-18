@@ -54,7 +54,7 @@ export default function ProductDetail() {
 				style={{ textAlign: 'center' }}
 			>
 				<h1>Product not found</h1>
-				<p style={{ color: '#6b6b70', marginBlock: '1rem' }}>
+				<p style={{ color: 'var(--color-slate)', marginBlock: '1rem' }}>
 					This product may have sold out or been removed.
 				</p>
 				<Link

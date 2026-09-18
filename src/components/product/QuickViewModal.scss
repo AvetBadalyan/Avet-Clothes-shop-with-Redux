@@ -53,6 +53,10 @@
 		grid-template-columns: 1fr;
 		max-height: 92vh;
 
+		[data-theme='dark'] & {
+			background: var(--color-card-bg);
+		}
+
 		@include bp(md) {
 			grid-template-columns: 1fr 1fr;
 		}

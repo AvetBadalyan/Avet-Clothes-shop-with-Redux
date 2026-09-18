@@ -7,71 +7,121 @@
 //  reimplementing these four functions with supabase.auth.* calls
 //  and nothing else in the app has to change.
 // ============================================================
-import { loadState, saveState, clearState } from "@/store/storage.js";
+import { clearState, loadState, saveState } from '@/store/storage.js'
 
-const USERS_KEY = "users";
-const SESSION_KEY = "session";
+const USERS_KEY = 'users'
+const SESSION_KEY = 'session'
+const SAVED_ADDRESSES_KEY = 'savedAddresses'
 
-const readUsers = () => loadState(USERS_KEY, {});
-const writeUsers = (users) => saveState(USERS_KEY, users);
+const readUsers = () => loadState(USERS_KEY, {})
+const writeUsers = users => saveState(USERS_KEY, users)
+const readAddresses = () => loadState(SAVED_ADDRESSES_KEY, {})
+const writeAddresses = addresses => saveState(SAVED_ADDRESSES_KEY, addresses)
 
 // A deliberately fake, decodable "JWT-shaped" token (NOT secure — mock only).
-const issueToken = (email) => {
-  const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
-  const payload = btoa(
-    JSON.stringify({
-      sub: email,
-      iat: Date.now(),
-      exp: Date.now() + 1000 * 60 * 60 * 24 * 7, // 7 days
-    })
-  );
-  const signature = btoa(`luxe-mock-${email}`);
-  return `${header}.${payload}.${signature}`;
-};
+const issueToken = email => {
+	const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
+	const payload = btoa(
+		JSON.stringify({
+			sub: email,
+			iat: Date.now(),
+			exp: Date.now() + 1000 * 60 * 60 * 24 * 7 // 7 days
+		})
+	)
+	const signature = btoa(`luxe-mock-${email}`)
+	return `${header}.${payload}.${signature}`
+}
 
-const delay = (ms = 550) => new Promise((r) => setTimeout(r, ms));
+const delay = (ms = 550) => new Promise(r => setTimeout(r, ms))
 
-const nameFromEmail = (email) => {
-  const handle = email.split("@")[0].replace(/[._-]+/g, " ");
-  return handle.replace(/\b\w/g, (c) => c.toUpperCase());
-};
+const nameFromEmail = email => {
+	const handle = email.split('@')[0].replace(/[._-]+/g, ' ')
+	return handle.replace(/\b\w/g, c => c.toUpperCase())
+}
+
+// Hash a password with a per-user salt using the Web Crypto API (SHA-256).
+// This is a mock store, so we never keep the plaintext password — only a
+// salted hash. A real backend would use bcrypt/argon2 server-side; the point
+// here is to demonstrate the pattern (never persist raw credentials).
+const toHex = buffer =>
+	[...new Uint8Array(buffer)].map(b => b.toString(16).padStart(2, '0')).join('')
+
+const hashPassword = async (password, salt) => {
+	const data = new TextEncoder().encode(`${salt}:${password}`)
+	const digest = await crypto.subtle.digest('SHA-256', data)
+	return toHex(digest)
+}
+
+const randomSalt = () => toHex(crypto.getRandomValues(new Uint8Array(16)))
 
 export const authService = {
-  /** Returns the persisted session ({ user, token }) or null. */
-  getSession() {
-    return loadState(SESSION_KEY, null);
-  },
+	/** Returns the persisted session ({ user, token }) or null. */
+	getSession() {
+		return loadState(SESSION_KEY, null)
+	},
 
-  async signUp({ name, email, password }) {
-    await delay();
-    const users = readUsers();
-    const key = email.toLowerCase();
-    if (users[key]) {
-      throw new Error("An account with this email already exists.");
-    }
-    users[key] = { name: name || nameFromEmail(email), email: key, password };
-    writeUsers(users);
-    const user = { name: users[key].name, email: key };
-    const session = { user, token: issueToken(key) };
-    saveState(SESSION_KEY, session);
-    return session;
-  },
+	async signUp({ name, email, password }) {
+		await delay()
+		const users = readUsers()
+		const key = email.toLowerCase()
+		if (users[key]) {
+			throw new Error('An account with this email already exists.')
+		}
+		// Store a salted hash — never the raw password.
+		const salt = randomSalt()
+		const passwordHash = await hashPassword(password, salt)
+		users[key] = {
+			name: name || nameFromEmail(email),
+			email: key,
+			salt,
+			passwordHash
+		}
+		writeUsers(users)
+		const user = { name: users[key].name, email: key }
+		const session = { user, token: issueToken(key) }
+		saveState(SESSION_KEY, session)
+		return session
+	},
 
-  async signIn({ email, password }) {
-    await delay();
-    const users = readUsers();
-    const key = email.toLowerCase();
-    const record = users[key];
-    if (!record || record.password !== password) {
-      throw new Error("Incorrect email or password.");
-    }
-    const user = { name: record.name, email: key };
-    const session = { user, token: issueToken(key) };
-    saveState(SESSION_KEY, session);
-    return session;
-  },
+	async signIn({ email, password }) {
+		await delay()
+		const users = readUsers()
+		const key = email.toLowerCase()
+		const record = users[key]
+		const attemptHash = record
+			? await hashPassword(password, record.salt)
+			: null
+		if (!record || record.passwordHash !== attemptHash) {
+			throw new Error('Incorrect email or password.')
+		}
+		const user = { name: record.name, email: key }
+		const session = { user, token: issueToken(key) }
+		saveState(SESSION_KEY, session)
+		return session
+	},
 
-  async signOut() {
-    clearState(SESSION_KEY);
-  },
-};
+	async signOut() {
+		clearState(SESSION_KEY)
+	},
+
+	/**
+	 * Save a shipping address for a user email.
+	 * This persists separately from the session so addresses survive sign-out.
+	 */
+	saveAddress(email, address) {
+		if (!email) return
+		const addresses = readAddresses()
+		addresses[email.toLowerCase()] = address
+		writeAddresses(addresses)
+	},
+
+	/**
+	 * Get the saved shipping address for a user email.
+	 * Returns null if no address is saved.
+	 */
+	getAddress(email) {
+		if (!email) return null
+		const addresses = readAddresses()
+		return addresses[email.toLowerCase()] ?? null
+	}
+}

@@ -1,5 +1,7 @@
 import Icon from '@/components/common/Icon.jsx'
 import { formatPrice } from '@/components/common/Price.jsx'
+import { authService } from '@/services/authService.js'
+import { createOrder, orderService } from '@/services/orderService.js'
 import { selectUser } from '@/store/authSlice.js'
 import {
 	clearCart,
@@ -7,10 +9,9 @@ import {
 	selectCartSubtotal
 } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
-import { loadState, saveState } from '@/store/storage.js'
 import { addToast } from '@/store/uiSlice.js'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Checkout.scss'
 
@@ -33,14 +34,35 @@ export default function Checkout() {
 	const subtotal = useAppSelector(selectCartSubtotal)
 	const user = useAppSelector(selectUser)
 
-	const [form, setForm] = useState(() => ({
-		...initialForm,
-		fullName: user?.name ?? '',
-		email: user?.email ?? ''
-	}))
+	const [form, setForm] = useState(initialForm)
 	const [errors, setErrors] = useState({})
 	const [placed, setPlaced] = useState(false)
 	const [orderData, setOrderData] = useState(null)
+
+	// Auto-fill form from saved address (for signed-in users) or basic user info
+	useEffect(() => {
+		if (user) {
+			const savedAddress = authService.getAddress(user.email)
+			if (savedAddress) {
+				// Use saved address (full auto-fill for returning customers)
+				setForm({
+					fullName: savedAddress.fullName || user.name || '',
+					email: savedAddress.email || user.email || '',
+					address: savedAddress.address || '',
+					city: savedAddress.city || '',
+					postalCode: savedAddress.postalCode || '',
+					country: savedAddress.country || ''
+				})
+			} else {
+				// First-time signed-in user: just fill name and email
+				setForm(f => ({
+					...f,
+					fullName: user.name || '',
+					email: user.email || ''
+				}))
+			}
+		}
+	}, [user])
 
 	const shipping = subtotal >= SHIP_THRESHOLD || subtotal === 0 ? 0 : SHIP_COST
 	const total = subtotal + shipping
@@ -70,41 +92,29 @@ export default function Checkout() {
 			return
 		}
 
-		// Generate order data
-		const orderNo = `LX-${Math.floor(100000 + Math.random() * 900000)}`
-		const newOrder = {
-			id: orderNo,
-			date: new Date().toLocaleDateString('en-US', {
-				year: 'numeric',
-				month: 'short',
-				day: 'numeric'
-			}),
-			status: 'processing',
-			items: items.map(item => ({
-				id: item.id,
-				name: item.name,
-				price: item.price,
-				quantity: item.quantity,
-				size: item.size,
-				color: item.color,
-				imageUrl: item.imageUrl
-			})),
+		const shippingAddress = {
+			fullName: form.fullName,
+			email: form.email,
+			address: form.address,
+			city: form.city,
+			postalCode: form.postalCode,
+			country: form.country
+		}
+
+		// Build the order — keyed by checkout email for reconciliation
+		const newOrder = createOrder({
+			items,
 			subtotal,
 			shipping,
 			total,
-			shippingAddress: {
-				fullName: form.fullName,
-				email: form.email,
-				address: form.address,
-				city: form.city,
-				postalCode: form.postalCode,
-				country: form.country
-			}
-		}
+			shippingAddress
+		})
+		orderService.add(newOrder)
 
-		// Save order to localStorage
-		const existingOrders = loadState('orders', [])
-		saveState('orders', [newOrder, ...existingOrders])
+		// Save shipping address for signed-in users (faster future checkouts)
+		if (user) {
+			authService.saveAddress(user.email, shippingAddress)
+		}
 
 		setPlaced(true)
 		setOrderData(newOrder)
@@ -115,6 +125,8 @@ export default function Checkout() {
 
 	// --- Confirmation --------------------------------------------------------
 	if (placed && orderData) {
+		const isGuest = !user
+
 		return (
 			<div className="checkout-confirm container section">
 				<motion.div
@@ -135,12 +147,41 @@ export default function Checkout() {
 						<strong>{orderData.shippingAddress.email}</strong>. Your order
 						number is <strong>{orderData.id}</strong>.
 					</p>
+
+					{/* Account creation prompt for guest users */}
+					{isGuest && (
+						<div className="checkout-confirm__account-prompt">
+							<Icon
+								name="user"
+								size={20}
+							/>
+							<div className="checkout-confirm__account-text">
+								<strong>Create an account to track this order</strong>
+								<p>
+									Save your details for faster checkout and view your order
+									history anytime.
+								</p>
+							</div>
+							<Link
+								to="/account"
+								state={{
+									prefillEmail: orderData.shippingAddress.email,
+									prefillName: orderData.shippingAddress.fullName,
+									mode: 'signup'
+								}}
+								className="btn btn--sm"
+							>
+								Create account
+							</Link>
+						</div>
+					)}
+
 					<div className="checkout-confirm__actions">
 						<button
 							className="btn"
 							onClick={() => navigate('/account')}
 						>
-							View order history
+							{isGuest ? 'Sign in' : 'View order history'}
 						</button>
 						<button
 							className="btn btn--outline"

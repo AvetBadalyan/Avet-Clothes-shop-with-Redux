@@ -219,6 +219,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: $space-5;
+
+		[data-theme='dark'] & {
+			background: var(--color-card-bg);
+		}
 	}
 
 	&__mobile-head {

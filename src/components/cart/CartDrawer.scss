@@ -17,6 +17,12 @@
 	flex-direction: column;
 	box-shadow: var(--shadow-lg);
 
+	// Lift the panel above the page in dark mode so it reads as a raised
+	// surface over the dimmed scrim, not a continuation of the page.
+	[data-theme='dark'] & {
+		background: var(--color-card-bg);
+	}
+
 	&__head {
 		@include flex-between;
 		padding: $space-5;

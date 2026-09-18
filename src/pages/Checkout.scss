@@ -268,6 +268,55 @@
 		}
 	}
 
+	&__account-prompt {
+		display: flex;
+		align-items: center;
+		gap: $space-4;
+		width: 100%;
+		margin-top: $space-5;
+		padding: $space-4 $space-5;
+		background: var(--color-cloud);
+		border-radius: $radius-md;
+		text-align: left;
+
+		> svg {
+			flex-shrink: 0;
+			color: var(--color-ink);
+		}
+
+		.btn {
+			flex-shrink: 0;
+			margin-left: auto;
+		}
+
+		@media (max-width: 540px) {
+			flex-direction: column;
+			text-align: center;
+
+			.btn {
+				margin-left: 0;
+				width: 100%;
+			}
+		}
+	}
+
+	&__account-text {
+		flex: 1;
+
+		strong {
+			display: block;
+			font-size: 0.95rem;
+			color: var(--color-ink);
+			margin-bottom: $space-1;
+		}
+
+		p {
+			font-size: 0.85rem;
+			color: var(--color-slate);
+			margin: 0;
+		}
+	}
+
 	&__actions {
 		display: flex;
 		flex-wrap: wrap;
