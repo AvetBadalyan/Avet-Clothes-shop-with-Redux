@@ -1,135 +1,148 @@
 // ============================================================
-//  Auth service abstraction.
-//
-//  The rest of the app talks to this module only — it never touches
-//  the auth backend directly. Today it is a localStorage-backed mock
-//  that issues a fake JWT. Swapping in Supabase Auth later means
-//  reimplementing these four functions with supabase.auth.* calls
-//  and nothing else in the app has to change.
+//  Mock Auth Service (localStorage-based demo)
 // ============================================================
+//  This simulates authentication for the portfolio demo.
+//
+//  IN A REAL APP you would:
+//  1. Send email/password to your backend over HTTPS
+//  2. Backend validates and hashes password with bcrypt
+//  3. Backend stores user in database
+//  4. Backend returns a signed JWT token
+//
+//  This mock stores users in localStorage and creates fake tokens.
+//  The API is designed so you could swap in Supabase/Firebase easily
+//  by just reimplementing these functions.
+// ============================================================
+
 import { clearState, loadState, saveState } from '@/store/storage.js'
 
 const USERS_KEY = 'users'
 const SESSION_KEY = 'session'
 const SAVED_ADDRESSES_KEY = 'savedAddresses'
 
+// localStorage helpers
 const readUsers = () => loadState(USERS_KEY, {})
 const writeUsers = users => saveState(USERS_KEY, users)
 const readAddresses = () => loadState(SAVED_ADDRESSES_KEY, {})
 const writeAddresses = addresses => saveState(SAVED_ADDRESSES_KEY, addresses)
 
-// A deliberately fake, decodable "JWT-shaped" token (NOT secure — mock only).
-const issueToken = email => {
-	const header = btoa(JSON.stringify({ alg: 'HS256', typ: 'JWT' }))
-	const payload = btoa(
-		JSON.stringify({
-			sub: email,
-			iat: Date.now(),
-			exp: Date.now() + 1000 * 60 * 60 * 24 * 7 // 7 days
-		})
-	)
-	const signature = btoa(`modern-mock-${email}`)
-	return `${header}.${payload}.${signature}`
+// Create a mock token (just base64 encoded data, NOT a real JWT)
+// In production: your backend creates real signed JWTs
+const createMockToken = email => {
+	const payload = {
+		email,
+		createdAt: Date.now(),
+		expiresAt: Date.now() + 1000 * 60 * 60 * 24 * 7 // 7 days
+	}
+	return btoa(JSON.stringify(payload))
 }
 
-const delay = (ms = 550) => new Promise(r => setTimeout(r, ms))
+// Simulate network delay (makes UI feel more realistic)
+const delay = (ms = 500) => new Promise(resolve => setTimeout(resolve, ms))
 
+// Generate a display name from email (e.g., "john.doe@gmail.com" → "John Doe")
 const nameFromEmail = email => {
 	const handle = email.split('@')[0].replace(/[._-]+/g, ' ')
 	return handle.replace(/\b\w/g, c => c.toUpperCase())
 }
 
-// Hash a password with a per-user salt using the Web Crypto API (SHA-256).
-// This is a mock store, so we never keep the plaintext password — only a
-// salted hash. A real backend would use bcrypt/argon2 server-side; the point
-// here is to demonstrate the pattern (never persist raw credentials).
-const toHex = buffer =>
-	[...new Uint8Array(buffer)].map(b => b.toString(16).padStart(2, '0')).join('')
-
-const hashPassword = async (password, salt) => {
-	const data = new TextEncoder().encode(`${salt}:${password}`)
-	const digest = await crypto.subtle.digest('SHA-256', data)
-	return toHex(digest)
-}
-
-const randomSalt = () => toHex(crypto.getRandomValues(new Uint8Array(16)))
-
 export const authService = {
 	/**
-	 * Returns the persisted session ({ user, token }) or null.
-	 * Validates the mock JWT exp claim — clears and returns null if expired.
+	 * Check if user is logged in (reads from localStorage)
+	 * Returns { user, token } or null if not logged in / token expired
 	 */
 	getSession() {
 		const session = loadState(SESSION_KEY, null)
 		if (!session?.token) return null
+
 		try {
-			const payloadJson = atob(session.token.split('.')[1])
-			const { exp } = JSON.parse(payloadJson)
-			if (exp && Date.now() > exp) {
+			// Check if token is expired
+			const payload = JSON.parse(atob(session.token))
+			if (payload.expiresAt && Date.now() > payload.expiresAt) {
 				clearState(SESSION_KEY)
 				return null
 			}
 		} catch {
-			// Malformed token — treat as expired
+			// Invalid token format
 			clearState(SESSION_KEY)
 			return null
 		}
+
 		return session
 	},
 
+	/**
+	 * Create a new account
+	 * In production: POST to /api/auth/signup
+	 */
 	async signUp({ name, email, password }) {
 		await delay()
+
 		const users = readUsers()
 		const key = email.toLowerCase()
+
+		// Check if email already exists
 		if (users[key]) {
 			throw new Error('An account with this email already exists.')
 		}
-		// Store a salted hash — never the raw password.
-		const salt = randomSalt()
-		const passwordHash = await hashPassword(password, salt)
+
+		// Create user record
+		// NOTE: In a real app, NEVER store passwords client-side!
+		// This is just for demo. Real apps hash with bcrypt on the server.
 		const createdAt = new Date().toISOString()
 		users[key] = {
 			name: name || nameFromEmail(email),
 			email: key,
-			salt,
-			passwordHash,
+			password, // ⚠️ Demo only! Real apps use bcrypt server-side
 			createdAt
 		}
 		writeUsers(users)
+
+		// Create session
 		const user = { name: users[key].name, email: key, createdAt }
-		const session = { user, token: issueToken(key) }
+		const session = { user, token: createMockToken(key) }
 		saveState(SESSION_KEY, session)
+
 		return session
 	},
 
+	/**
+	 * Log in with existing account
+	 * In production: POST to /api/auth/login
+	 */
 	async signIn({ email, password }) {
 		await delay()
+
 		const users = readUsers()
 		const key = email.toLowerCase()
 		const record = users[key]
-		const attemptHash = record
-			? await hashPassword(password, record.salt)
-			: null
-		if (!record || record.passwordHash !== attemptHash) {
+
+		// Check credentials
+		if (!record || record.password !== password) {
 			throw new Error('Incorrect email or password.')
 		}
+
+		// Create session
 		const user = {
 			name: record.name,
 			email: key,
 			createdAt: record.createdAt ?? null
 		}
-		const session = { user, token: issueToken(key) }
+		const session = { user, token: createMockToken(key) }
 		saveState(SESSION_KEY, session)
+
 		return session
 	},
 
+	/**
+	 * Log out (clear session)
+	 */
 	async signOut() {
 		clearState(SESSION_KEY)
 	},
 
 	/**
-	 * Save a shipping address for a user email.
-	 * This persists separately from the session so addresses survive sign-out.
+	 * Save shipping address for a user (persists across sessions)
 	 */
 	saveAddress(email, address) {
 		if (!email) return
@@ -139,8 +152,7 @@ export const authService = {
 	},
 
 	/**
-	 * Get the saved shipping address for a user email.
-	 * Returns null if no address is saved.
+	 * Get saved shipping address for a user
 	 */
 	getAddress(email) {
 		if (!email) return null
