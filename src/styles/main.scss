@@ -1,0 +1,4 @@
+// Abstracts (variables/mixins) are auto-injected by Vite, but we also import
+// the tangible global layers here so a single import in main.jsx is enough.
+@use "base/reset";
+@use "base/utilities";

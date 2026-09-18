@@ -1,0 +1,219 @@
+.shop {
+  &__hero {
+    padding-block: $space-6 $space-5;
+  }
+
+  &__crumbs {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: 0.8rem;
+    color: $color-slate;
+    margin-bottom: $space-3;
+
+    a:hover {
+      color: $color-ink;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  &__tagline {
+    margin-top: $space-2;
+    color: $color-slate;
+    max-width: 52ch;
+  }
+
+  &__body {
+    display: grid;
+    gap: $space-6;
+    padding-bottom: $space-9;
+
+    @include bp(lg) {
+      grid-template-columns: 260px 1fr;
+      gap: $space-7;
+    }
+  }
+
+  &__sidebar {
+    display: none;
+
+    @include bp(lg) {
+      display: block;
+      position: sticky;
+      top: calc(#{$header-height} + #{$space-4});
+      align-self: start;
+      max-height: calc(100vh - #{$header-height} - #{$space-6});
+      overflow-y: auto;
+      padding-right: $space-3;
+    }
+  }
+
+  // --- Toolbar -------------------------------------------------------------
+  &__toolbar {
+    @include flex-between;
+    gap: $space-3;
+    padding-bottom: $space-4;
+    margin-bottom: $space-5;
+    border-bottom: 1px solid $color-line;
+  }
+
+  &__filter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: 0.86rem;
+    font-weight: $fw-medium;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid $color-line;
+    border-radius: $radius-pill;
+
+    em {
+      display: inline-grid;
+      place-items: center;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      font-style: normal;
+      font-size: 0.7rem;
+      color: $color-white;
+      background: $color-ink;
+      border-radius: $radius-pill;
+    }
+
+    @include bp(lg) {
+      display: none;
+    }
+  }
+
+  &__count {
+    font-size: 0.85rem;
+    color: $color-slate;
+    margin-right: auto;
+    margin-left: $space-3;
+
+    @include bp(lg) {
+      margin-left: 0;
+    }
+  }
+
+  &__sort {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: 0.85rem;
+    color: $color-slate;
+
+    select {
+      appearance: none;
+      border: 1px solid $color-line;
+      border-radius: $radius-pill;
+      padding: 0.5rem 2.2rem 0.5rem 0.9rem;
+      font-size: 0.85rem;
+      font-weight: $fw-medium;
+      color: $color-ink;
+      background: $color-white;
+      cursor: pointer;
+    }
+
+    svg {
+      position: absolute;
+      right: 0.7rem;
+      pointer-events: none;
+      color: $color-ink;
+    }
+  }
+
+  &__searchnote {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-5;
+    font-size: 0.9rem;
+    color: $color-slate;
+
+    button {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: $color-ink;
+      text-decoration: underline;
+      font-size: 0.82rem;
+    }
+  }
+
+  // --- Empty state ---------------------------------------------------------
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: $space-3;
+    padding: $space-9 $space-4;
+    color: $color-slate;
+
+    svg {
+      color: $color-mist;
+    }
+
+    h3 {
+      font-family: $font-body;
+      font-size: 1.2rem;
+      color: $color-ink;
+    }
+
+    .btn {
+      margin-top: $space-3;
+    }
+  }
+
+  // --- Mobile drawer -------------------------------------------------------
+  &__scrim {
+    position: fixed;
+    inset: 0;
+    z-index: $z-drawer;
+    background: rgba($color-ink, 0.4);
+
+    @include bp(lg) {
+      display: none;
+    }
+  }
+
+  &__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: $z-drawer;
+    width: min(88vw, 380px);
+    height: 100%;
+    background: $color-canvas;
+    display: flex;
+    flex-direction: column;
+    box-shadow: $shadow-lg;
+  }
+
+  &__drawer-head {
+    @include flex-between;
+    padding: $space-4 $space-5;
+    border-bottom: 1px solid $color-line;
+
+    h3 {
+      font-family: $font-body;
+      font-size: 1rem;
+    }
+  }
+
+  &__drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: $space-5;
+  }
+
+  &__drawer-foot {
+    padding: $space-4 $space-5;
+    border-top: 1px solid $color-line;
+  }
+}

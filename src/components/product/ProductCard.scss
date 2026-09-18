@@ -1,0 +1,235 @@
+// --- Shared: price ---------------------------------------------------------
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: $space-2;
+  font-weight: $fw-semibold;
+
+  &__now {
+    color: $color-ink;
+  }
+
+  &__was {
+    font-size: 0.85em;
+    font-weight: $fw-regular;
+    color: $color-mist;
+    text-decoration: line-through;
+  }
+}
+
+// --- Shared: swatches ------------------------------------------------------
+.swatches {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  &__dot {
+    display: inline-block;
+    border-radius: 50%;
+    background: var(--swatch);
+    border: 1px solid rgba($color-ink, 0.18);
+    box-shadow: inset 0 0 0 2px $color-white;
+    transition: transform $transition-fast, box-shadow $transition-fast;
+    padding: 0;
+  }
+
+  button.swatches__dot {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.12);
+    }
+
+    &.is-selected {
+      box-shadow: inset 0 0 0 2px $color-white,
+        0 0 0 2px $color-ink;
+    }
+  }
+
+  &__more {
+    font-size: 0.72rem;
+    color: $color-slate;
+  }
+}
+
+// --- Shared: stars ---------------------------------------------------------
+.stars {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+
+  &__row {
+    position: relative;
+    display: inline-block;
+  }
+
+  &__base {
+    color: $color-line;
+    display: inline-flex;
+  }
+
+  &__fill {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    color: $color-accent;
+    display: inline-flex;
+    white-space: nowrap;
+  }
+
+  &__count {
+    font-size: 0.78rem;
+    color: $color-slate;
+  }
+}
+
+// --- Product card ----------------------------------------------------------
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  &__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: $radius-md;
+    background: $color-cloud;
+  }
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity $transition-base $ease-out,
+      transform 0.6s $ease-out;
+
+    &--hover {
+      opacity: 0;
+    }
+  }
+
+  &__media:hover &__img--primary {
+    opacity: 0;
+  }
+  &__media:hover &__img--hover {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  &__badges {
+    position: absolute;
+    top: $space-3;
+    left: $space-3;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    z-index: 2;
+  }
+
+  &__wish {
+    position: absolute;
+    top: $space-3;
+    right: $space-3;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba($color-white, 0.9);
+    color: $color-ink;
+    backdrop-filter: blur(4px);
+    transition: transform $transition-fast, color $transition-fast,
+      background $transition-fast;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+
+    &.is-active {
+      color: $color-sale;
+    }
+  }
+
+  &__quick {
+    position: absolute;
+    left: $space-3;
+    right: $space-3;
+    bottom: $space-3;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    padding: 0.7rem;
+    font-size: 0.82rem;
+    font-weight: $fw-semibold;
+    color: $color-white;
+    background: rgba($color-ink, 0.92);
+    border-radius: $radius-pill;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity $transition-base, transform $transition-base;
+    backdrop-filter: blur(4px);
+
+    @include bp-down(md) {
+      opacity: 1;
+      transform: none;
+      background: rgba($color-ink, 0.82);
+    }
+  }
+
+  &__media:hover &__quick {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__brand {
+    @include overline;
+    font-size: 0.68rem;
+  }
+
+  &__name {
+    font-family: $font-body;
+    font-size: 0.98rem;
+    font-weight: $fw-medium;
+    letter-spacing: 0;
+    @include clamp-lines(1);
+  }
+
+  &__foot {
+    @include flex-between;
+    margin-top: $space-2;
+    gap: $space-3;
+  }
+}
+
+// --- Reusable product grid -------------------------------------------------
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space-4 $space-4;
+
+  @include bp(sm) {
+    gap: $space-5 $space-4;
+  }
+
+  @include bp(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include bp(lg) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $space-6 $space-5;
+  }
+}

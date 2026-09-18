@@ -1,0 +1,90 @@
+@use "sass:map";
+@use "variables" as *;
+
+// --- Responsive breakpoints (min-width, mobile-first) ----------------------
+$breakpoints: (
+  sm: $bp-sm,
+  md: $bp-md,
+  lg: $bp-lg,
+  xl: $bp-xl,
+);
+
+@mixin bp($name) {
+  @if map.has-key($breakpoints, $name) {
+    @media (min-width: map.get($breakpoints, $name)) {
+      @content;
+    }
+  } @else {
+    @error "Unknown breakpoint `#{$name}`.";
+  }
+}
+
+// max-width helper for the rare top-down override
+@mixin bp-down($name) {
+  @if map.has-key($breakpoints, $name) {
+    @media (max-width: (map.get($breakpoints, $name) - 1px)) {
+      @content;
+    }
+  }
+}
+
+// --- Layout helpers --------------------------------------------------------
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin-inline: auto;
+  padding-inline: $space-4;
+
+  @include bp(md) {
+    padding-inline: $space-6;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// --- Text helpers ----------------------------------------------------------
+@mixin clamp-lines($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@mixin overline {
+  font-size: 0.72rem;
+  font-weight: $fw-semibold;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $color-slate;
+}
+
+// --- Interaction -----------------------------------------------------------
+@mixin focus-ring {
+  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid $color-ink;
+    outline-offset: 2px;
+  }
+}
+
+@mixin card-hover {
+  transition: transform $transition-base $ease-out,
+    box-shadow $transition-base $ease-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}

@@ -1,0 +1,35 @@
+.announcement {
+  overflow: hidden;
+  background: $color-ink;
+  color: $color-white;
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+
+  &__track {
+    display: flex;
+    width: max-content;
+    gap: $space-8;
+    padding-block: 0.55rem;
+    padding-left: $space-8;
+    animation: announcement-scroll 28s linear infinite;
+  }
+
+  &__item {
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  &:hover &__track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes announcement-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    // Half, because the message list is duplicated for a seamless loop.
+    transform: translateX(-50%);
+  }
+}

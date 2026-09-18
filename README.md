@@ -1,86 +1,177 @@
-# ONLINE CLOTHES SHOP CREATED WITH REACT REDUX (includes Responsive & Adaptive design both for Web and Tablets and Mobile)
+# LUXE — Modern Fashion Storefront
 
-## This is an online clothes store with principal functions - view items menu with each item's name, price and description, click on add button to add the product to the cart, control the amount of chosen item, add or remove items to/from the cart. Also Authentication with Firebase - Sign up and login
+A polished, responsive fashion e-commerce front end built with **React 19**,
+**Redux Toolkit** and **Vite**. LUXE goes beyond a basic cart demo: it models a
+real clothing store with size and color variants, faceted filtering, a wishlist,
+quick-view, and a complete checkout flow — all self-contained and deployable as
+a static site.
 
-(Some features are on the way, like to make an order, send order data to server, get confirmation about receiving the order etc.)
+> This is a 2024/25 ground-up rebuild of an older Create React App + classic
+> Redux project. See [Migration notes](#migration-notes).
 
-Link to the Website - [https://avet-clothes-shop-f8267.web.app/](https://avet-clothes-shop-f8267.web.app/).
+**Live demo:** _add your Vercel URL here_
 
-![screenshot](./src/assets/screenshots/home.jpg)
-![screenshot](./src/assets//screenshots//shop.jpg)
-![screenshot](./src//assets/screenshots/login.jpg)
-![screenshot](./src/assets/screenshots/cart.jpg)
-![screenshot](./src/assets/screenshots/order.jpg)
-![screenshot](./src/assets/screenshots/mob%20shop.jpg)
-![screenshot](./src/assets/screenshots/mob%20checkout.jpg)
+> Add screenshots to `docs/screenshots/` and reference them here once deployed.
 
-# Getting Started with Create React App
+---
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
 
-## Available Scripts
+### Shopping experience
 
-In the project directory, you can run:
+- **Curated catalog** of 26 products across Women, Men, Shoes and Accessories
+- **Size selector** (XS–XL / EU shoe sizes) with add-to-cart validation
+- **Color variants** shown as interactive swatches on cards and product pages
+- **Product quick-view modal** — pick size/color and add to bag without leaving
+  the grid
+- **Product detail pages** with an image gallery, ratings, and delivery info
+- **"Complete the look"** styling suggestions plus related-product
+  recommendations
 
-### `npm start`
+### Discovery & filtering
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Faceted filter sidebar**: brand, price range, size, color, "new", "on sale"
+- **Sort** by popularity, newest, price (asc/desc) and rating
+- **Search** across product name, brand, category and tags
+- **Category routes** (`/shop/:categoryId`) that stay in sync with the filter
+  state
+- Live result counts, active-filter badges, and one-tap clear
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Cart, wishlist & checkout
 
-### `npm test`
+- **Slide-out cart drawer** with quantity controls and a free-shipping progress
+  bar
+- **Size + color aware line items** (the same product in two sizes is two lines)
+- **Wishlist / favorites** with a dedicated page
+- **Checkout** with form validation and an animated order confirmation
+- **Cart and wishlist persist** to `localStorage` across reloads
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Accounts
 
-### `npm run build`
+- **Sign up / sign in** with a mock auth service that issues a JWT-shaped token
+- Auth is isolated behind a single `authService` module, so it can be swapped
+  for **Supabase Auth** (or any provider) without touching the UI
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Craft
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Fully **responsive** from mobile to widescreen
+- **Framer Motion** page and component animations, with `prefers-reduced-motion`
+  support
+- Toast notifications, skeleton shimmers, empty states, and keyboard-dismissable
+  overlays
+- Accessible markup: semantic landmarks, `aria-*` on interactive controls,
+  visible focus rings
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Tech stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| Area       | Choice                                   |
+| ---------- | ---------------------------------------- |
+| Framework  | React 19                                 |
+| Build tool | Vite 6                                   |
+| State      | Redux Toolkit + React-Redux              |
+| Routing    | React Router 7                           |
+| Styling    | Modern SCSS (design tokens, mixins, BEM) |
+| Animation  | Framer Motion                            |
+| Images     | Unsplash CDN (responsive params)         |
+| Deploy     | Vercel                                   |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Getting started
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+# install dependencies
+npm install
 
-## Learn More
+# start the dev server (http://localhost:5173)
+npm run dev
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# production build
+npm run build
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# preview the production build locally
+npm run preview
 
-### Code Splitting
+# lint
+npm run lint
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Requires Node 18+ (developed on Node 22).
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Project structure
 
-### Making a Progressive Web App
+```
+src/
+├─ components/
+│  ├─ cart/         CartDrawer, CartLine
+│  ├─ common/       Icon, Price, StarRating, ColorSwatches, ToastStack, ScrollToTop
+│  ├─ layout/       Navbar, Footer, AnnouncementBar, Layout
+│  ├─ product/      ProductCard, QuickViewModal, SizeSelector
+│  └─ shop/         FilterSidebar
+├─ data/            products.js (catalog + helpers)
+├─ pages/           Home, Shop, ProductDetail, Wishlist, Checkout, Auth, NotFound
+├─ services/        authService.js (swappable auth layer)
+├─ store/           Redux Toolkit slices (cart, wishlist, filters, auth, ui)
+└─ styles/          abstracts (tokens/mixins), base (reset/utilities), main.scss
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### State model
 
-### Advanced Configuration
+| Slice      | Responsibility                                                             |
+| ---------- | -------------------------------------------------------------------------- |
+| `cart`     | Line items keyed by `id::size::color`, subtotal & count selectors          |
+| `wishlist` | Set of favorited product ids                                               |
+| `filters`  | Category, search, brand, size, color, price, sort + memoized filtered list |
+| `auth`     | User/session via async thunks over `authService`                           |
+| `ui`       | Cart drawer, mobile filters, quick-view, and toast queue                   |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+`cart` and `wishlist` are persisted to `localStorage` via a store subscriber.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Design system
 
-### `npm run build` fails to minify
+Styling uses plain SCSS organized with a light
+[7-1-ish](https://sass-guidelines.org/architecture/) structure:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **`abstracts/`** — design tokens (color, type scale, spacing, radius, shadow,
+  breakpoints) and mixins (`bp()`, layout helpers, `focus-ring`, `clamp-lines`).
+  Auto-injected into every stylesheet via Vite's `additionalData`.
+- **`base/`** — reset and reusable utility classes (`.btn`, `.badge`, `.field`,
+  `.container`, skeleton shimmer).
+- Component styles are co-located `.scss` files using BEM naming.
+
+---
+
+## Migration notes
+
+The original project (2022) was Create React App with classic Redux
+(`createStore`), `redux-logger`, `node-sass`, and data fetched from a
+now-defunct Firebase Realtime Database. This rebuild:
+
+- Migrated **CRA → Vite** and **React 18 → 19**
+- Replaced **classic Redux → Redux Toolkit** (slices, thunks, memoized
+  selectors)
+- Swapped **`node-sass` → `sass`** with a proper token/mixin architecture
+- Removed the dead Firebase backend in favor of a **self-contained catalog**
+- Added real e-commerce features (variants, filtering, wishlist, quick-view,
+  checkout)
+
+---
+
+## Roadmap
+
+- Swap mock auth for **Supabase Auth** (JWT + row-level security)
+- Persist orders and wishlist server-side
+- Product reviews and inventory
+- Unit/integration tests (Vitest + Testing Library)
+
+---
+
+## License
+
+MIT — free to use as a portfolio reference.

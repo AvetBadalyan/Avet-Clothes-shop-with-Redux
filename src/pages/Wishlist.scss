@@ -1,0 +1,50 @@
+.wishlist {
+	&__head {
+		@include flex-between;
+		align-items: flex-end;
+		gap: $space-4;
+		padding-block: $space-6 $space-6;
+	}
+
+	&__title {
+		font-size: clamp(2rem, 5vw, 3rem);
+		margin-top: $space-1;
+	}
+
+	&__count {
+		color: $color-slate;
+		margin-top: $space-2;
+	}
+
+	&__empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: $space-3;
+		padding: $space-9 $space-4;
+		color: $color-slate;
+
+		svg {
+			color: $color-mist;
+		}
+
+		h3 {
+			font-family: $font-body;
+			font-size: 1.3rem;
+			color: $color-ink;
+		}
+
+		p {
+			max-width: 36ch;
+		}
+
+		.btn {
+			margin-top: $space-3;
+		}
+	}
+
+	&__grid {
+		padding-bottom: $space-8;
+	}
+}

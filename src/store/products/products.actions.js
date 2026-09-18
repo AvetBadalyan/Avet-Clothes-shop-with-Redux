@@ -1,4 +1,0 @@
-export const PRODUCTS_ACTION_TYPES = {
-  SET_PRODUCTS: "SET_PRODUCTS",
-  FILTER: "FILTER",
-};

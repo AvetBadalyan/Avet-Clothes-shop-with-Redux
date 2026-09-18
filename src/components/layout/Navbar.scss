@@ -1,0 +1,224 @@
+.navbar {
+	position: sticky;
+	top: 0;
+	z-index: $z-header;
+	background: rgba($color-canvas, 0.85);
+	backdrop-filter: blur(12px);
+	border-bottom: 1px solid transparent;
+	transition:
+		border-color $transition-base,
+		background $transition-base;
+
+	&--scrolled {
+		border-bottom-color: $color-line;
+		background: rgba($color-canvas, 0.95);
+	}
+
+	&__inner {
+		height: $header-height;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: $space-4;
+	}
+
+	&__left {
+		display: flex;
+		align-items: center;
+		gap: $space-4;
+		flex: 1;
+
+		@include bp(lg) {
+			flex: none;
+		}
+	}
+
+	&__burger {
+		display: flex;
+
+		@include bp(lg) {
+			display: none;
+		}
+	}
+
+	&__logo {
+		font-family: $font-display;
+		font-weight: $fw-semibold;
+		font-size: 1.5rem;
+		letter-spacing: 0.22em;
+		padding-left: 0.22em; // optically center the letter-spacing
+	}
+
+	&__nav {
+		display: none;
+		gap: $space-5;
+		align-items: center;
+
+		@include bp(lg) {
+			display: flex;
+		}
+
+		a {
+			position: relative;
+			font-size: 0.82rem;
+			font-weight: $fw-medium;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+			color: $color-charcoal;
+			padding-block: 0.25rem;
+			transition: color $transition-fast;
+
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 100%;
+				height: 1.5px;
+				background: $color-ink;
+				transform: scaleX(0);
+				transform-origin: left;
+				transition: transform $transition-base $ease-out;
+			}
+
+			&:hover,
+			&.active {
+				color: $color-ink;
+			}
+
+			&:hover::after,
+			&.active::after {
+				transform: scaleX(1);
+			}
+		}
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: $space-2;
+	}
+
+	&__icon-btn {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+		border-radius: $radius-pill;
+		color: $color-ink;
+		transition: background $transition-fast;
+		@include focus-ring;
+
+		&:hover {
+			background: $color-cloud;
+		}
+	}
+
+	&__account {
+		@include bp-down(sm) {
+			display: none;
+		}
+	}
+
+	&__count {
+		position: absolute;
+		top: 2px;
+		right: 0;
+		min-width: 18px;
+		height: 18px;
+		padding: 0 5px;
+		display: grid;
+		place-items: center;
+		font-size: 0.65rem;
+		font-weight: $fw-bold;
+		color: $color-white;
+		background: $color-ink;
+		border-radius: $radius-pill;
+	}
+
+	&__dot {
+		position: absolute;
+		top: 6px;
+		right: 6px;
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: $color-success;
+	}
+
+	// --- Search --------------------------------------------------------------
+	&__search {
+		display: flex;
+		align-items: center;
+		gap: $space-3;
+		padding-block: $space-4;
+		border-top: 1px solid $color-line;
+		overflow: hidden;
+
+		input {
+			flex: 1;
+			border: none;
+			background: none;
+			font-size: 1rem;
+			padding-block: $space-2;
+
+			&:focus {
+				outline: none;
+			}
+
+			&::placeholder {
+				color: $color-mist;
+			}
+		}
+	}
+
+	// --- Mobile menu ---------------------------------------------------------
+	&__scrim {
+		position: fixed;
+		inset: 0;
+		z-index: $z-drawer;
+		background: rgba($color-ink, 0.4);
+
+		@include bp(lg) {
+			display: none;
+		}
+	}
+
+	&__mobile {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: $z-drawer;
+		width: min(82vw, 340px);
+		height: 100%;
+		background: $color-canvas;
+		padding: $space-5;
+		box-shadow: $shadow-lg;
+		display: flex;
+		flex-direction: column;
+		gap: $space-5;
+	}
+
+	&__mobile-head {
+		@include flex-between;
+	}
+
+	&__mobile-nav {
+		display: flex;
+		flex-direction: column;
+		gap: $space-4;
+
+		a {
+			font-size: 1.1rem;
+			font-weight: $fw-medium;
+		}
+
+		hr {
+			border: none;
+			border-top: 1px solid $color-line;
+			margin-block: $space-2;
+		}
+	}
+}

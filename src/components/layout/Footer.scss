@@ -1,0 +1,146 @@
+.footer {
+  margin-top: $space-9;
+  background: $color-ink;
+  color: rgba($color-white, 0.82);
+
+  &__perks {
+    display: grid;
+    gap: $space-5;
+    padding-block: $space-6;
+    border-bottom: 1px solid rgba($color-white, 0.1);
+
+    @include bp(md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__perk {
+    display: flex;
+    align-items: center;
+    gap: $space-4;
+    color: $color-white;
+
+    div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    strong {
+      font-weight: $fw-semibold;
+    }
+
+    span {
+      font-size: 0.85rem;
+      color: rgba($color-white, 0.6);
+    }
+  }
+
+  &__main {
+    display: grid;
+    gap: $space-6;
+    padding-block: $space-7;
+
+    @include bp(md) {
+      grid-template-columns: 1.4fr 1fr 1fr 1.4fr;
+    }
+  }
+
+  &__logo {
+    font-family: $font-display;
+    font-size: 1.6rem;
+    letter-spacing: 0.2em;
+    color: $color-white;
+  }
+
+  &__brand p {
+    margin-top: $space-3;
+    max-width: 32ch;
+    font-size: 0.9rem;
+    color: rgba($color-white, 0.6);
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    h4 {
+      font-family: $font-body;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba($color-white, 0.55);
+      margin-bottom: $space-1;
+    }
+
+    a {
+      font-size: 0.9rem;
+      color: rgba($color-white, 0.82);
+      transition: color $transition-fast;
+
+      &:hover {
+        color: $color-white;
+      }
+    }
+  }
+
+  &__newsletter {
+    h4 {
+      font-family: $font-body;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba($color-white, 0.55);
+    }
+
+    p {
+      margin-block: $space-3;
+      font-size: 0.9rem;
+      color: rgba($color-white, 0.6);
+    }
+
+    form {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba($color-white, 0.35);
+      padding-bottom: $space-2;
+
+      input {
+        flex: 1;
+        background: none;
+        border: none;
+        color: $color-white;
+
+        &::placeholder {
+          color: rgba($color-white, 0.45);
+        }
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        color: $color-white;
+        display: inline-flex;
+      }
+    }
+  }
+
+  &__thanks {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    color: $color-white;
+    font-size: 0.9rem;
+  }
+
+  &__bottom {
+    @include flex-between;
+    flex-wrap: wrap;
+    gap: $space-2;
+    padding-block: $space-4;
+    border-top: 1px solid rgba($color-white, 0.1);
+    font-size: 0.78rem;
+    color: rgba($color-white, 0.5);
+  }
+}

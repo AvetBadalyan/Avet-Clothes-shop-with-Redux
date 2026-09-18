@@ -1,0 +1,202 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+
+  &__head {
+    @include flex-between;
+    font-size: 0.82rem;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  &__badge {
+    display: inline-grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    margin-left: $space-2;
+    padding: 0 5px;
+    font-size: 0.7rem;
+    font-style: normal;
+    color: $color-white;
+    background: $color-ink;
+    border-radius: $radius-pill;
+  }
+
+  &__clear {
+    font-size: 0.78rem;
+    text-transform: none;
+    letter-spacing: 0;
+    color: $color-slate;
+    text-decoration: underline;
+
+    &:hover {
+      color: $color-ink;
+    }
+  }
+
+  &__range-labels {
+    @include flex-between;
+    margin-top: $space-2;
+    font-size: 0.8rem;
+    color: $color-slate;
+  }
+
+  &__range-value {
+    font-weight: $fw-semibold;
+    color: $color-ink;
+  }
+}
+
+.filter-section {
+  padding-bottom: $space-5;
+  border-bottom: 1px solid $color-line;
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  &__title {
+    font-family: $font-body;
+    font-size: 0.86rem;
+    font-weight: $fw-semibold;
+    margin-bottom: $space-3;
+  }
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+// --- Custom checkbox -------------------------------------------------------
+.check {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  font-size: 0.9rem;
+  color: $color-charcoal;
+  cursor: pointer;
+  padding-block: 3px;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__box {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid $color-line;
+    border-radius: 5px;
+    color: transparent;
+    transition: all $transition-fast;
+    flex-shrink: 0;
+  }
+
+  input:checked + &__box {
+    background: $color-ink;
+    border-color: $color-ink;
+    color: $color-white;
+  }
+
+  input:focus-visible + &__box {
+    outline: 2px solid $color-ink;
+    outline-offset: 2px;
+  }
+
+  &:hover {
+    color: $color-ink;
+  }
+}
+
+// --- Range slider ----------------------------------------------------------
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: $radius-pill;
+  background: $color-line;
+  cursor: pointer;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $color-ink;
+    border: 3px solid $color-white;
+    box-shadow: $shadow-sm;
+  }
+
+  &::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: $color-ink;
+    border: 3px solid $color-white;
+  }
+}
+
+// --- Size chips ------------------------------------------------------------
+.size-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.size-chip {
+  min-width: 44px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.82rem;
+  font-weight: $fw-medium;
+  text-align: center;
+  border: 1px solid $color-line;
+  border-radius: $radius-sm;
+  transition: all $transition-fast;
+
+  &:hover {
+    border-color: $color-ink;
+  }
+
+  &.is-active {
+    background: $color-ink;
+    color: $color-white;
+    border-color: $color-ink;
+  }
+}
+
+// --- Color chips -----------------------------------------------------------
+.color-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+}
+
+.color-chip {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--swatch);
+  border: 1px solid rgba($color-ink, 0.18);
+  box-shadow: inset 0 0 0 2px $color-white;
+  transition: transform $transition-fast, box-shadow $transition-fast;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &.is-active {
+    box-shadow: inset 0 0 0 2px $color-white, 0 0 0 2px $color-ink;
+  }
+}

@@ -1,0 +1,498 @@
+.auth {
+	display: grid;
+	min-height: calc(100vh - #{$header-height});
+
+	@include bp(lg) {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	&__aside {
+		display: none;
+		position: relative;
+		background-size: cover;
+		background-position: center;
+
+		@include bp(lg) {
+			display: block;
+		}
+	}
+
+	&__aside-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to top,
+			rgba($color-ink, 0.7),
+			rgba($color-ink, 0.15)
+		);
+	}
+
+	&__aside-content {
+		position: absolute;
+		inset: auto $space-8 $space-8 $space-8;
+		color: $color-white;
+
+		p {
+			margin-top: $space-3;
+			max-width: 36ch;
+			color: rgba($color-white, 0.85);
+		}
+	}
+
+	&__logo {
+		font-family: $font-display;
+		font-size: 2rem;
+		letter-spacing: 0.2em;
+	}
+
+	&__panel {
+		display: grid;
+		place-items: center;
+		padding: $space-7 $space-4;
+	}
+
+	&__box {
+		width: min(400px, 100%);
+		display: flex;
+		flex-direction: column;
+		gap: $space-3;
+
+		h1 {
+			font-size: 2rem;
+		}
+	}
+
+	&__tabs {
+		display: flex;
+		background: $color-cloud;
+		border-radius: $radius-pill;
+		padding: 4px;
+		margin-block: $space-3;
+
+		button {
+			flex: 1;
+			padding: 0.6rem;
+			font-size: 0.88rem;
+			font-weight: $fw-semibold;
+			color: $color-slate;
+			border-radius: $radius-pill;
+			transition: all $transition-fast;
+
+			&.is-active {
+				background: $color-white;
+				color: $color-ink;
+				box-shadow: $shadow-sm;
+			}
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: $space-4;
+	}
+
+	&__error {
+		display: flex;
+		align-items: center;
+		gap: $space-2;
+		padding: $space-3;
+		font-size: 0.85rem;
+		color: $color-sale;
+		background: rgba($color-sale, 0.08);
+		border-radius: $radius-sm;
+	}
+
+	&__switch {
+		text-align: center;
+		font-size: 0.9rem;
+		color: $color-slate;
+		margin-top: $space-2;
+
+		button {
+			color: $color-ink;
+			font-weight: $fw-semibold;
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+	}
+
+	&__hint {
+		text-align: center;
+		font-size: 0.78rem;
+		color: $color-mist;
+	}
+}
+
+// --- Password field with toggle --------------------------------------------
+.field__password {
+	position: relative;
+	display: flex;
+	align-items: center;
+
+	input {
+		flex: 1;
+		padding-right: 44px;
+	}
+}
+
+.field__toggle {
+	position: absolute;
+	right: 8px;
+	display: grid;
+	place-items: center;
+	width: 32px;
+	height: 32px;
+	color: $color-mist;
+	border-radius: $radius-sm;
+	transition: color $transition-fast;
+
+	&:hover {
+		color: $color-ink;
+	}
+}
+
+// --- Enhanced Account Dashboard --------------------------------------------
+.account {
+	padding-block: $space-6 $space-9;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		gap: $space-5;
+		padding-bottom: $space-6;
+		border-bottom: 1px solid $color-line;
+		flex-wrap: wrap;
+
+		@include bp(sm) {
+			flex-wrap: nowrap;
+		}
+	}
+
+	&__avatar {
+		display: grid;
+		place-items: center;
+		width: 72px;
+		height: 72px;
+		font-family: $font-display;
+		font-size: 1.8rem;
+		color: $color-white;
+		background: $color-ink;
+		border-radius: 50%;
+		flex-shrink: 0;
+	}
+
+	&__info {
+		flex: 1;
+
+		h1 {
+			font-size: 1.8rem;
+			margin-top: $space-1;
+		}
+	}
+
+	&__email {
+		color: $color-slate;
+		font-size: 0.9rem;
+	}
+
+	&__tabs {
+		display: flex;
+		gap: $space-1;
+		margin-top: $space-5;
+		border-bottom: 1px solid $color-line;
+		overflow-x: auto;
+
+		button {
+			padding: $space-3 $space-4;
+			font-size: 0.9rem;
+			font-weight: $fw-medium;
+			color: $color-slate;
+			border-bottom: 2px solid transparent;
+			white-space: nowrap;
+			transition: all $transition-fast;
+
+			&:hover {
+				color: $color-ink;
+			}
+
+			&.is-active {
+				color: $color-ink;
+				border-bottom-color: $color-ink;
+			}
+		}
+	}
+
+	&__content {
+		padding-top: $space-6;
+	}
+
+	&__overview {
+		display: flex;
+		flex-direction: column;
+		gap: $space-6;
+	}
+
+	&__stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+		gap: $space-4;
+	}
+
+	&__stat {
+		display: flex;
+		align-items: center;
+		gap: $space-4;
+		padding: $space-5;
+		background: $color-cloud;
+		border-radius: $radius-md;
+
+		svg {
+			color: $color-ink;
+		}
+
+		div {
+			display: flex;
+			flex-direction: column;
+		}
+
+		strong {
+			font-size: 1.5rem;
+			font-weight: $fw-bold;
+		}
+
+		span {
+			font-size: 0.85rem;
+			color: $color-slate;
+		}
+	}
+
+	&__section {
+		h3 {
+			font-family: $font-body;
+			font-size: 1rem;
+			font-weight: $fw-semibold;
+			margin-bottom: $space-4;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: $space-3;
+	}
+
+	&__details {
+		display: grid;
+		gap: $space-3;
+		padding: $space-4;
+		background: $color-cloud;
+		border-radius: $radius-md;
+
+		@include bp(sm) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	&__detail {
+		display: flex;
+		flex-direction: column;
+		gap: $space-1;
+
+		span {
+			font-size: 0.8rem;
+			color: $color-slate;
+		}
+
+		strong {
+			font-weight: $fw-medium;
+		}
+	}
+
+	&__orders {
+		display: flex;
+		flex-direction: column;
+		gap: $space-4;
+	}
+
+	&__empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: $space-3;
+		padding: $space-8;
+		background: $color-cloud;
+		border-radius: $radius-md;
+		color: $color-slate;
+
+		svg {
+			color: $color-mist;
+		}
+
+		h3 {
+			font-family: $font-body;
+			font-size: 1.2rem;
+			color: $color-ink;
+		}
+
+		.btn {
+			margin-top: $space-3;
+		}
+	}
+
+	&__wishlist {
+		display: flex;
+		flex-direction: column;
+		gap: $space-5;
+		align-items: flex-start;
+	}
+
+	&__wishlist-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: $space-4;
+		width: 100%;
+
+		@include bp(md) {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+}
+
+// --- Order Card ------------------------------------------------------------
+.order-card {
+	padding: $space-4;
+	border: 1px solid $color-line;
+	border-radius: $radius-md;
+	transition: box-shadow $transition-fast;
+
+	&:hover {
+		box-shadow: $shadow-sm;
+	}
+
+	&__header {
+		@include flex-between;
+		margin-bottom: $space-3;
+	}
+
+	&__id {
+		font-weight: $fw-semibold;
+		font-size: 0.9rem;
+	}
+
+	&__date {
+		font-size: 0.8rem;
+		color: $color-slate;
+		margin-left: $space-2;
+	}
+
+	&__status {
+		font-size: 0.75rem;
+		font-weight: $fw-semibold;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		padding: 0.25rem 0.6rem;
+		border-radius: $radius-pill;
+		background: $color-cloud;
+		color: $color-slate;
+
+		&--delivered {
+			background: rgba($color-success, 0.1);
+			color: $color-success;
+		}
+
+		&--processing {
+			background: rgba($color-accent, 0.1);
+			color: $color-accent;
+		}
+
+		&--shipped {
+			background: rgba(#3b82f6, 0.1);
+			color: #3b82f6;
+		}
+	}
+
+	&__items {
+		display: flex;
+		gap: $space-2;
+		margin-bottom: $space-3;
+
+		img {
+			width: 56px;
+			height: 72px;
+			object-fit: cover;
+			border-radius: $radius-sm;
+			background: $color-cloud;
+		}
+	}
+
+	&__more {
+		display: grid;
+		place-items: center;
+		width: 56px;
+		height: 72px;
+		background: $color-cloud;
+		border-radius: $radius-sm;
+		font-size: 0.85rem;
+		font-weight: $fw-medium;
+		color: $color-slate;
+	}
+
+	&__footer {
+		@include flex-between;
+		padding-top: $space-3;
+		border-top: 1px solid $color-line;
+		font-size: 0.9rem;
+		color: $color-slate;
+
+		strong {
+			color: $color-ink;
+		}
+	}
+}
+
+// --- Wishlist mini card ----------------------------------------------------
+.wishlist-card {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+	transition: transform $transition-fast;
+
+	&:hover {
+		transform: translateY(-2px);
+	}
+
+	img {
+		aspect-ratio: 3 / 4;
+		width: 100%;
+		object-fit: cover;
+		border-radius: $radius-sm;
+		background: $color-cloud;
+	}
+
+	&__info {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	&__brand {
+		font-size: 0.7rem;
+		font-weight: $fw-semibold;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: $color-slate;
+	}
+
+	&__name {
+		font-size: 0.85rem;
+		font-weight: $fw-medium;
+		@include clamp-lines(1);
+	}
+
+	&__price {
+		font-size: 0.85rem;
+		font-weight: $fw-semibold;
+	}
+}

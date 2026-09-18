@@ -1,0 +1,194 @@
+@use '@/styles/abstracts' as *;
+
+.container {
+	@include container;
+}
+
+.section {
+	padding-block: $space-8;
+
+	@include bp(lg) {
+		padding-block: $space-9;
+	}
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+// --- Buttons ---------------------------------------------------------------
+.btn {
+	--btn-bg: #{$color-ink};
+	--btn-fg: #{$color-white};
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: $space-2;
+	padding: 0.85rem 1.6rem;
+	font-size: 0.9rem;
+	font-weight: $fw-semibold;
+	letter-spacing: 0.02em;
+	border-radius: $radius-pill;
+	background: var(--btn-bg);
+	color: var(--btn-fg);
+	border: 1px solid var(--btn-bg);
+	transition:
+		transform $transition-fast $ease-out,
+		background $transition-fast $ease-out,
+		opacity $transition-fast $ease-out;
+	@include focus-ring;
+
+	&:hover:not(:disabled) {
+		transform: translateY(-1px);
+		background: $color-ink-soft;
+	}
+
+	&:active:not(:disabled) {
+		transform: translateY(0);
+	}
+
+	&:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
+
+	&--block {
+		width: 100%;
+	}
+
+	&--outline {
+		--btn-bg: transparent;
+		--btn-fg: #{$color-ink};
+		border-color: $color-ink;
+
+		&:hover:not(:disabled) {
+			background: $color-ink;
+			color: $color-white;
+		}
+	}
+
+	&--ghost {
+		--btn-bg: transparent;
+		--btn-fg: #{$color-ink};
+		border-color: transparent;
+
+		&:hover:not(:disabled) {
+			background: $color-cloud;
+		}
+	}
+
+	&--sm {
+		padding: 0.55rem 1.1rem;
+		font-size: 0.82rem;
+	}
+}
+
+.overline {
+	@include overline;
+}
+
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.28rem 0.6rem;
+	font-size: 0.68rem;
+	font-weight: $fw-semibold;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	border-radius: $radius-sm;
+	background: $color-ink;
+	color: $color-white;
+
+	&--sale {
+		background: $color-sale;
+	}
+
+	&--new {
+		background: $color-success;
+	}
+}
+
+// --- Form field (shared across Auth + Checkout) ----------------------------
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: $space-2;
+
+	span {
+		font-size: 0.82rem;
+		font-weight: $fw-medium;
+		color: $color-charcoal;
+	}
+
+	input,
+	textarea,
+	select {
+		padding: 0.8rem 0.95rem;
+		border: 1px solid $color-line;
+		border-radius: $radius-sm;
+		background: $color-white;
+		font-size: 0.95rem;
+		transition:
+			border-color $transition-fast,
+			box-shadow $transition-fast;
+
+		&::placeholder {
+			color: $color-mist;
+		}
+
+		&:focus {
+			outline: none;
+			border-color: $color-ink;
+			box-shadow: 0 0 0 3px rgba($color-ink, 0.08);
+		}
+
+		&[aria-invalid='true'] {
+			border-color: $color-sale;
+		}
+	}
+
+	&__err {
+		font-style: normal;
+		font-size: 0.78rem;
+		color: $color-sale;
+	}
+}
+
+// --- Skeleton shimmer (image loading placeholder) --------------------------
+// Applied to image containers that have a solid $color-cloud background.
+// The shimmer sits behind the image; once the image paints it covers this.
+@keyframes shimmer {
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.skeleton,
+.product-card__media,
+.pdp__stage {
+	position: relative;
+
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: 0;
+		background: linear-gradient(
+			90deg,
+			transparent 0%,
+			rgba(255, 255, 255, 0.55) 50%,
+			transparent 100%
+		);
+		transform: translateX(-100%);
+		animation: shimmer 1.6s infinite;
+		pointer-events: none;
+	}
+}

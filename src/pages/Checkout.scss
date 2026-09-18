@@ -1,0 +1,272 @@
+.checkout {
+	padding-bottom: $space-9;
+
+	&__head {
+		padding-block: $space-6 $space-5;
+
+		h1 {
+			font-size: clamp(2rem, 5vw, 3rem);
+			margin-top: $space-1;
+		}
+	}
+
+	&__grid {
+		display: grid;
+		gap: $space-6;
+
+		@include bp(lg) {
+			grid-template-columns: 1.4fr 1fr;
+			gap: $space-8;
+			align-items: start;
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: $space-5;
+	}
+
+	&__signin-note {
+		display: flex;
+		align-items: center;
+		gap: $space-3;
+		padding: $space-4;
+		background: $color-cloud;
+		border-radius: $radius-md;
+		font-size: 0.9rem;
+		color: $color-charcoal;
+
+		a {
+			color: $color-ink;
+			font-weight: $fw-semibold;
+			text-decoration: underline;
+		}
+	}
+
+	&__fieldset {
+		border: none;
+		display: flex;
+		flex-direction: column;
+		gap: $space-4;
+
+		legend {
+			font-size: 0.82rem;
+			font-weight: $fw-semibold;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			margin-bottom: $space-3;
+		}
+	}
+
+	&__row {
+		display: grid;
+		gap: $space-4;
+
+		@include bp(sm) {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	&__submit {
+		margin-top: $space-2;
+	}
+
+	&__disclaimer {
+		font-size: 0.8rem;
+		color: $color-mist;
+		text-align: center;
+	}
+
+	// --- Summary -------------------------------------------------------------
+	&__summary {
+		background: $color-white;
+		border: 1px solid $color-line;
+		border-radius: $radius-lg;
+		padding: $space-5;
+
+		@include bp(lg) {
+			position: sticky;
+			top: calc(#{$header-height} + #{$space-4});
+		}
+
+		h2 {
+			font-family: $font-body;
+			font-size: 1.05rem;
+			font-weight: $fw-semibold;
+			margin-bottom: $space-4;
+		}
+	}
+
+	&__lines {
+		display: flex;
+		flex-direction: column;
+		gap: $space-4;
+		max-height: 340px;
+		overflow-y: auto;
+		padding-bottom: $space-4;
+		border-bottom: 1px solid $color-line;
+	}
+
+	&__line {
+		display: flex;
+		align-items: center;
+		gap: $space-3;
+	}
+
+	&__line-img {
+		position: relative;
+		flex-shrink: 0;
+
+		img {
+			width: 56px;
+			height: 72px;
+			object-fit: cover;
+			border-radius: $radius-sm;
+			background: $color-cloud;
+		}
+	}
+
+	&__line-qty {
+		position: absolute;
+		top: -8px;
+		right: -8px;
+		display: grid;
+		place-items: center;
+		min-width: 20px;
+		height: 20px;
+		padding: 0 5px;
+		font-size: 0.7rem;
+		font-weight: $fw-bold;
+		color: $color-white;
+		background: $color-ink;
+		border-radius: $radius-pill;
+	}
+
+	&__line-info {
+		flex: 1;
+		min-width: 0;
+
+		p {
+			font-size: 0.9rem;
+			font-weight: $fw-medium;
+			@include clamp-lines(1);
+		}
+
+		span {
+			font-size: 0.8rem;
+			color: $color-slate;
+		}
+	}
+
+	&__line-price {
+		font-weight: $fw-semibold;
+		font-size: 0.9rem;
+	}
+
+	&__totals {
+		display: flex;
+		flex-direction: column;
+		gap: $space-3;
+		margin-top: $space-4;
+
+		div {
+			@include flex-between;
+			font-size: 0.92rem;
+			color: $color-slate;
+
+			dd {
+				color: $color-ink;
+				font-weight: $fw-medium;
+			}
+		}
+	}
+
+	&__grand {
+		padding-top: $space-3;
+		border-top: 1px solid $color-line;
+		font-size: 1.1rem !important;
+
+		dt {
+			font-weight: $fw-semibold;
+			color: $color-ink !important;
+		}
+
+		dd {
+			font-size: 1.25rem;
+			font-weight: $fw-bold !important;
+		}
+	}
+}
+
+// (.field__err is defined globally in styles/base/_utilities.scss)
+
+// --- Empty + confirm -------------------------------------------------------
+.checkout-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: $space-3;
+	color: $color-slate;
+
+	svg {
+		color: $color-mist;
+	}
+
+	h1 {
+		font-size: 2rem;
+		color: $color-ink;
+	}
+
+	.btn {
+		margin-top: $space-3;
+	}
+}
+
+.checkout-confirm {
+	display: grid;
+	place-items: center;
+
+	&__card {
+		width: min(560px, 100%);
+		text-align: center;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: $space-2;
+
+		h1 {
+			font-size: clamp(1.8rem, 5vw, 2.6rem);
+		}
+	}
+
+	&__tick {
+		display: grid;
+		place-items: center;
+		width: 76px;
+		height: 76px;
+		margin-bottom: $space-4;
+		color: $color-white;
+		background: $color-success;
+		border-radius: 50%;
+	}
+
+	&__sub {
+		color: $color-slate;
+		max-width: 46ch;
+		margin-top: $space-2;
+
+		strong {
+			color: $color-ink;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: $space-3;
+		margin-top: $space-6;
+	}
+}

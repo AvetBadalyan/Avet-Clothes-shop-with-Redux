@@ -1,0 +1,254 @@
+.pdp {
+  &__crumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $space-2;
+    padding-block: $space-5 $space-4;
+    font-size: 0.8rem;
+    color: $color-slate;
+
+    a:hover {
+      color: $color-ink;
+    }
+
+    span {
+      color: $color-ink;
+    }
+  }
+
+  &__main {
+    display: grid;
+    gap: $space-6;
+    padding-bottom: $space-8;
+
+    @include bp(lg) {
+      grid-template-columns: 1.1fr 1fr;
+      gap: $space-8;
+      align-items: start;
+    }
+  }
+
+  // --- Gallery -------------------------------------------------------------
+  &__gallery {
+    display: grid;
+    gap: $space-3;
+    grid-template-columns: 1fr;
+
+    @include bp(sm) {
+      grid-template-columns: 76px 1fr;
+    }
+  }
+
+  &__thumbs {
+    display: flex;
+    gap: $space-3;
+    order: 2;
+
+    @include bp(sm) {
+      flex-direction: column;
+      order: 0;
+    }
+  }
+
+  &__thumb {
+    width: 68px;
+    height: 88px;
+    border-radius: $radius-sm;
+    overflow: hidden;
+    border: 1px solid $color-line;
+    opacity: 0.6;
+    transition: opacity $transition-fast, border-color $transition-fast;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &.is-active {
+      opacity: 1;
+      border-color: $color-ink;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &__stage {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: $radius-md;
+    overflow: hidden;
+    background: $color-cloud;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__badges {
+    position: absolute;
+    top: $space-4;
+    left: $space-4;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+  }
+
+  // --- Info ----------------------------------------------------------------
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+
+    @include bp(lg) {
+      position: sticky;
+      top: calc(#{$header-height} + #{$space-4});
+    }
+  }
+
+  &__name {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+  }
+
+  &__price {
+    font-size: 1.5rem;
+  }
+
+  &__desc {
+    color: $color-slate;
+    line-height: 1.65;
+    padding-block: $space-2;
+    border-bottom: 1px solid $color-line;
+    padding-bottom: $space-5;
+  }
+
+  &__selector {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    margin-top: $space-3;
+  }
+
+  &__selector-head {
+    @include flex-between;
+  }
+
+  &__label {
+    font-size: 0.82rem;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    color: $color-slate;
+    font-size: 0.9rem;
+  }
+
+  &__err {
+    color: $color-sale;
+    font-style: normal;
+    font-weight: $fw-regular;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  &__guide {
+    font-size: 0.8rem;
+    color: $color-slate;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    &:hover {
+      color: $color-ink;
+    }
+  }
+
+  // --- Buy row -------------------------------------------------------------
+  &__buy {
+    display: flex;
+    gap: $space-3;
+    margin-top: $space-5;
+  }
+
+  &__qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid $color-line;
+    border-radius: $radius-pill;
+    overflow: hidden;
+
+    button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 48px;
+      color: $color-ink;
+      transition: background $transition-fast;
+
+      &:hover:not(:disabled) {
+        background: $color-cloud;
+      }
+      &:disabled {
+        color: $color-mist;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      min-width: 32px;
+      text-align: center;
+      font-weight: $fw-semibold;
+    }
+  }
+
+  &__add {
+    flex: 1;
+  }
+
+  &__wish {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    flex-shrink: 0;
+    border: 1px solid $color-line;
+    border-radius: $radius-pill;
+    color: $color-ink;
+    transition: all $transition-fast;
+
+    &:hover {
+      border-color: $color-ink;
+    }
+
+    &.is-active {
+      color: $color-sale;
+      border-color: rgba($color-sale, 0.5);
+    }
+  }
+
+  &__perks {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3;
+    margin-top: $space-6;
+    padding-top: $space-5;
+    border-top: 1px solid $color-line;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: $space-3;
+      font-size: 0.9rem;
+      color: $color-charcoal;
+
+      svg {
+        color: $color-ink;
+      }
+    }
+  }
+}
