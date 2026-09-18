@@ -26,8 +26,8 @@
 
 // --- Buttons ---------------------------------------------------------------
 .btn {
-	--btn-bg: #{$color-ink};
-	--btn-fg: #{$color-white};
+	--btn-bg: var(--color-ink);
+	--btn-fg: var(--color-canvas);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -48,7 +48,7 @@
 
 	&:hover:not(:disabled) {
 		transform: translateY(-1px);
-		background: $color-ink-soft;
+		background: var(--color-ink-soft);
 	}
 
 	&:active:not(:disabled) {
@@ -66,22 +66,22 @@
 
 	&--outline {
 		--btn-bg: transparent;
-		--btn-fg: #{$color-ink};
-		border-color: $color-ink;
+		--btn-fg: var(--color-ink);
+		border-color: var(--color-ink);
 
 		&:hover:not(:disabled) {
-			background: $color-ink;
-			color: $color-white;
+			background: var(--color-ink);
+			color: var(--color-canvas);
 		}
 	}
 
 	&--ghost {
 		--btn-bg: transparent;
-		--btn-fg: #{$color-ink};
+		--btn-fg: var(--color-ink);
 		border-color: transparent;
 
 		&:hover:not(:disabled) {
-			background: $color-cloud;
+			background: var(--color-cloud);
 		}
 	}
 
@@ -104,15 +104,17 @@
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
 	border-radius: $radius-sm;
-	background: $color-ink;
-	color: $color-white;
+	background: var(--color-badge-new-bg);
+	color: var(--color-badge-new-fg);
 
 	&--sale {
-		background: $color-sale;
+		background: var(--color-sale);
+		color: #ffffff;
 	}
 
 	&--new {
-		background: $color-success;
+		background: var(--color-success);
+		color: #ffffff;
 	}
 }
 
@@ -125,40 +127,41 @@
 	span {
 		font-size: 0.82rem;
 		font-weight: $fw-medium;
-		color: $color-charcoal;
+		color: var(--color-charcoal);
 	}
 
 	input,
 	textarea,
 	select {
 		padding: 0.8rem 0.95rem;
-		border: 1px solid $color-line;
+		border: 1px solid var(--color-line);
 		border-radius: $radius-sm;
-		background: $color-white;
+		background: var(--color-input-bg);
+		color: var(--color-ink);
 		font-size: 0.95rem;
 		transition:
 			border-color $transition-fast,
 			box-shadow $transition-fast;
 
 		&::placeholder {
-			color: $color-mist;
+			color: var(--color-mist);
 		}
 
 		&:focus {
 			outline: none;
-			border-color: $color-ink;
-			box-shadow: 0 0 0 3px rgba($color-ink, 0.08);
+			border-color: var(--color-ink);
+			box-shadow: 0 0 0 3px rgba(15, 15, 16, 0.08);
 		}
 
 		&[aria-invalid='true'] {
-			border-color: $color-sale;
+			border-color: var(--color-sale);
 		}
 	}
 
 	&__err {
 		font-style: normal;
 		font-size: 0.78rem;
-		color: $color-sale;
+		color: var(--color-sale);
 	}
 }
 

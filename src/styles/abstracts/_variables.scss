@@ -2,7 +2,92 @@
 //  Design tokens — LUXE fashion storefront
 // ============================================================
 
-// --- Color palette ---------------------------------------------------------
+// ============================================================
+//  CSS Custom Properties for Theming
+//  These are defined on :root and toggled via [data-theme]
+// ============================================================
+
+// --- Light Theme (default) -------------------------------------------------
+:root,
+[data-theme='light'] {
+	// Core surfaces
+	--color-canvas: #faf9f7;
+	--color-cloud: #f4f2ee;
+	--color-white: #ffffff;
+
+	// Text hierarchy
+	--color-ink: #0f0f10;
+	--color-ink-soft: #1c1c1f;
+	--color-charcoal: #3a3a3d;
+	--color-slate: #6b6b70;
+	--color-mist: #9a9aa0;
+
+	// Borders & lines
+	--color-line: #e6e4e0;
+
+	// Accents
+	--color-accent: #c2703d;
+	--color-accent-dark: #a75b2c;
+	--color-accent-hover: #b5632f;
+	--color-sale: #c0392b;
+	--color-success: #2e7d5b;
+
+	// Component-specific
+	--color-card-bg: #ffffff;
+	--color-input-bg: #ffffff;
+	--color-overlay: rgba(15, 15, 16, 0.5);
+	--color-badge-new-bg: #0f0f10;
+	--color-badge-new-fg: #ffffff;
+
+	// Shadows
+	--shadow-sm: 0 1px 2px rgba(15, 15, 16, 0.06);
+	--shadow-md: 0 8px 24px rgba(15, 15, 16, 0.08);
+	--shadow-lg: 0 20px 50px rgba(15, 15, 16, 0.14);
+}
+
+// --- Dark Theme ------------------------------------------------------------
+[data-theme='dark'] {
+	// Core surfaces (warm charcoal like Motto theme)
+	--color-canvas: #141617;
+	--color-cloud: #1c1e20;
+	--color-white: #1c1e20;
+
+	// Text hierarchy (inverted)
+	--color-ink: #f5f5f5;
+	--color-ink-soft: #e8e8e8;
+	--color-charcoal: #c4c4c6;
+	--color-slate: #9a9a9e;
+	--color-mist: #6b6b70;
+
+	// Borders & lines
+	--color-line: #2a2d30;
+
+	// Accents (slightly brighter for dark mode)
+	--color-accent: #d4844f;
+	--color-accent-dark: #c2703d;
+	--color-accent-hover: #e0915a;
+	--color-sale: #e74c3c;
+	--color-success: #3d9970;
+
+	// Component-specific
+	--color-card-bg: #1c1e20;
+	--color-input-bg: #1c1e20;
+	--color-overlay: rgba(0, 0, 0, 0.7);
+	--color-badge-new-bg: #f5f5f5;
+	--color-badge-new-fg: #141617;
+
+	// Shadows (more subtle in dark mode)
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+	--shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+	--shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+// ============================================================
+//  SCSS Variables (static values & fallbacks)
+//  Used for non-themeable values and as fallbacks
+// ============================================================
+
+// --- Static color references (for SCSS functions) --------------------------
 $color-ink: #0f0f10; // near-black, primary text / buttons
 $color-ink-soft: #1c1c1f;
 $color-charcoal: #3a3a3d;
@@ -19,8 +104,13 @@ $color-sale: #c0392b; // sale / discount red
 $color-success: #2e7d5b;
 
 // --- Typography ------------------------------------------------------------
-$font-display: "Fraunces", "Times New Roman", serif;
-$font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-display: 'Fraunces', 'Times New Roman', serif;
+$font-body:
+	'Inter',
+	system-ui,
+	-apple-system,
+	'Segoe UI',
+	sans-serif;
 
 $fw-light: 300;
 $fw-regular: 400;

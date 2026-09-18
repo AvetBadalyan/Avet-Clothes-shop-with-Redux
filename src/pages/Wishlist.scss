@@ -9,10 +9,11 @@
 	&__title {
 		font-size: clamp(2rem, 5vw, 3rem);
 		margin-top: $space-1;
+		color: var(--color-ink);
 	}
 
 	&__count {
-		color: $color-slate;
+		color: var(--color-slate);
 		margin-top: $space-2;
 	}
 
@@ -23,16 +24,16 @@
 		text-align: center;
 		gap: $space-3;
 		padding: $space-9 $space-4;
-		color: $color-slate;
+		color: var(--color-slate);
 
 		svg {
-			color: $color-mist;
+			color: var(--color-mist);
 		}
 
 		h3 {
 			font-family: $font-body;
 			font-size: 1.3rem;
-			color: $color-ink;
+			color: var(--color-ink);
 		}
 
 		p {

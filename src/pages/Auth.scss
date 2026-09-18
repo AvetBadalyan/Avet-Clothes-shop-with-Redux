@@ -22,20 +22,20 @@
 		inset: 0;
 		background: linear-gradient(
 			to top,
-			rgba($color-ink, 0.7),
-			rgba($color-ink, 0.15)
+			rgba(15, 15, 16, 0.7),
+			rgba(15, 15, 16, 0.15)
 		);
 	}
 
 	&__aside-content {
 		position: absolute;
 		inset: auto $space-8 $space-8 $space-8;
-		color: $color-white;
+		color: #ffffff;
 
 		p {
 			margin-top: $space-3;
 			max-width: 36ch;
-			color: rgba($color-white, 0.85);
+			color: rgba(255, 255, 255, 0.85);
 		}
 	}
 
@@ -59,12 +59,13 @@
 
 		h1 {
 			font-size: 2rem;
+			color: var(--color-ink);
 		}
 	}
 
 	&__tabs {
 		display: flex;
-		background: $color-cloud;
+		background: var(--color-cloud);
 		border-radius: $radius-pill;
 		padding: 4px;
 		margin-block: $space-3;
@@ -74,14 +75,14 @@
 			padding: 0.6rem;
 			font-size: 0.88rem;
 			font-weight: $fw-semibold;
-			color: $color-slate;
+			color: var(--color-slate);
 			border-radius: $radius-pill;
 			transition: all $transition-fast;
 
 			&.is-active {
-				background: $color-white;
-				color: $color-ink;
-				box-shadow: $shadow-sm;
+				background: var(--color-card-bg);
+				color: var(--color-ink);
+				box-shadow: var(--shadow-sm);
 			}
 		}
 	}
@@ -98,19 +99,19 @@
 		gap: $space-2;
 		padding: $space-3;
 		font-size: 0.85rem;
-		color: $color-sale;
-		background: rgba($color-sale, 0.08);
+		color: var(--color-sale);
+		background: rgba(192, 57, 43, 0.08);
 		border-radius: $radius-sm;
 	}
 
 	&__switch {
 		text-align: center;
 		font-size: 0.9rem;
-		color: $color-slate;
+		color: var(--color-slate);
 		margin-top: $space-2;
 
 		button {
-			color: $color-ink;
+			color: var(--color-ink);
 			font-weight: $fw-semibold;
 			text-decoration: underline;
 			text-underline-offset: 3px;
@@ -120,7 +121,7 @@
 	&__hint {
 		text-align: center;
 		font-size: 0.78rem;
-		color: $color-mist;
+		color: var(--color-mist);
 	}
 }
 
@@ -143,12 +144,12 @@
 	place-items: center;
 	width: 32px;
 	height: 32px;
-	color: $color-mist;
+	color: var(--color-mist);
 	border-radius: $radius-sm;
 	transition: color $transition-fast;
 
 	&:hover {
-		color: $color-ink;
+		color: var(--color-ink);
 	}
 }
 
@@ -161,7 +162,7 @@
 		align-items: center;
 		gap: $space-5;
 		padding-bottom: $space-6;
-		border-bottom: 1px solid $color-line;
+		border-bottom: 1px solid var(--color-line);
 		flex-wrap: wrap;
 
 		@include bp(sm) {
@@ -176,8 +177,8 @@
 		height: 72px;
 		font-family: $font-display;
 		font-size: 1.8rem;
-		color: $color-white;
-		background: $color-ink;
+		color: var(--color-canvas);
+		background: var(--color-ink);
 		border-radius: 50%;
 		flex-shrink: 0;
 	}
@@ -188,11 +189,12 @@
 		h1 {
 			font-size: 1.8rem;
 			margin-top: $space-1;
+			color: var(--color-ink);
 		}
 	}
 
 	&__email {
-		color: $color-slate;
+		color: var(--color-slate);
 		font-size: 0.9rem;
 	}
 
@@ -200,25 +202,25 @@
 		display: flex;
 		gap: $space-1;
 		margin-top: $space-5;
-		border-bottom: 1px solid $color-line;
+		border-bottom: 1px solid var(--color-line);
 		overflow-x: auto;
 
 		button {
 			padding: $space-3 $space-4;
 			font-size: 0.9rem;
 			font-weight: $fw-medium;
-			color: $color-slate;
+			color: var(--color-slate);
 			border-bottom: 2px solid transparent;
 			white-space: nowrap;
 			transition: all $transition-fast;
 
 			&:hover {
-				color: $color-ink;
+				color: var(--color-ink);
 			}
 
 			&.is-active {
-				color: $color-ink;
-				border-bottom-color: $color-ink;
+				color: var(--color-ink);
+				border-bottom-color: var(--color-ink);
 			}
 		}
 	}
@@ -244,11 +246,11 @@
 		align-items: center;
 		gap: $space-4;
 		padding: $space-5;
-		background: $color-cloud;
+		background: var(--color-cloud);
 		border-radius: $radius-md;
 
 		svg {
-			color: $color-ink;
+			color: var(--color-ink);
 		}
 
 		div {
@@ -259,11 +261,12 @@
 		strong {
 			font-size: 1.5rem;
 			font-weight: $fw-bold;
+			color: var(--color-ink);
 		}
 
 		span {
 			font-size: 0.85rem;
-			color: $color-slate;
+			color: var(--color-slate);
 		}
 	}
 
@@ -273,6 +276,7 @@
 			font-size: 1rem;
 			font-weight: $fw-semibold;
 			margin-bottom: $space-4;
+			color: var(--color-ink);
 		}
 	}
 
@@ -286,7 +290,7 @@
 		display: grid;
 		gap: $space-3;
 		padding: $space-4;
-		background: $color-cloud;
+		background: var(--color-cloud);
 		border-radius: $radius-md;
 
 		@include bp(sm) {
@@ -301,11 +305,12 @@
 
 		span {
 			font-size: 0.8rem;
-			color: $color-slate;
+			color: var(--color-slate);
 		}
 
 		strong {
 			font-weight: $fw-medium;
+			color: var(--color-ink);
 		}
 	}
 
@@ -322,18 +327,18 @@
 		text-align: center;
 		gap: $space-3;
 		padding: $space-8;
-		background: $color-cloud;
+		background: var(--color-cloud);
 		border-radius: $radius-md;
-		color: $color-slate;
+		color: var(--color-slate);
 
 		svg {
-			color: $color-mist;
+			color: var(--color-mist);
 		}
 
 		h3 {
 			font-family: $font-body;
 			font-size: 1.2rem;
-			color: $color-ink;
+			color: var(--color-ink);
 		}
 
 		.btn {
@@ -363,12 +368,12 @@
 // --- Order Card ------------------------------------------------------------
 .order-card {
 	padding: $space-4;
-	border: 1px solid $color-line;
+	border: 1px solid var(--color-line);
 	border-radius: $radius-md;
 	transition: box-shadow $transition-fast;
 
 	&:hover {
-		box-shadow: $shadow-sm;
+		box-shadow: var(--shadow-sm);
 	}
 
 	&__header {
@@ -379,11 +384,12 @@
 	&__id {
 		font-weight: $fw-semibold;
 		font-size: 0.9rem;
+		color: var(--color-ink);
 	}
 
 	&__date {
 		font-size: 0.8rem;
-		color: $color-slate;
+		color: var(--color-slate);
 		margin-left: $space-2;
 	}
 
@@ -394,21 +400,21 @@
 		letter-spacing: 0.05em;
 		padding: 0.25rem 0.6rem;
 		border-radius: $radius-pill;
-		background: $color-cloud;
-		color: $color-slate;
+		background: var(--color-cloud);
+		color: var(--color-slate);
 
 		&--delivered {
-			background: rgba($color-success, 0.1);
-			color: $color-success;
+			background: rgba(46, 125, 91, 0.1);
+			color: var(--color-success);
 		}
 
 		&--processing {
-			background: rgba($color-accent, 0.1);
-			color: $color-accent;
+			background: rgba(194, 112, 61, 0.1);
+			color: var(--color-accent);
 		}
 
 		&--shipped {
-			background: rgba(#3b82f6, 0.1);
+			background: rgba(59, 130, 246, 0.1);
 			color: #3b82f6;
 		}
 	}
@@ -423,7 +429,7 @@
 			height: 72px;
 			object-fit: cover;
 			border-radius: $radius-sm;
-			background: $color-cloud;
+			background: var(--color-cloud);
 		}
 	}
 
@@ -432,22 +438,22 @@
 		place-items: center;
 		width: 56px;
 		height: 72px;
-		background: $color-cloud;
+		background: var(--color-cloud);
 		border-radius: $radius-sm;
 		font-size: 0.85rem;
 		font-weight: $fw-medium;
-		color: $color-slate;
+		color: var(--color-slate);
 	}
 
 	&__footer {
 		@include flex-between;
 		padding-top: $space-3;
-		border-top: 1px solid $color-line;
+		border-top: 1px solid var(--color-line);
 		font-size: 0.9rem;
-		color: $color-slate;
+		color: var(--color-slate);
 
 		strong {
-			color: $color-ink;
+			color: var(--color-ink);
 		}
 	}
 }
@@ -468,7 +474,7 @@
 		width: 100%;
 		object-fit: cover;
 		border-radius: $radius-sm;
-		background: $color-cloud;
+		background: var(--color-cloud);
 	}
 
 	&__info {
@@ -482,17 +488,19 @@
 		font-weight: $fw-semibold;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
-		color: $color-slate;
+		color: var(--color-slate);
 	}
 
 	&__name {
 		font-size: 0.85rem;
 		font-weight: $fw-medium;
+		color: var(--color-ink);
 		@include clamp-lines(1);
 	}
 
 	&__price {
 		font-size: 0.85rem;
 		font-weight: $fw-semibold;
+		color: var(--color-ink);
 	}
 }

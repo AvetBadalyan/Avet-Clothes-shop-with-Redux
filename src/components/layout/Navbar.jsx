@@ -4,7 +4,12 @@ import { selectIsAuthenticated, selectUser } from '@/store/authSlice.js'
 import { selectCartCount } from '@/store/cartSlice.js'
 import { setCategory, setSearch } from '@/store/filtersSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
-import { openCart, selectCartOpen } from '@/store/uiSlice.js'
+import {
+	openCart,
+	selectCartOpen,
+	selectTheme,
+	toggleTheme
+} from '@/store/uiSlice.js'
 import { selectWishlistCount } from '@/store/wishlistSlice.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -19,6 +24,7 @@ export default function Navbar() {
 	const isAuth = useAppSelector(selectIsAuthenticated)
 	const user = useAppSelector(selectUser)
 	const cartOpen = useAppSelector(selectCartOpen)
+	const theme = useAppSelector(selectTheme)
 
 	const [scrolled, setScrolled] = useState(false)
 	const [searchOpen, setSearchOpen] = useState(false)
@@ -101,6 +107,16 @@ export default function Navbar() {
 
 				{/* Right side: action icons */}
 				<div className="navbar__actions">
+					<button
+						className="navbar__icon-btn navbar__theme-toggle"
+						aria-label={
+							theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'
+						}
+						onClick={() => dispatch(toggleTheme())}
+					>
+						<Icon name={theme === 'light' ? 'moon' : 'sun'} />
+					</button>
+
 					<button
 						className="navbar__icon-btn"
 						aria-label="Search"

@@ -7,6 +7,7 @@
 		h1 {
 			font-size: clamp(2rem, 5vw, 3rem);
 			margin-top: $space-1;
+			color: var(--color-ink);
 		}
 	}
 
@@ -32,13 +33,13 @@
 		align-items: center;
 		gap: $space-3;
 		padding: $space-4;
-		background: $color-cloud;
+		background: var(--color-cloud);
 		border-radius: $radius-md;
 		font-size: 0.9rem;
-		color: $color-charcoal;
+		color: var(--color-charcoal);
 
 		a {
-			color: $color-ink;
+			color: var(--color-ink);
 			font-weight: $fw-semibold;
 			text-decoration: underline;
 		}
@@ -56,6 +57,7 @@
 			letter-spacing: 0.1em;
 			text-transform: uppercase;
 			margin-bottom: $space-3;
+			color: var(--color-ink);
 		}
 	}
 
@@ -74,14 +76,14 @@
 
 	&__disclaimer {
 		font-size: 0.8rem;
-		color: $color-mist;
+		color: var(--color-mist);
 		text-align: center;
 	}
 
 	// --- Summary -------------------------------------------------------------
 	&__summary {
-		background: $color-white;
-		border: 1px solid $color-line;
+		background: var(--color-card-bg);
+		border: 1px solid var(--color-line);
 		border-radius: $radius-lg;
 		padding: $space-5;
 
@@ -95,6 +97,7 @@
 			font-size: 1.05rem;
 			font-weight: $fw-semibold;
 			margin-bottom: $space-4;
+			color: var(--color-ink);
 		}
 	}
 
@@ -105,7 +108,7 @@
 		max-height: 340px;
 		overflow-y: auto;
 		padding-bottom: $space-4;
-		border-bottom: 1px solid $color-line;
+		border-bottom: 1px solid var(--color-line);
 	}
 
 	&__line {
@@ -123,7 +126,7 @@
 			height: 72px;
 			object-fit: cover;
 			border-radius: $radius-sm;
-			background: $color-cloud;
+			background: var(--color-cloud);
 		}
 	}
 
@@ -138,8 +141,8 @@
 		padding: 0 5px;
 		font-size: 0.7rem;
 		font-weight: $fw-bold;
-		color: $color-white;
-		background: $color-ink;
+		color: var(--color-canvas);
+		background: var(--color-ink);
 		border-radius: $radius-pill;
 	}
 
@@ -150,18 +153,20 @@
 		p {
 			font-size: 0.9rem;
 			font-weight: $fw-medium;
+			color: var(--color-ink);
 			@include clamp-lines(1);
 		}
 
 		span {
 			font-size: 0.8rem;
-			color: $color-slate;
+			color: var(--color-slate);
 		}
 	}
 
 	&__line-price {
 		font-weight: $fw-semibold;
 		font-size: 0.9rem;
+		color: var(--color-ink);
 	}
 
 	&__totals {
@@ -173,10 +178,10 @@
 		div {
 			@include flex-between;
 			font-size: 0.92rem;
-			color: $color-slate;
+			color: var(--color-slate);
 
 			dd {
-				color: $color-ink;
+				color: var(--color-ink);
 				font-weight: $fw-medium;
 			}
 		}
@@ -184,12 +189,12 @@
 
 	&__grand {
 		padding-top: $space-3;
-		border-top: 1px solid $color-line;
+		border-top: 1px solid var(--color-line);
 		font-size: 1.1rem !important;
 
 		dt {
 			font-weight: $fw-semibold;
-			color: $color-ink !important;
+			color: var(--color-ink) !important;
 		}
 
 		dd {
@@ -208,15 +213,15 @@
 	align-items: center;
 	text-align: center;
 	gap: $space-3;
-	color: $color-slate;
+	color: var(--color-slate);
 
 	svg {
-		color: $color-mist;
+		color: var(--color-mist);
 	}
 
 	h1 {
 		font-size: 2rem;
-		color: $color-ink;
+		color: var(--color-ink);
 	}
 
 	.btn {
@@ -238,6 +243,7 @@
 
 		h1 {
 			font-size: clamp(1.8rem, 5vw, 2.6rem);
+			color: var(--color-ink);
 		}
 	}
 
@@ -247,18 +253,18 @@
 		width: 76px;
 		height: 76px;
 		margin-bottom: $space-4;
-		color: $color-white;
-		background: $color-success;
+		color: #ffffff;
+		background: var(--color-success);
 		border-radius: 50%;
 	}
 
 	&__sub {
-		color: $color-slate;
+		color: var(--color-slate);
 		max-width: 46ch;
 		margin-top: $space-2;
 
 		strong {
-			color: $color-ink;
+			color: var(--color-ink);
 		}
 	}
 

@@ -2,16 +2,24 @@
 	position: sticky;
 	top: 0;
 	z-index: $z-header;
-	background: rgba($color-canvas, 0.85);
+	background: rgba(250, 249, 247, 0.85);
 	backdrop-filter: blur(12px);
 	border-bottom: 1px solid transparent;
 	transition:
 		border-color $transition-base,
 		background $transition-base;
 
+	[data-theme='dark'] & {
+		background: rgba(20, 22, 23, 0.85);
+	}
+
 	&--scrolled {
-		border-bottom-color: $color-line;
-		background: rgba($color-canvas, 0.95);
+		border-bottom-color: var(--color-line);
+		background: rgba(250, 249, 247, 0.95);
+
+		[data-theme='dark'] & {
+			background: rgba(20, 22, 23, 0.95);
+		}
 	}
 
 	&__inner {
@@ -47,6 +55,7 @@
 		font-size: 1.5rem;
 		letter-spacing: 0.22em;
 		padding-left: 0.22em; // optically center the letter-spacing
+		color: var(--color-ink);
 	}
 
 	&__nav {
@@ -64,7 +73,7 @@
 			font-weight: $fw-medium;
 			letter-spacing: 0.05em;
 			text-transform: uppercase;
-			color: $color-charcoal;
+			color: var(--color-charcoal);
 			padding-block: 0.25rem;
 			transition: color $transition-fast;
 
@@ -75,7 +84,7 @@
 				bottom: 0;
 				width: 100%;
 				height: 1.5px;
-				background: $color-ink;
+				background: var(--color-ink);
 				transform: scaleX(0);
 				transform-origin: left;
 				transition: transform $transition-base $ease-out;
@@ -83,7 +92,7 @@
 
 			&:hover,
 			&.active {
-				color: $color-ink;
+				color: var(--color-ink);
 			}
 
 			&:hover::after,
@@ -107,12 +116,22 @@
 		width: 40px;
 		height: 40px;
 		border-radius: $radius-pill;
-		color: $color-ink;
+		color: var(--color-ink);
 		transition: background $transition-fast;
 		@include focus-ring;
 
 		&:hover {
-			background: $color-cloud;
+			background: var(--color-cloud);
+		}
+	}
+
+	&__theme-toggle {
+		svg {
+			transition: transform 0.3s ease;
+		}
+
+		&:hover svg {
+			transform: rotate(15deg);
 		}
 	}
 
@@ -133,8 +152,8 @@
 		place-items: center;
 		font-size: 0.65rem;
 		font-weight: $fw-bold;
-		color: $color-white;
-		background: $color-ink;
+		color: var(--color-canvas);
+		background: var(--color-ink);
 		border-radius: $radius-pill;
 	}
 
@@ -145,7 +164,7 @@
 		width: 7px;
 		height: 7px;
 		border-radius: 50%;
-		background: $color-success;
+		background: var(--color-success);
 	}
 
 	// --- Search --------------------------------------------------------------
@@ -154,7 +173,7 @@
 		align-items: center;
 		gap: $space-3;
 		padding-block: $space-4;
-		border-top: 1px solid $color-line;
+		border-top: 1px solid var(--color-line);
 		overflow: hidden;
 
 		input {
@@ -163,13 +182,14 @@
 			background: none;
 			font-size: 1rem;
 			padding-block: $space-2;
+			color: var(--color-ink);
 
 			&:focus {
 				outline: none;
 			}
 
 			&::placeholder {
-				color: $color-mist;
+				color: var(--color-mist);
 			}
 		}
 	}
@@ -179,7 +199,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: $z-drawer;
-		background: rgba($color-ink, 0.4);
+		background: var(--color-overlay);
 
 		@include bp(lg) {
 			display: none;
@@ -193,9 +213,9 @@
 		z-index: $z-drawer;
 		width: min(82vw, 340px);
 		height: 100%;
-		background: $color-canvas;
+		background: var(--color-canvas);
 		padding: $space-5;
-		box-shadow: $shadow-lg;
+		box-shadow: var(--shadow-lg);
 		display: flex;
 		flex-direction: column;
 		gap: $space-5;
@@ -213,11 +233,12 @@
 		a {
 			font-size: 1.1rem;
 			font-weight: $fw-medium;
+			color: var(--color-ink);
 		}
 
 		hr {
 			border: none;
-			border-top: 1px solid $color-line;
+			border-top: 1px solid var(--color-line);
 			margin-block: $space-2;
 		}
 	}
