@@ -2,6 +2,7 @@ import Icon from '@/components/common/Icon.jsx'
 import ProductCard from '@/components/product/ProductCard.jsx'
 import { getProductById } from '@/data/products.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { clearWishlist, selectWishlistIds } from '@/store/wishlistSlice.js'
 import { useNavigate } from 'react-router-dom'
 import './Wishlist.scss'
@@ -9,6 +10,7 @@ import './Wishlist.scss'
 export default function Wishlist() {
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
+	usePageTitle('Wishlist')
 	const ids = useAppSelector(selectWishlistIds)
 	const products = ids.map(getProductById).filter(Boolean)
 

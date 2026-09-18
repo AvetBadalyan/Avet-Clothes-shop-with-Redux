@@ -55,9 +55,26 @@ const hashPassword = async (password, salt) => {
 const randomSalt = () => toHex(crypto.getRandomValues(new Uint8Array(16)))
 
 export const authService = {
-	/** Returns the persisted session ({ user, token }) or null. */
+	/**
+	 * Returns the persisted session ({ user, token }) or null.
+	 * Validates the mock JWT exp claim — clears and returns null if expired.
+	 */
 	getSession() {
-		return loadState(SESSION_KEY, null)
+		const session = loadState(SESSION_KEY, null)
+		if (!session?.token) return null
+		try {
+			const payloadJson = atob(session.token.split('.')[1])
+			const { exp } = JSON.parse(payloadJson)
+			if (exp && Date.now() > exp) {
+				clearState(SESSION_KEY)
+				return null
+			}
+		} catch {
+			// Malformed token — treat as expired
+			clearState(SESSION_KEY)
+			return null
+		}
+		return session
 	},
 
 	async signUp({ name, email, password }) {
@@ -70,14 +87,16 @@ export const authService = {
 		// Store a salted hash — never the raw password.
 		const salt = randomSalt()
 		const passwordHash = await hashPassword(password, salt)
+		const createdAt = new Date().toISOString()
 		users[key] = {
 			name: name || nameFromEmail(email),
 			email: key,
 			salt,
-			passwordHash
+			passwordHash,
+			createdAt
 		}
 		writeUsers(users)
-		const user = { name: users[key].name, email: key }
+		const user = { name: users[key].name, email: key, createdAt }
 		const session = { user, token: issueToken(key) }
 		saveState(SESSION_KEY, session)
 		return session
@@ -94,7 +113,11 @@ export const authService = {
 		if (!record || record.passwordHash !== attemptHash) {
 			throw new Error('Incorrect email or password.')
 		}
-		const user = { name: record.name, email: key }
+		const user = {
+			name: record.name,
+			email: key,
+			createdAt: record.createdAt ?? null
+		}
 		const session = { user, token: issueToken(key) }
 		saveState(SESSION_KEY, session)
 		return session

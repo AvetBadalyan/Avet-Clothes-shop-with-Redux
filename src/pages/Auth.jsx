@@ -1,4 +1,5 @@
 import Icon from '@/components/common/Icon.jsx'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { formatPrice } from '@/components/common/Price.jsx'
 import { getProductById, img } from '@/data/products.js'
 import { orderService } from '@/services/orderService.js'
@@ -21,6 +22,7 @@ import './Auth.scss'
 
 export default function Auth() {
 	const dispatch = useAppDispatch()
+	usePageTitle(user ? 'My Account' : mode === 'login' ? 'Sign In' : 'Create Account')
 	const navigate = useNavigate()
 	const location = useLocation()
 	const user = useAppSelector(selectUser)
@@ -30,7 +32,12 @@ export default function Auth() {
 
 	// Check for pre-filled data from checkout redirect
 	const prefillData = location.state || {}
-	const { prefillEmail, prefillName, mode: initialMode } = prefillData
+	const {
+		prefillEmail,
+		prefillName,
+		mode: initialMode,
+		tab: initialTab
+	} = prefillData
 
 	const [mode, setMode] = useState(
 		initialMode === 'signup' ? 'signup' : 'login'
@@ -41,13 +48,15 @@ export default function Auth() {
 		password: ''
 	})
 	const [showPassword, setShowPassword] = useState(false)
-	const [activeTab, setActiveTab] = useState('overview') // 'overview' | 'orders' | 'wishlist'
+	const [formErrors, setFormErrors] = useState({})
+	const [activeTab, setActiveTab] = useState(initialTab ?? 'overview') // 'overview' | 'orders' | 'wishlist'
 
 	// Order history for the signed-in user (empty when logged out).
 	const orders = orderService.list(user?.email)
 
 	useEffect(() => {
 		dispatch(clearAuthError())
+		setFormErrors({})
 	}, [mode, dispatch])
 
 	// Clear location state after consuming it (prevents stale prefill on refresh)
@@ -66,6 +75,18 @@ export default function Auth() {
 
 	const submit = async e => {
 		e.preventDefault()
+		// Client-side validation for signup
+		if (mode === 'signup') {
+			const errs = {}
+			if (!form.name.trim()) errs.name = 'Please enter your name'
+			if (form.password.length < 6)
+				errs.password = 'Password must be at least 6 characters'
+			if (Object.keys(errs).length) {
+				setFormErrors(errs)
+				return
+			}
+		}
+		setFormErrors({})
 		const action = mode === 'login' ? signIn : signUp
 		const result = await dispatch(action(form))
 		if (action.fulfilled.match(result)) {
@@ -182,7 +203,14 @@ export default function Auth() {
 									</div>
 									<div className="account__detail">
 										<span>Member since</span>
-										<strong>2024</strong>
+										<strong>
+											{user.createdAt
+												? new Date(user.createdAt).toLocaleDateString('en-US', {
+														month: 'long',
+														year: 'numeric'
+													})
+												: '—'}
+										</strong>
 									</div>
 								</div>
 							</div>
@@ -318,6 +346,12 @@ export default function Auth() {
 					<p>
 						Members enjoy early access, saved wishlists and faster checkout.
 					</p>
+					<ul className="auth__aside-perks">
+						<li>✓ Saved shipping address — one-tap checkout</li>
+						<li>✓ Full order history, guest orders included</li>
+						<li>✓ Wishlist that persists across devices</li>
+						<li>✓ Early access to new arrivals &amp; sales</li>
+					</ul>
 				</div>
 			</div>
 
@@ -360,7 +394,11 @@ export default function Auth() {
 									onChange={update('name')}
 									placeholder="Jane Doe"
 									autoComplete="name"
+									aria-invalid={!!formErrors.name}
 								/>
+								{formErrors.name && (
+									<em className="field__err">{formErrors.name}</em>
+								)}
 							</label>
 						)}
 						<label className="field">
@@ -387,6 +425,7 @@ export default function Auth() {
 									autoComplete={
 										mode === 'login' ? 'current-password' : 'new-password'
 									}
+									aria-invalid={!!formErrors.password}
 								/>
 								<button
 									type="button"
@@ -400,6 +439,9 @@ export default function Auth() {
 									/>
 								</button>
 							</div>
+							{formErrors.password && (
+								<em className="field__err">{formErrors.password}</em>
+							)}
 						</div>
 
 						{error && (

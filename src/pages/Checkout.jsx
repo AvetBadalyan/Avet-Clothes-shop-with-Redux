@@ -1,4 +1,5 @@
 import Icon from '@/components/common/Icon.jsx'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { formatPrice } from '@/components/common/Price.jsx'
 import { authService } from '@/services/authService.js'
 import { createOrder, orderService } from '@/services/orderService.js'
@@ -29,6 +30,7 @@ const initialForm = {
 
 export default function Checkout() {
 	const dispatch = useAppDispatch()
+	usePageTitle('Checkout')
 	const navigate = useNavigate()
 	const items = useAppSelector(selectCartItems)
 	const subtotal = useAppSelector(selectCartSubtotal)
@@ -179,7 +181,7 @@ export default function Checkout() {
 					<div className="checkout-confirm__actions">
 						<button
 							className="btn"
-							onClick={() => navigate('/account')}
+							onClick={() => navigate('/account', { state: { tab: 'orders' } })}
 						>
 							{isGuest ? 'Sign in' : 'View order history'}
 						</button>
@@ -252,6 +254,7 @@ export default function Checkout() {
 								onChange={update('fullName')}
 								aria-invalid={!!errors.fullName}
 								placeholder="Jane Doe"
+								autoComplete="name"
 							/>
 							{errors.fullName && (
 								<em className="field__err">{errors.fullName}</em>
@@ -265,6 +268,7 @@ export default function Checkout() {
 								onChange={update('email')}
 								aria-invalid={!!errors.email}
 								placeholder="you@example.com"
+								autoComplete="email"
 							/>
 							{errors.email && <em className="field__err">{errors.email}</em>}
 						</label>
@@ -280,6 +284,7 @@ export default function Checkout() {
 								onChange={update('address')}
 								aria-invalid={!!errors.address}
 								placeholder="123 Market Street"
+								autoComplete="address-line1"
 							/>
 							{errors.address && (
 								<em className="field__err">{errors.address}</em>
@@ -294,6 +299,7 @@ export default function Checkout() {
 									onChange={update('city')}
 									aria-invalid={!!errors.city}
 									placeholder="Yerevan"
+									autoComplete="address-level2"
 								/>
 								{errors.city && <em className="field__err">{errors.city}</em>}
 							</label>
@@ -305,6 +311,7 @@ export default function Checkout() {
 									onChange={update('postalCode')}
 									aria-invalid={!!errors.postalCode}
 									placeholder="0010"
+									autoComplete="postal-code"
 								/>
 								{errors.postalCode && (
 									<em className="field__err">{errors.postalCode}</em>
@@ -319,6 +326,7 @@ export default function Checkout() {
 								onChange={update('country')}
 								aria-invalid={!!errors.country}
 								placeholder="Armenia"
+								autoComplete="country-name"
 							/>
 							{errors.country && (
 								<em className="field__err">{errors.country}</em>

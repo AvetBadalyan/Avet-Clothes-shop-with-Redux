@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import './NotFound.scss'
+import { usePageTitle } from '@/hooks/usePageTitle.js'
 
 export default function NotFound() {
+	usePageTitle('Page Not Found')
 	return (
 		<section className="not-found container section">
 			<p className="overline">Error 404</p>

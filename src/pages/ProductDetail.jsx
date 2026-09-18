@@ -76,6 +76,7 @@ export default function ProductDetail() {
 
 	const wished = wishlistIds.includes(product.id)
 	const gallery = [product.imageUrl, product.hoverImageUrl]
+	usePageTitle(product.name)
 	const related = getRelated(product)
 	const look = getCompleteTheLook(product)
 	const isAccessory = product.sizes.length === 1 && product.sizes[0] === 'OS'
@@ -241,6 +242,7 @@ export default function ProductDetail() {
 							<button
 								onClick={() => setQty(q => Math.min(10, q + 1))}
 								aria-label="Increase quantity"
+								disabled={qty >= 10}
 							>
 								<Icon
 									name="plus"

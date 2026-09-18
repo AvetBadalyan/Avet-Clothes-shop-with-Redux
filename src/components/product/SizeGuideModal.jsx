@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 import Icon from '@/components/common/Icon.jsx'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
 import './SizeGuideModal.scss'
 
 // Reference measurement tables. Values are illustrative for a demo store.
@@ -29,6 +29,9 @@ const SHOE_TABLE = {
 }
 
 export default function SizeGuideModal({ open, onClose, category }) {
+	const panelRef = useRef(null)
+	useFocusTrap(panelRef, open)
+
 	// Close on Escape and lock body scroll while open.
 	useEffect(() => {
 		if (!open) return
@@ -56,6 +59,7 @@ export default function SizeGuideModal({ open, onClose, category }) {
 				>
 					<motion.div
 						className="sizeguide__panel"
+						ref={panelRef}
 						role="dialog"
 						aria-modal="true"
 						aria-label="Size guide"
