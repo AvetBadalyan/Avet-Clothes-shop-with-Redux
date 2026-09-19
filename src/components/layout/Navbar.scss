@@ -165,7 +165,7 @@
     right: 0;
     min-width: 18px;
     height: 18px;
-    padding: 0 5px;
+    padding: 0 $space-2;
     display: grid;
     place-items: center;
     font-size: 1.1rem; // 11px - small badge count is fine

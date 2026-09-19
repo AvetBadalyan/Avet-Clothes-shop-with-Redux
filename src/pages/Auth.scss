@@ -67,12 +67,12 @@
     display: flex;
     background: var(--color-cloud);
     border-radius: $radius-pill;
-    padding: 4px;
+    padding: $space-1;
     margin-block: $space-3;
 
     button {
       flex: 1;
-      padding: 1rem;
+      padding: $space-4;
       font-size: 1.4rem; // 14px
       font-weight: $fw-semibold;
       color: var(--color-slate);
@@ -409,7 +409,7 @@
     font-weight: $fw-semibold;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    padding: 0.4rem 1rem;
+    padding: $space-1 $space-4;
     border-radius: $radius-pill;
     background: var(--color-cloud);
     color: var(--color-slate);
@@ -493,7 +493,7 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: $space-1;
   }
 
   &__brand {
