@@ -6,7 +6,7 @@ clothing store: size/color variants, faceted filtering, wishlist, quick-view
 modals, complete checkout flow, user authentication, and dark mode — all
 self-contained and deployable as a static site.
 
-![Modern Fashion Store](https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80)
+![Modern Fashion Store](docs/screenshots/home-light.png)
 
 > **Portfolio Project** — This is a 2024/25 ground-up rebuild demonstrating
 > modern React patterns, Redux Toolkit best practices, and production-ready
