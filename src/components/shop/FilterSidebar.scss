@@ -4,8 +4,10 @@
 	gap: $space-5;
 
 	&__head {
-		@include flex-between;
-		font-size: 1.4rem; // 14px
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 1.4rem;
 		font-weight: $fw-semibold;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
@@ -39,9 +41,11 @@
 	}
 
 	&__range-labels {
-		@include flex-between;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		margin-top: $space-2;
-		font-size: 1.4rem; // 14px
+		font-size: 1.4rem;
 		color: var(--color-slate);
 	}
 

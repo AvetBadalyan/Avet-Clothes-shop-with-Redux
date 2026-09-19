@@ -1,6 +1,8 @@
 // --- Shared section header (used across pages) -----------------------------
 .section-head {
-	@include flex-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 	gap: $space-4;
 	margin-bottom: $space-6;
 
@@ -68,7 +70,10 @@
 	}
 
 	&__eyebrow {
-		@include overline;
+		font-size: 1.4rem;
+		font-weight: $fw-semibold;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
 		color: rgba($color-white, 0.85);
 		margin-bottom: $space-4;
 	}

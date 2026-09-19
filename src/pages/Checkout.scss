@@ -176,8 +176,10 @@
 		margin-top: $space-4;
 
 		div {
-			@include flex-between;
-			font-size: 1.4rem; // 14px
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 1.4rem;
 			color: var(--color-slate);
 
 			dd {

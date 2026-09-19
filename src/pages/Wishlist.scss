@@ -1,7 +1,8 @@
 .wishlist {
 	&__head {
-		@include flex-between;
+		display: flex;
 		align-items: flex-end;
+		justify-content: space-between;
 		gap: $space-4;
 		padding-block: $space-6 $space-6;
 	}

@@ -216,8 +216,11 @@
 	}
 
 	&__brand {
-		@include overline;
-		font-size: 1.4rem; // 14px - readable brand
+		font-size: 1.4rem;
+		font-weight: $fw-semibold;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-slate);
 	}
 
 	&__name {
@@ -230,7 +233,9 @@
 	}
 
 	&__foot {
-		@include flex-between;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
 		margin-top: $space-2;
 		gap: $space-3;
 	}
