@@ -6,8 +6,7 @@
 $breakpoints: (
   sm: $bp-sm,
   md: $bp-md,
-  lg: $bp-lg,
-  xl: $bp-xl
+  lg: $bp-lg
 );
 
 @mixin bp($name) {

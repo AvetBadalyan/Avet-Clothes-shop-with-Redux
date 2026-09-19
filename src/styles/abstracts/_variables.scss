@@ -27,7 +27,6 @@
 
   // Accents
   --color-accent: #c2703d;
-  --color-accent-dark: #a75b2c;
   --color-accent-hover: #b5632f;
   --color-sale: #c0392b;
   --color-success: #2e7d5b;
@@ -42,7 +41,6 @@
 
   // Shadows
   --shadow-sm: 0 1px 2px rgba(15, 15, 16, 0.06);
-  --shadow-md: 0 8px 24px rgba(15, 15, 16, 0.08);
   --shadow-lg: 0 20px 50px rgba(15, 15, 16, 0.14);
 
   // Loading shimmer highlight (light surfaces)
@@ -71,7 +69,6 @@
 
   // Accents (slightly brighter for dark mode)
   --color-accent: #d4844f;
-  --color-accent-dark: #c2703d;
   --color-accent-hover: #e0915a;
   --color-sale: #e74c3c;
   --color-success: #3d9970;
@@ -86,7 +83,6 @@
 
   // Shadows (more subtle in dark mode)
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.5);
 
   // Loading shimmer highlight (subtle on dark surfaces)
@@ -100,7 +96,6 @@
 
 // --- Static color references (for SCSS functions) --------------------------
 $color-ink: #0f0f10; // near-black, primary text / buttons
-$color-ink-soft: #1c1c1f;
 $color-charcoal: #3a3a3d;
 $color-slate: #6b6b70; // muted text
 $color-mist: #9a9aa0; // subtle text / placeholders
@@ -110,7 +105,6 @@ $color-canvas: #faf9f7; // page background
 $color-white: #ffffff;
 
 $color-accent: #c2703d; // warm terracotta accent
-$color-accent-dark: #a75b2c;
 $color-sale: #c0392b; // sale / discount red
 $color-success: #2e7d5b;
 
@@ -123,7 +117,6 @@ $font-body:
   'Segoe UI',
   sans-serif;
 
-$fw-light: 300;
 $fw-regular: 400;
 $fw-medium: 500;
 $fw-semibold: 600;
@@ -137,8 +130,6 @@ $fs-sm: 1.4rem;       // 14px  — UI text, eyebrows, breadcrumbs, meta
 $fs-base: 1.6rem;     // 16px  — body copy, product names, form inputs
 $fs-lg: 1.8rem;       // 18px  — lead paragraphs, small section headings
 $fs-h4: 2rem;         // 20px  — section headings (serif display)
-$fs-h3: 2.4rem;       // 24px  — sub-section headings / prices
-$fs-h2: 2.8rem;       // 28px  — secondary display headings
 
 // Uppercase label rhythm — used by .overline and every eyebrow/label.
 $tracking-label: 0.1em;
@@ -163,7 +154,6 @@ $radius-pill: 999px;
 
 // --- Shadows ---------------------------------------------------------------
 $shadow-sm: 0 1px 2px rgba(15, 15, 16, 0.06);
-$shadow-md: 0 8px 24px rgba(15, 15, 16, 0.08);
 $shadow-lg: 0 20px 50px rgba(15, 15, 16, 0.14);
 
 // --- Layout ----------------------------------------------------------------
@@ -172,7 +162,6 @@ $header-height: 72px;
 
 // --- Motion ----------------------------------------------------------------
 $ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-$ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 $transition-fast: 0.18s;
 $transition-base: 0.32s;
 
@@ -186,4 +175,3 @@ $z-toast: 400;
 $bp-sm: 560px;
 $bp-md: 768px;
 $bp-lg: 1024px;
-$bp-xl: 1280px;
