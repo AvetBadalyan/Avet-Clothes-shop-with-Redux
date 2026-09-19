@@ -35,7 +35,7 @@
     padding: $space-4;
     background: var(--color-cloud);
     border-radius: $radius-md;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-charcoal);
 
     a {
@@ -52,7 +52,7 @@
     gap: $space-4;
 
     legend {
-      font-size: $fs-sm; // 14px
+      font-size: $fs-sm;
       font-weight: $fw-semibold;
       letter-spacing: $tracking-label;
       text-transform: uppercase;
@@ -75,7 +75,7 @@
   }
 
   &__disclaimer {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-mist);
     text-align: center;
   }
@@ -94,7 +94,7 @@
 
     h2 {
       font-family: $font-display;
-      font-size: $fs-lg; // 18px
+      font-size: $fs-lg;
       font-weight: $fw-semibold;
       margin-bottom: $space-4;
       color: var(--color-ink);
@@ -139,7 +139,7 @@
     min-width: 20px;
     height: 20px;
     padding: 0 $space-2;
-    font-size: 1.1rem; // 11px - small badge count
+    font-size: $fs-caption;
     font-weight: $fw-bold;
     color: var(--color-canvas);
     background: var(--color-ink);
@@ -151,21 +151,21 @@
     min-width: 0;
 
     p {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       font-weight: $fw-medium;
       color: var(--color-ink);
       @include clamp-lines(1);
     }
 
     span {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       color: var(--color-slate);
     }
   }
 
   &__line-price {
     font-weight: $fw-semibold;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-ink);
   }
 
@@ -179,7 +179,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 1.4rem;
+      font-size: $fs-sm;
       color: var(--color-slate);
 
       dd {
@@ -192,7 +192,7 @@
   &__grand {
     padding-top: $space-3;
     border-top: 1px solid var(--color-line);
-    font-size: 1.8rem; // 18px
+    font-size: $fs-lg;
 
     dt {
       font-weight: $fw-semibold;
@@ -200,7 +200,7 @@
     }
 
     dd {
-      font-size: 2rem; // 20px
+      font-size: $fs-h4;
       font-weight: $fw-bold;
     }
   }
@@ -307,13 +307,13 @@
 
     strong {
       display: block;
-      font-size: 1.6rem; // 16px
+      font-size: $fs-base;
       color: var(--color-ink);
       margin-bottom: $space-1;
     }
 
     p {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       color: var(--color-slate);
       margin: 0;
     }

@@ -21,7 +21,7 @@
     height: 18px;
     margin-left: $space-2;
     padding: 0 $space-2;
-    font-size: 1.1rem; // 11px - small count badge
+    font-size: $fs-caption;
     font-style: normal;
     color: var(--color-canvas);
     background: var(--color-ink);
@@ -29,7 +29,7 @@
   }
 
   &__clear {
-    font-size: 1.4rem; // 14px - readable link
+    font-size: $fs-sm;
     text-transform: none;
     letter-spacing: 0;
     color: var(--color-slate);
@@ -46,7 +46,7 @@
     align-items: center;
     justify-content: space-between;
     margin-top: $space-2;
-    font-size: 1.4rem;
+    font-size: $fs-sm;
     color: var(--color-slate);
   }
 
@@ -67,7 +67,7 @@
 
   &__title {
     font-family: $font-body;
-    font-size: $fs-sm; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
     letter-spacing: $tracking-label;
     text-transform: uppercase;
@@ -87,7 +87,7 @@
   display: flex;
   align-items: center;
   gap: $space-3;
-  font-size: 1.4rem; // 14px
+  font-size: $fs-sm;
   color: var(--color-charcoal);
   cursor: pointer;
   padding-block: 3px;
@@ -176,7 +176,7 @@
 .size-chip {
   min-width: 44px;
   padding: 0.8rem 1rem;
-  font-size: 1.4rem; // 14px
+  font-size: $fs-sm;
   font-weight: $fw-medium;
   text-align: center;
   border: 1px solid var(--color-line);

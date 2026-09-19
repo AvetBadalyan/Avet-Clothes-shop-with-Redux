@@ -56,7 +56,7 @@
   }
 
   &__more {
-    font-size: 1.4rem; // 14px - readable text
+    font-size: $fs-sm;
     color: var(--color-slate);
   }
 }
@@ -82,7 +82,7 @@
   }
 
   &__count {
-    font-size: 1.4rem; // 14px - readable review count
+    font-size: $fs-sm;
     color: var(--color-slate);
   }
 }
@@ -191,12 +191,12 @@
     justify-content: center;
     gap: $space-2;
     padding: 1.2rem;
-    font-size: 1.2rem; // 12px - compact like Motto
+    font-size: 1.2rem; // 12px
     font-weight: $fw-bold;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #ffffff; // White text for premium look
-    background: var(--color-accent); // Terracotta - cohesive with sale badges
+    color: #ffffff;
+    background: var(--color-accent);
     border-radius: $radius-pill;
     opacity: 0;
     transform: translateY(8px);
@@ -241,7 +241,7 @@
 
   &__name {
     font-family: $font-body;
-    font-size: 1.6rem; // 16px
+    font-size: $fs-base;
     font-weight: $fw-medium;
     letter-spacing: 0;
     color: var(--color-ink);

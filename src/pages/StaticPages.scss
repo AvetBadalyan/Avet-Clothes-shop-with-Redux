@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     gap: $space-2;
-    font-size: 1.4rem; // 14px - readable breadcrumbs
+    font-size: $fs-sm;
     color: var(--color-slate);
     margin-bottom: $space-5;
 
@@ -25,7 +25,7 @@
   }
 
   &__intro {
-    font-size: 1.8rem; // 18px
+    font-size: $fs-lg;
     color: var(--color-charcoal);
     max-width: 65ch;
     margin-bottom: $space-6;
@@ -86,7 +86,7 @@
   &__table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
 
     th,
     td {
@@ -115,7 +115,7 @@
   }
 
   &__note {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-slate);
     font-style: italic;
     margin-top: $space-4;
@@ -143,7 +143,7 @@
 
     h3 {
       font-family: $font-body;
-      font-size: $fs-base; // 16px
+      font-size: $fs-base;
       font-weight: $fw-semibold;
       color: var(--color-ink);
       margin-bottom: $space-2;
@@ -156,7 +156,7 @@
     }
 
     span {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       color: var(--color-slate);
     }
   }
@@ -214,6 +214,6 @@
     border-radius: $radius-sm;
     text-align: center;
     color: var(--color-slate);
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
   }
 }

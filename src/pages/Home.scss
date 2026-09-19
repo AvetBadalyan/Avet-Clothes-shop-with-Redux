@@ -16,7 +16,7 @@
     display: inline-flex;
     align-items: center;
     gap: $space-2;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
     color: var(--color-ink);
     white-space: nowrap;
@@ -87,7 +87,7 @@
   &__sub {
     margin-block: $space-5;
     max-width: 46ch;
-    font-size: 1.8rem; // 18px
+    font-size: $fs-lg;
     color: rgba($color-white, 0.85);
   }
 
@@ -179,7 +179,7 @@
   }
 
   &__tag {
-    font-size: 1.4rem; // 14px - readable category tags
+    font-size: $fs-sm;
     color: rgba(255, 255, 255, 0.8);
   }
 
@@ -193,7 +193,7 @@
     align-items: center;
     gap: $space-2;
     margin-top: $space-2;
-    font-size: $fs-sm; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
     letter-spacing: $tracking-label;
     text-transform: uppercase;

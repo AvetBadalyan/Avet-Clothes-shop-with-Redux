@@ -5,7 +5,7 @@
     flex-wrap: wrap;
     gap: $space-2;
     padding-block: $space-5 $space-4;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-slate);
 
     a {
@@ -148,7 +148,7 @@
   }
 
   &__label {
-    font-size: $fs-sm; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
     letter-spacing: $tracking-label;
     text-transform: uppercase;
@@ -157,7 +157,7 @@
 
   &__value {
     color: var(--color-slate);
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
   }
 
   &__err {
@@ -169,7 +169,7 @@
   }
 
   &__guide {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-slate);
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -259,7 +259,7 @@
       display: flex;
       align-items: center;
       gap: $space-3;
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       color: var(--color-charcoal);
 
       svg {
@@ -302,7 +302,7 @@
     }
 
     &__sticky-name {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       font-weight: $fw-medium;
       color: var(--color-ink);
       white-space: nowrap;

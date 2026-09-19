@@ -40,7 +40,7 @@
   justify-content: center;
   gap: $space-2;
   padding: 1.4rem 2.6rem;
-  font-size: 1.4rem; // 14px
+  font-size: $fs-sm;
   font-weight: $fw-semibold;
   letter-spacing: 0.02em;
   border-radius: $radius-pill;
@@ -97,7 +97,7 @@
 
   &--sm {
     padding: 0.8rem 1.8rem;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
   }
 }
 
@@ -113,7 +113,7 @@
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 1rem;
-  font-size: $fs-caption; // 11px - small badge text is fine
+  font-size: $fs-caption;
   font-weight: $fw-semibold;
   letter-spacing: $tracking-label;
   text-transform: uppercase;
@@ -139,7 +139,7 @@
   gap: $space-2;
 
   span {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-medium;
     color: var(--color-charcoal);
   }
@@ -152,7 +152,7 @@
     border-radius: $radius-sm;
     background: var(--color-input-bg);
     color: var(--color-ink);
-    font-size: 1.6rem; // 16px
+    font-size: $fs-base;
     transition:
       border-color $transition-fast,
       box-shadow $transition-fast;
@@ -164,7 +164,8 @@
     &:focus {
       outline: none;
       border-color: var(--color-ink);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 12%, transparent);
+      box-shadow: 0 0 0 3px
+        color-mix(in srgb, var(--color-ink) 12%, transparent);
     }
 
     &[aria-invalid='true'] {
@@ -174,13 +175,13 @@
 
   &__err {
     font-style: normal;
-    font-size: 1.4rem; // 14px - readable error messages
+    font-size: $fs-sm;
     color: var(--color-sale);
   }
 }
 
 // --- Skeleton shimmer (image loading placeholder) --------------------------
-// Applied to image containers that have a solid $color-cloud background.
+// Applied to image containers that have a solid var(--color-cloud) background.
 // The shimmer sits behind the image; once the image paints it covers this.
 @keyframes shimmer {
   100% {

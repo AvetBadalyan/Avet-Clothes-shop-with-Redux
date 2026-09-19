@@ -52,7 +52,7 @@ body {
   min-height: 100vh;
   font-family: $font-body;
   font-weight: $fw-regular;
-  font-size: 1.6rem; // Reset to 16px
+  font-size: $fs-base;
   color: var(--color-ink);
   background-color: var(--color-canvas);
   line-height: 1.55;

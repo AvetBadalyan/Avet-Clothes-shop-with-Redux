@@ -73,7 +73,7 @@
     button {
       flex: 1;
       padding: $space-4;
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       font-weight: $fw-semibold;
       color: var(--color-slate);
       border-radius: $radius-pill;
@@ -110,7 +110,7 @@
     align-items: center;
     gap: $space-2;
     padding: $space-3;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-sale);
     background: color-mix(in srgb, var(--color-sale) 10%, transparent);
     border-radius: $radius-sm;
@@ -118,7 +118,7 @@
 
   &__switch {
     text-align: center;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-slate);
     margin-top: $space-2;
 
@@ -132,7 +132,7 @@
 
   &__hint {
     text-align: center;
-    font-size: 1.4rem; // 14px - readable hint text
+    font-size: $fs-sm;
     color: var(--color-mist);
   }
 }
@@ -212,7 +212,7 @@
 
   &__email {
     color: var(--color-slate);
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
   }
 
   &__tabs {
@@ -224,7 +224,7 @@
 
     button {
       padding: $space-3 $space-4;
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       font-weight: $fw-medium;
       color: var(--color-slate);
       border-bottom: 2px solid transparent;
@@ -284,7 +284,7 @@
     }
 
     span {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       color: var(--color-slate);
     }
   }
@@ -292,7 +292,7 @@
   &__section {
     h3 {
       font-family: $font-display;
-      font-size: $fs-lg; // 18px
+      font-size: $fs-lg;
       font-weight: $fw-semibold;
       margin-bottom: $space-4;
       color: var(--color-ink);
@@ -323,7 +323,7 @@
     gap: $space-1;
 
     span {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm;
       color: var(--color-slate);
     }
 
@@ -356,7 +356,7 @@
 
     h3 {
       font-family: $font-display;
-      font-size: $fs-h4; // 20px
+      font-size: $fs-h4;
       color: var(--color-ink);
     }
 
@@ -404,18 +404,18 @@
 
   &__id {
     font-weight: $fw-semibold;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-ink);
   }
 
   &__date {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: var(--color-slate);
     margin-left: $space-2;
   }
 
   &__status {
-    font-size: $fs-caption; // 11px - small status badge
+    font-size: $fs-caption;
     font-weight: $fw-semibold;
     text-transform: uppercase;
     letter-spacing: $tracking-label;
@@ -464,7 +464,7 @@
     height: 72px;
     background: var(--color-cloud);
     border-radius: $radius-sm;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-medium;
     color: var(--color-slate);
   }
@@ -475,7 +475,7 @@
     justify-content: space-between;
     padding-top: $space-3;
     border-top: 1px solid var(--color-line);
-    font-size: 1.4rem;
+    font-size: $fs-sm;
     color: var(--color-slate);
 
     strong {
@@ -510,7 +510,7 @@
   }
 
   &__brand {
-    font-size: $fs-sm; // 14px - readable brand text
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
     letter-spacing: $tracking-label;
     text-transform: uppercase;
@@ -518,14 +518,14 @@
   }
 
   &__name {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-medium;
     color: var(--color-ink);
     @include clamp-lines(1);
   }
 
   &__price {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
     color: var(--color-ink);
   }
@@ -540,7 +540,7 @@
   gap: $space-3;
 
   li {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.4;
   }

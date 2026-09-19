@@ -32,7 +32,7 @@
 
     h2 {
       font-family: $font-display;
-      font-size: $fs-h4; // 20px
+      font-size: $fs-h4;
       font-weight: $fw-semibold;
       color: var(--color-ink);
     }
@@ -65,7 +65,7 @@
   &__table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
 
     th,
     td {
@@ -97,7 +97,7 @@
 
   &__note {
     margin-top: $space-5;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm;
     line-height: 1.5;
     color: var(--color-slate);
   }
@@ -133,7 +133,7 @@
 
       td:first-child {
         grid-column: 1 / -1;
-        font-size: 1.6rem; // 16px
+        font-size: $fs-base;
 
         &::before {
           content: 'Size';
