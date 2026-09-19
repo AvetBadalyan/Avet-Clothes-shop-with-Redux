@@ -281,8 +281,8 @@
 
   &__section {
     h3 {
-      font-family: $font-body;
-      font-size: 1.6rem; // 16px
+      font-family: $font-display;
+      font-size: $fs-lg; // 18px
       font-weight: $fw-semibold;
       margin-bottom: $space-4;
       color: var(--color-ink);
@@ -345,8 +345,8 @@
     }
 
     h3 {
-      font-family: $font-body;
-      font-size: 2rem; // 20px
+      font-family: $font-display;
+      font-size: $fs-h4; // 20px
       color: var(--color-ink);
     }
 
@@ -405,10 +405,10 @@
   }
 
   &__status {
-    font-size: 1.1rem; // 11px - small status badge
+    font-size: $fs-caption; // 11px - small status badge
     font-weight: $fw-semibold;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: $tracking-label;
     padding: $space-1 $space-4;
     border-radius: $radius-pill;
     background: var(--color-cloud);
@@ -497,9 +497,9 @@
   }
 
   &__brand {
-    font-size: 1.4rem; // 14px - readable brand text
+    font-size: $fs-sm; // 14px - readable brand text
     font-weight: $fw-semibold;
-    letter-spacing: 0.08em;
+    letter-spacing: $tracking-label;
     text-transform: uppercase;
     color: var(--color-slate);
   }

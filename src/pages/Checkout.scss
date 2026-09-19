@@ -52,9 +52,9 @@
     gap: $space-4;
 
     legend {
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm; // 14px
       font-weight: $fw-semibold;
-      letter-spacing: 0.1em;
+      letter-spacing: $tracking-label;
       text-transform: uppercase;
       margin-bottom: $space-3;
       color: var(--color-ink);
@@ -93,8 +93,8 @@
     }
 
     h2 {
-      font-family: $font-body;
-      font-size: 1.8rem; // 18px
+      font-family: $font-display;
+      font-size: $fs-lg; // 18px
       font-weight: $fw-semibold;
       margin-bottom: $space-4;
       color: var(--color-ink);

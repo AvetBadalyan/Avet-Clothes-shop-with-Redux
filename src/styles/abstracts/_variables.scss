@@ -127,6 +127,20 @@ $fw-medium: 500;
 $fw-semibold: 600;
 $fw-bold: 700;
 
+// --- Type scale ------------------------------------------------------------
+// One shared scale so every text role relates to the next (1rem = 10px).
+// Roles are named so components pick a role, not an arbitrary pixel value.
+$fs-caption: 1.1rem;  // 11px  — badges, counts, micro-labels
+$fs-sm: 1.4rem;       // 14px  — UI text, eyebrows, breadcrumbs, meta
+$fs-base: 1.6rem;     // 16px  — body copy, product names, form inputs
+$fs-lg: 1.8rem;       // 18px  — lead paragraphs, small section headings
+$fs-h4: 2rem;         // 20px  — section headings (serif display)
+$fs-h3: 2.4rem;       // 24px  — sub-section headings / prices
+$fs-h2: 2.8rem;       // 28px  — secondary display headings
+
+// Uppercase label rhythm — used by .overline and every eyebrow/label.
+$tracking-label: 0.1em;
+
 // --- Spacing scale ---------------------------------------------------------
 // Note: 1rem = 10px in this app (html font-size: 62.5%)
 $space-1: 0.4rem;   // 4px

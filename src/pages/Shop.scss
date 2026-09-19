@@ -182,8 +182,8 @@
     }
 
     h3 {
-      font-family: $font-body;
-      font-size: 2rem; // 20px
+      font-family: $font-display;
+      font-size: $fs-h4; // 20px
       color: var(--color-ink);
     }
 
@@ -230,7 +230,7 @@
 
     h3 {
       font-family: $font-body;
-      font-size: 1.6rem; // 16px
+      font-size: $fs-base; // 16px
       color: var(--color-ink);
     }
   }

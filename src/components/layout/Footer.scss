@@ -66,8 +66,8 @@
 
     h4 {
       font-family: $font-body;
-      font-size: 1.4rem; // 14px - readable section headers
-      letter-spacing: 0.12em;
+      font-size: $fs-sm; // 14px - readable section headers
+      letter-spacing: $tracking-label;
       text-transform: uppercase;
       color: rgba($color-white, 0.55);
       margin-bottom: $space-1;
@@ -87,8 +87,8 @@
   &__newsletter {
     h4 {
       font-family: $font-body;
-      font-size: 1.4rem; // 14px - readable section headers
-      letter-spacing: 0.12em;
+      font-size: $fs-sm; // 14px - readable section headers
+      letter-spacing: $tracking-label;
       text-transform: uppercase;
       color: rgba($color-white, 0.55);
     }

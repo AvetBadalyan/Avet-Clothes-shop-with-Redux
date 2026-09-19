@@ -31,8 +31,8 @@
     margin-bottom: $space-5;
 
     h2 {
-      font-family: $font-body;
-      font-size: 2rem; // 20px
+      font-family: $font-display;
+      font-size: $fs-h4; // 20px
       font-weight: $fw-semibold;
       color: var(--color-ink);
     }

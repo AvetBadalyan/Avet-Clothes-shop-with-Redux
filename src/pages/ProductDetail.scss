@@ -148,9 +148,9 @@
   }
 
   &__label {
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm; // 14px
     font-weight: $fw-semibold;
-    letter-spacing: 0.04em;
+    letter-spacing: $tracking-label;
     text-transform: uppercase;
     color: var(--color-ink);
   }

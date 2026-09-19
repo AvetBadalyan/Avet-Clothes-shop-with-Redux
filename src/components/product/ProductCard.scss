@@ -216,9 +216,9 @@
   }
 
   &__brand {
-    font-size: 1.4rem;
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
-    letter-spacing: 0.14em;
+    letter-spacing: $tracking-label;
     text-transform: uppercase;
     color: var(--color-slate);
   }

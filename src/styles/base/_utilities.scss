@@ -102,9 +102,9 @@
 }
 
 .overline {
-  font-size: 1.4rem;
+  font-size: $fs-sm;
   font-weight: $fw-semibold;
-  letter-spacing: 0.14em;
+  letter-spacing: $tracking-label;
   text-transform: uppercase;
   color: var(--color-slate);
 }
@@ -113,9 +113,9 @@
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 1rem;
-  font-size: 1.1rem; // 11px - small badge text is fine
+  font-size: $fs-caption; // 11px - small badge text is fine
   font-weight: $fw-semibold;
-  letter-spacing: 0.08em;
+  letter-spacing: $tracking-label;
   text-transform: uppercase;
   border-radius: $radius-sm;
   background: var(--color-badge-new-bg);

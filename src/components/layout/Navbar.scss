@@ -68,9 +68,9 @@
 
     a {
       position: relative;
-      font-size: 1.4rem; // 14px
+      font-size: $fs-sm; // 14px
       font-weight: $fw-medium;
-      letter-spacing: 0.05em;
+      letter-spacing: $tracking-label;
       text-transform: uppercase;
       color: var(--color-charcoal);
       padding-block: 0.4rem;

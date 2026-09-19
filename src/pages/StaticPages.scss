@@ -143,7 +143,7 @@
 
     h3 {
       font-family: $font-body;
-      font-size: 1.6rem; // 16px
+      font-size: $fs-base; // 16px
       font-weight: $fw-semibold;
       color: var(--color-ink);
       margin-bottom: $space-2;

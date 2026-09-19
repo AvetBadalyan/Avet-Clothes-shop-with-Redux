@@ -70,9 +70,9 @@
   }
 
   &__eyebrow {
-    font-size: 1.4rem;
+    font-size: $fs-sm;
     font-weight: $fw-semibold;
-    letter-spacing: 0.14em;
+    letter-spacing: $tracking-label;
     text-transform: uppercase;
     color: rgba($color-white, 0.85);
     margin-bottom: $space-4;
@@ -193,9 +193,9 @@
     align-items: center;
     gap: $space-2;
     margin-top: $space-2;
-    font-size: 1.4rem; // 14px
+    font-size: $fs-sm; // 14px
     font-weight: $fw-semibold;
-    letter-spacing: 0.04em;
+    letter-spacing: $tracking-label;
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(6px);
