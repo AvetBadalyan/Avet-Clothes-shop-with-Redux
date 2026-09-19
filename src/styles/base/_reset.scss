@@ -16,6 +16,36 @@ html {
   scroll-behavior: smooth;
   // Smooth theme transitions
   color-scheme: light dark;
+
+  // Themed scrollbars (Firefox + modern browsers). The thumb uses the
+  // hairline color and the track is transparent so it blends into any
+  // surface. Both are CSS variables, so this tracks light/dark automatically.
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+// Themed scrollbars (WebKit: Chrome, Safari, Edge). Applied to every scroll
+// area — page, cart drawer, filter sidebar, modals — for one consistent look.
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line);
+  border-radius: $radius-pill;
+  // Inset padding effect so the thumb reads as a slim pill, not a full-width bar.
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mist);
+  background-clip: padding-box;
 }
 
 body {

@@ -251,6 +251,7 @@
   display: flex;
   gap: $space-4;
   overflow: hidden;
+  flex-shrink: 0;
 
   &__img {
     width: 80px;
