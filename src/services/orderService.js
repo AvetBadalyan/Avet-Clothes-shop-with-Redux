@@ -16,11 +16,27 @@ const bucketFor = (email) => (email ? email.toLowerCase() : 'guest')
 
 const readAll = () => loadState(ORDERS_KEY, {})
 
+// Fulfilment stages a demo order moves through as it ages. Derived from the
+// order's timestamp at read time (rather than stored) so past orders always
+// show a believable status without a backend job flipping it.
+const DAY_MS = 24 * 60 * 60 * 1000
+const deriveStatus = (order) => {
+  const placed = order.createdAt
+    ? Date.parse(order.createdAt)
+    : Date.parse(order.date)
+  if (Number.isNaN(placed)) return order.status ?? 'processing'
+  const ageDays = (Date.now() - placed) / DAY_MS
+  if (ageDays >= 5) return 'delivered'
+  if (ageDays >= 2) return 'shipped'
+  return 'processing'
+}
+
 export const orderService = {
-  /** All orders for a given email (newest first). */
+  /** All orders for a given email (newest first), with a freshly derived status. */
   list(email) {
     const all = readAll()
-    return all[bucketFor(email)] ?? []
+    const orders = all[bucketFor(email)] ?? []
+    return orders.map((order) => ({ ...order, status: deriveStatus(order) }))
   },
 
   /**
@@ -52,6 +68,7 @@ export const createOrder = ({
   shippingAddress
 }) => ({
   id: `LX-${Math.floor(100000 + Math.random() * 900000)}`,
+  createdAt: new Date().toISOString(),
   date: new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',

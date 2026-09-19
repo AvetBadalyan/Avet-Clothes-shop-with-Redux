@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { addToast } from '@/store/uiSlice.js'
 import { selectWishlistIds } from '@/store/wishlistSlice.js'
 import { formatPrice } from '@/utils/formatPrice.js'
+import { formatSize } from '@/utils/productHelpers.js'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
@@ -62,6 +63,16 @@ export default function Auth() {
   useEffect(() => {
     setOrders(user ? orderService.list(user.email) : [])
   }, [user, activeTab])
+
+  // Track which orders are expanded to show their full detail. A Set lets
+  // multiple be open at once.
+  const [expandedOrders, setExpandedOrders] = useState(() => new Set())
+  const toggleOrder = (id) =>
+    setExpandedOrders((prev) => {
+      const next = new Set(prev)
+      next.has(id) ? next.delete(id) : next.add(id)
+      return next
+    })
 
   useEffect(() => {
     dispatch(clearAuthError())
@@ -167,7 +178,7 @@ export default function Auth() {
                   />
                   <div>
                     <strong>{orders.length}</strong>
-                    <span>Orders</span>
+                    <span>{orders.length === 1 ? 'Order' : 'Orders'}</span>
                   </div>
                 </div>
                 <div className="account__stat">
@@ -177,7 +188,11 @@ export default function Auth() {
                   />
                   <div>
                     <strong>{wishlistIds.length}</strong>
-                    <span>Wishlist items</span>
+                    <span>
+                      {wishlistIds.length === 1
+                        ? 'Wishlist item'
+                        : 'Wishlist items'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -230,42 +245,152 @@ export default function Auth() {
           {activeTab === 'orders' && (
             <div className="account__orders">
               {orders.length > 0 ? (
-                orders.map((order) => (
-                  <div
-                    key={order.id}
-                    className="order-card"
-                  >
-                    <div className="order-card__header">
-                      <div>
-                        <span className="order-card__id">{order.id}</span>
-                        <span className="order-card__date">{order.date}</span>
-                      </div>
-                      <span
-                        className={`order-card__status order-card__status--${order.status}`}
-                      >
-                        {order.status}
-                      </span>
-                    </div>
-                    <div className="order-card__items">
-                      {order.items.slice(0, 3).map((item, i) => (
-                        <img
-                          key={i}
-                          src={item.imageUrl}
-                          alt={item.name}
-                        />
-                      ))}
-                      {order.items.length > 3 && (
-                        <span className="order-card__more">
-                          +{order.items.length - 3}
+                orders.map((order) => {
+                  const isOpen = expandedOrders.has(order.id)
+                  return (
+                    <div
+                      key={order.id}
+                      className="order-card"
+                    >
+                      <div className="order-card__header">
+                        <div>
+                          <span className="order-card__id">{order.id}</span>
+                          <span className="order-card__date">{order.date}</span>
+                        </div>
+                        <span
+                          className={`order-card__status order-card__status--${order.status}`}
+                        >
+                          {order.status}
                         </span>
+                      </div>
+                      <div className="order-card__items">
+                        {order.items.slice(0, 3).map((item, i) => (
+                          <img
+                            key={i}
+                            src={item.imageUrl}
+                            alt={item.name}
+                          />
+                        ))}
+                        {order.items.length > 3 && (
+                          <span className="order-card__more">
+                            +{order.items.length - 3}
+                          </span>
+                        )}
+                      </div>
+                      <div className="order-card__footer">
+                        <span>
+                          {order.items.length}{' '}
+                          {order.items.length === 1 ? 'item' : 'items'}
+                        </span>
+                        <strong>{formatPrice(order.total)}</strong>
+                      </div>
+
+                      <button
+                        className="order-card__toggle"
+                        onClick={() => toggleOrder(order.id)}
+                        aria-expanded={isOpen}
+                        aria-controls={`order-detail-${order.id}`}
+                      >
+                        {isOpen ? 'Hide details' : 'View details'}
+                        <Icon
+                          name="chevronDown"
+                          size={16}
+                          className={
+                            isOpen ? 'order-card__chevron--open' : undefined
+                          }
+                        />
+                      </button>
+
+                      {isOpen && (
+                        <div
+                          className="order-card__detail"
+                          id={`order-detail-${order.id}`}
+                        >
+                          <ul className="order-card__lines">
+                            {order.items.map((item, i) => (
+                              <li
+                                key={i}
+                                className="order-line"
+                              >
+                                <img
+                                  src={item.imageUrl}
+                                  alt={item.name}
+                                  className="order-line__img"
+                                  loading="lazy"
+                                />
+                                <div className="order-line__info">
+                                  <span className="order-line__name">
+                                    {item.name}
+                                  </span>
+                                  <span className="order-line__meta">
+                                    {[item.color, formatSize(item.size)]
+                                      .filter(Boolean)
+                                      .join(' · ')}
+                                  </span>
+                                  <span className="order-line__qty">
+                                    Qty {item.quantity}
+                                  </span>
+                                </div>
+                                <span className="order-line__price">
+                                  {formatPrice(item.price * item.quantity)}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <dl className="order-card__totals">
+                            <div>
+                              <dt>Subtotal</dt>
+                              <dd>{formatPrice(order.subtotal)}</dd>
+                            </div>
+                            <div>
+                              <dt>Shipping</dt>
+                              <dd>
+                                {order.shipping === 0
+                                  ? 'Free'
+                                  : formatPrice(order.shipping)}
+                              </dd>
+                            </div>
+                            <div className="order-card__totals-total">
+                              <dt>Total</dt>
+                              <dd>{formatPrice(order.total)}</dd>
+                            </div>
+                          </dl>
+
+                          {order.shippingAddress && (
+                            <div className="order-card__ship-to">
+                              <span className="order-card__ship-label">
+                                Shipping to
+                              </span>
+                              <dl className="order-card__address">
+                                <div>
+                                  <dt>Recipient</dt>
+                                  <dd>{order.shippingAddress.fullName}</dd>
+                                </div>
+                                <div>
+                                  <dt>Address</dt>
+                                  <dd>{order.shippingAddress.address}</dd>
+                                </div>
+                                <div>
+                                  <dt>City</dt>
+                                  <dd>{order.shippingAddress.city}</dd>
+                                </div>
+                                <div>
+                                  <dt>Postal code</dt>
+                                  <dd>{order.shippingAddress.postalCode}</dd>
+                                </div>
+                                <div>
+                                  <dt>Country</dt>
+                                  <dd>{order.shippingAddress.country}</dd>
+                                </div>
+                              </dl>
+                            </div>
+                          )}
+                        </div>
                       )}
                     </div>
-                    <div className="order-card__footer">
-                      <span>{order.items.length} items</span>
-                      <strong>{formatPrice(order.total)}</strong>
-                    </div>
-                  </div>
-                ))
+                  )
+                })
               ) : (
                 <div className="account__empty">
                   <Icon

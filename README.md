@@ -31,7 +31,8 @@ self-contained and deployable as a static site.
 
 - **Faceted filter sidebar**: brand, price range, size, color, "new", "on sale"
 - **Sort** by popularity, newest, price (asc/desc), and rating
-- **Search** across product name, brand, category, and tags
+- **Debounced live search** across product name, brand, category, and tags —
+  results update as you type, with a clear (✕) affordance
 - **Category routes** (`/shop/:categoryId`) synced with filter state
 - Live result counts, active-filter badges, one-tap clear
 
@@ -50,7 +51,10 @@ self-contained and deployable as a static site.
 - **Sign up / sign in** with mock auth service (JWT-shaped tokens)
 - **Password hashing** with Web Crypto API (SHA-256 + salt)
 - **Saved shipping addresses** for returning customers
-- **Order history** that reconciles guest + signed-in orders by email
+- **Order history** that reconciles guest + signed-in orders by email, with
+  expandable order detail (line items, cost breakdown, shipping address) and a
+  fulfilment status that progresses with order age (processing → shipped →
+  delivered)
 - Auth isolated behind a single `authService` module — swappable for
   Supabase/Firebase
 
@@ -190,12 +194,12 @@ src/
 │   ├── product/        # ProductCard, QuickViewModal, SizeSelector, SizeGuideModal
 │   └── shop/           # FilterSidebar
 ├── data/               # products.js (catalog + helpers)
-├── hooks/              # useFocusTrap, usePageTitle
+├── hooks/              # useDebounce, useFocusTrap, useModalDismiss, usePageTitle
 ├── pages/              # Home, Shop, ProductDetail, Wishlist, Checkout, Auth, NotFound, StaticPages
 ├── services/           # authService, orderService, recentlyViewedService
 ├── store/              # Redux slices (cart, wishlist, filters, auth, ui)
 ├── styles/             # SCSS architecture (abstracts, base)
-└── utils/              # formatPrice helper
+└── utils/              # formatPrice, productHelpers (formatSize)
 ```
 
 ### State Management
@@ -219,8 +223,8 @@ Styling uses SCSS organized with a
 [7-1-ish](https://sass-guidelines.org/architecture/) structure:
 
 - **`abstracts/`** — Design tokens (colors, typography, spacing, radius,
-  shadows, breakpoints) and mixins (`bp()`, `container`, `focus-ring`,
-  `clamp-lines`). Auto-injected via Vite.
+  shadows, breakpoints) and mixins (`bp()`, `bp-down()`, `clamp-lines()`).
+  Auto-injected via Vite.
 - **`base/`** — CSS reset and utility classes (`.btn`, `.badge`, `.field`,
   skeleton shimmer)
 - **Component styles** — Co-located `.scss` files using BEM naming
