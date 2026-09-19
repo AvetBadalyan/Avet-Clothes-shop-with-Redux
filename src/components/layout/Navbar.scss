@@ -28,13 +28,14 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: $space-4;
+		max-width: 100%;
 	}
 
 	&__left {
 		display: flex;
 		align-items: center;
 		gap: $space-4;
-		flex: 1;
+		min-width: 0; // Allow flex item to shrink below content size
 
 		@include bp(lg) {
 			flex: none;
@@ -48,6 +49,12 @@
 		letter-spacing: 0.22em;
 		padding-left: 0.22em; // optically center the letter-spacing
 		color: var(--color-ink);
+
+		@include bp-down(sm) {
+			font-size: 1.25rem;
+			letter-spacing: 0.18em;
+			padding-left: 0.18em;
+		}
 	}
 
 	&__nav {
@@ -98,6 +105,7 @@
 		display: flex;
 		align-items: center;
 		gap: $space-2;
+		flex-shrink: 0;
 	}
 
 	&__icon-btn {
@@ -110,7 +118,13 @@
 		border-radius: $radius-pill;
 		color: var(--color-ink);
 		transition: background $transition-fast;
+		flex-shrink: 0;
 		@include focus-ring;
+
+		@include bp-down(sm) {
+			width: 36px;
+			height: 36px;
+		}
 
 		&:hover {
 			background: var(--color-cloud);

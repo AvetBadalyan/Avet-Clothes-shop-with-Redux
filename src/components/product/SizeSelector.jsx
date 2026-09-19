@@ -4,7 +4,11 @@ import { formatSize } from "@/utils/productHelpers.js";
 // which we present as a single non-critical chip.
 export default function SizeSelector({ sizes, selected, onSelect, error }) {
   return (
-    <div className={`size-selector ${error ? "has-error" : ""}`}>
+    <div 
+      className={`size-selector ${error ? "has-error" : ""}`}
+      role="radiogroup"
+      aria-label="Select size"
+    >
       {sizes.map((size) => (
         <button
           key={size}
@@ -14,6 +18,7 @@ export default function SizeSelector({ sizes, selected, onSelect, error }) {
           }`}
           onClick={() => onSelect(size)}
           aria-pressed={selected === size}
+          aria-label={`Size ${formatSize(size)}`}
         >
           {formatSize(size)}
         </button>
