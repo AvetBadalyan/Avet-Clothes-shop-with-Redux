@@ -19,8 +19,7 @@ function ProductCard({ product, index = 0 }) {
     state.wishlist.ids.includes(product.id)
   )
 
-  const onWish = (e) => {
-    e.preventDefault()
+  const onWish = () => {
     dispatch(toggleWishlist(product.id))
     dispatch(
       addToast(
@@ -30,8 +29,7 @@ function ProductCard({ product, index = 0 }) {
     )
   }
 
-  const onQuickView = (e) => {
-    e.preventDefault()
+  const onQuickView = () => {
     dispatch(openQuickView(product.id))
   }
 
@@ -43,10 +41,12 @@ function ProductCard({ product, index = 0 }) {
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.3) }}
     >
-      <Link
-        to={`/product/${product.id}`}
-        className="product-card__media"
-      >
+      {/* Use a plain div so the overlay buttons (wish, quick-view) are valid
+          siblings of the card link rather than nested inside an <a>. Nesting
+          interactive elements inside an anchor is invalid HTML and can confuse
+          assistive technologies. The full-cover link sits below the buttons in
+          the stacking order via z-index so the buttons receive pointer events. */}
+      <div className="product-card__media">
         <img
           src={product.imageUrl}
           alt={product.name}
@@ -62,6 +62,14 @@ function ProductCard({ product, index = 0 }) {
         />
 
         <ProductBadges product={product} />
+
+        {/* Full-cover link — sits beneath the overlay buttons (z-index: 1) */}
+        <Link
+          to={`/product/${product.id}`}
+          className="product-card__cover-link"
+          aria-label={product.name}
+          tabIndex={-1}
+        />
 
         <button
           className={`product-card__wish ${wished ? 'is-active' : ''}`}
@@ -86,7 +94,7 @@ function ProductCard({ product, index = 0 }) {
           />
           Quick view
         </button>
-      </Link>
+      </div>
 
       <Link
         to={`/product/${product.id}`}

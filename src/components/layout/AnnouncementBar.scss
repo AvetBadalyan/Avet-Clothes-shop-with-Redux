@@ -12,6 +12,10 @@
     padding-block: 0.8rem;
     padding-left: $space-8;
     animation: announcement-scroll 28s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
   }
 
   &__item {

@@ -101,6 +101,15 @@
     background: var(--color-cloud);
   }
 
+  // Full-cover link sits at z-index 1 so the wish/quick buttons (z-index 2)
+  // remain clickable above it. tabIndex=-1 keeps keyboard focus on the visible
+  // info link below, avoiding a duplicate tab stop.
+  &__cover-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
   &__img {
     position: absolute;
     inset: 0;

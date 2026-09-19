@@ -248,7 +248,7 @@ const RAW = [
     hoverImage: 'photo-1596755094514-f87e34085b2c',
     description:
       'A button-down Oxford in mid-weight organic cotton with a slightly relaxed fit and a tonal chest pocket.',
-    goesWith: ['m-chino', 'm-suede-loafer']
+    goesWith: ['m-chino', 'shoes-loafer']
   },
   {
     id: 'm-merino-crew',

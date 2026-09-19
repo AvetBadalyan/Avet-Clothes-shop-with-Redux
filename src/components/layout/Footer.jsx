@@ -76,7 +76,10 @@ export default function Footer() {
           <h4>Join the list</h4>
           <p>Early access to new arrivals and members-only offers.</p>
           {done ? (
-            <p className="footer__thanks">
+            <p
+              className="footer__thanks"
+              role="status"
+            >
               <Icon
                 name="check"
                 size={18}

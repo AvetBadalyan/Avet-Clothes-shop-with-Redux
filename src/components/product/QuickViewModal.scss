@@ -19,6 +19,11 @@
       border-color: var(--color-ink);
     }
 
+    &:focus-visible {
+      outline: 2px solid var(--color-ink);
+      outline-offset: 2px;
+    }
+
     &.is-selected {
       background: var(--color-ink);
       color: var(--color-canvas);

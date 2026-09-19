@@ -289,7 +289,7 @@ export default function Auth() {
             <div className="account__wishlist">
               {wishlistProducts.length > 0 ? (
                 <div className="account__wishlist-grid">
-                  {wishlistProducts.slice(0, 4).map((p) => (
+                  {wishlistProducts.map((p) => (
                     <Link
                       key={p.id}
                       to={`/product/${p.id}`}
@@ -455,7 +455,10 @@ export default function Auth() {
             </div>
 
             {error && (
-              <p className="auth__error">
+              <p
+                className="auth__error"
+                role="alert"
+              >
                 <Icon
                   name="close"
                   size={14}

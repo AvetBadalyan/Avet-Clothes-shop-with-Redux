@@ -45,6 +45,7 @@ export default function CartLine({ item }) {
             <button
               onClick={() => dispatch(decrementLine(item.key))}
               aria-label="Decrease quantity"
+              disabled={item.quantity <= 1}
             >
               <Icon
                 name="minus"
