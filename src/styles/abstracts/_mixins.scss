@@ -2,7 +2,6 @@
 @use 'variables' as *;
 
 // --- Responsive breakpoints (mobile-first) ---------------------------------
-// These are the only mixins worth keeping - no cleaner alternative exists
 $breakpoints: (
   sm: $bp-sm,
   md: $bp-md,

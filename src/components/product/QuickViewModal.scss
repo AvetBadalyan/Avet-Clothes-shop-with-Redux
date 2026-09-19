@@ -80,23 +80,15 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--color-glass);
     color: var(--color-ink);
     transition:
       background $transition-fast,
       transform $transition-fast $ease-out;
 
-    [data-theme='dark'] & {
-      background: rgba(28, 30, 32, 0.9);
-    }
-
     &:hover {
       transform: scale(1.08);
-      background: #ffffff;
-
-      [data-theme='dark'] & {
-        background: #1c1e20;
-      }
+      background: var(--color-glass-hover);
     }
 
     &:focus-visible {

@@ -96,7 +96,7 @@
     flex-wrap: wrap;
     gap: $space-3;
 
-    // Both hero buttons should be equal - white solid for visibility on dark overlay
+    // White buttons for legibility over the dark hero image
     .btn {
       --btn-bg: #{$color-white};
       --btn-fg: #{$color-ink};
@@ -251,7 +251,6 @@
       max-width: 44ch;
     }
 
-    // Accent button for discovery action
     .btn {
       --btn-bg: var(--color-accent);
       --btn-fg: #ffffff;
