@@ -1,5 +1,6 @@
 import Icon from '@/components/common/Icon.jsx'
 import { CATEGORIES } from '@/data/products.js'
+import { useDebounce } from '@/hooks/useDebounce.js'
 import { useFocusTrap } from '@/hooks/useFocusTrap.js'
 import { useModalDismiss } from '@/hooks/useModalDismiss.js'
 import { selectIsAuthenticated, selectUser } from '@/store/authSlice.js'
@@ -16,12 +17,13 @@ import { selectWishlistCount } from '@/store/wishlistSlice.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import './Navbar.scss'
 
 export default function Navbar() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
   const cartCount = useAppSelector(selectCartCount)
   const wishCount = useAppSelector(selectWishlistCount)
   const isAuth = useAppSelector(selectIsAuthenticated)
@@ -33,6 +35,28 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [term, setTerm] = useState('')
+
+  // Debounce search term (300ms) so we filter as the user types
+  // without dispatching on every keystroke.
+  const debouncedTerm = useDebounce(term, 300)
+
+  // Sync the debounced term into Redux. This effect has a single job —
+  // keep the search filter in step with the input. Navigation and category
+  // are handled separately (below / by the Shop route), so they don't race.
+  const trimmed = debouncedTerm.trim()
+  useEffect(() => {
+    dispatch(setSearch(trimmed))
+  }, [trimmed, dispatch])
+
+  // When the user starts typing a query from somewhere other than the shop,
+  // take them to the shop so they can see results. We only navigate — we do
+  // not touch the category, so the current /shop/:categoryId stays intact.
+  const onShop = location.pathname.startsWith('/shop')
+  useEffect(() => {
+    if (trimmed && !onShop) {
+      navigate('/shop')
+    }
+  }, [trimmed, onShop, navigate])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
@@ -60,15 +84,23 @@ export default function Navbar() {
 
   const submitSearch = (e) => {
     e.preventDefault()
-    dispatch(setCategory('all'))
-    dispatch(setSearch(term))
+    // Filtering already happens via the debounced effect. Pressing Enter is a
+    // shortcut: flush the search immediately, then close the bar and make sure
+    // we're on the shop page. Category is left untouched.
+    const value = term.trim()
+    if (!value) return
+    dispatch(setSearch(value))
     setSearchOpen(false)
     setMenuOpen(false)
-    navigate('/shop')
+    if (!location.pathname.startsWith('/shop')) {
+      navigate('/shop')
+    }
   }
 
   const goCategory = (id) => {
-    dispatch(setSearch(''))
+    // Clearing the local term also clears the debounced search (via the sync
+    // effect), so picking a category doesn't leave a stale query fighting it.
+    setTerm('')
     dispatch(setCategory(id))
     setMenuOpen(false)
   }
@@ -199,12 +231,19 @@ export default function Navbar() {
               placeholder="Search for products, brands, styles…"
               aria-label="Search products"
             />
-            <button
-              type="submit"
-              className="btn btn--sm"
-            >
-              Search
-            </button>
+            {term && (
+              <button
+                type="button"
+                className="navbar__search-clear"
+                aria-label="Clear search"
+                onClick={() => setTerm('')}
+              >
+                <Icon
+                  name="close"
+                  size={18}
+                />
+              </button>
+            )}
           </motion.form>
         )}
       </AnimatePresence>

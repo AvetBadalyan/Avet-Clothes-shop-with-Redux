@@ -126,13 +126,7 @@ export default function Shop() {
           {filters.search && (
             <div className="shop__searchnote">
               Showing results for <strong>“{filters.search}”</strong>
-              <button onClick={() => dispatch(setSearch(''))}>
-                <Icon
-                  name="close"
-                  size={14}
-                />{' '}
-                clear
-              </button>
+              <button onClick={() => dispatch(setSearch(''))}>clear</button>
             </div>
           )}
 

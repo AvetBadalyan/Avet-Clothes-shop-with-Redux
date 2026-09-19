@@ -209,6 +209,25 @@
       &::placeholder {
         color: var(--color-mist);
       }
+
+      // Hide the browser's native search clear (✕) — we render our own
+      // consistent one so it doesn't double up in WebKit browsers.
+      &::-webkit-search-cancel-button {
+        appearance: none;
+      }
+    }
+
+    &-clear {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-mist);
+      transition: color $transition-fast;
+
+      &:hover {
+        color: var(--color-ink);
+      }
     }
   }
 
