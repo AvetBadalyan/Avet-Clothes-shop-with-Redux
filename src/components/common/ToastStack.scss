@@ -23,8 +23,9 @@
   gap: $space-3;
   min-width: 260px;
   padding: $space-3 $space-4;
-  background: var(--color-ink);
-  color: var(--color-canvas);
+  // Fixed dark surface — toasts stay dark in both themes (standard pattern)
+  background: #1c1c1f;
+  color: #f5f5f5;
   border-radius: $radius-md;
   box-shadow: var(--shadow-lg);
 
@@ -58,7 +59,7 @@
   }
 
   &--error {
-    background: var(--color-sale);
+    background: #c0392b;
     color: #ffffff;
   }
 

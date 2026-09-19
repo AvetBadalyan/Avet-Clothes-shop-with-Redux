@@ -86,6 +86,11 @@
         color: var(--color-ink);
       }
 
+      &:focus-visible {
+        outline: 2px solid var(--color-ink);
+        outline-offset: 2px;
+      }
+
       &.is-active {
         background: var(--color-card-bg);
         color: var(--color-ink);
@@ -157,6 +162,11 @@
 
   &:hover {
     color: var(--color-ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
   }
 }
 
@@ -414,19 +424,22 @@
     background: var(--color-cloud);
     color: var(--color-slate);
 
+    // Tint is derived from each status color so it tracks the theme
+    // (in dark mode the accent/success/info values shift; the 10% wash
+    // shifts with them instead of staying frozen to the light values).
     &--delivered {
-      background: rgba(46, 125, 91, 0.1);
+      background: color-mix(in srgb, var(--color-success) 12%, transparent);
       color: var(--color-success);
     }
 
     &--processing {
-      background: rgba(194, 112, 61, 0.1);
+      background: color-mix(in srgb, var(--color-accent) 12%, transparent);
       color: var(--color-accent);
     }
 
     &--shipped {
-      background: rgba(59, 130, 246, 0.1);
-      color: #3b82f6;
+      background: color-mix(in srgb, var(--color-info) 12%, transparent);
+      color: var(--color-info);
     }
   }
 

@@ -106,7 +106,7 @@
     width: 18px;
     height: 18px;
     border: 1.5px solid var(--color-line);
-    border-radius: 5px;
+    border-radius: $radius-sm;
     color: transparent;
     transition:
       background $transition-fast,
@@ -159,6 +159,11 @@
     background: var(--color-ink);
     border: 3px solid var(--color-canvas);
   }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 4px;
+  }
 }
 
 // --- Size chips ------------------------------------------------------------
@@ -185,6 +190,11 @@
 
   &:hover {
     border-color: var(--color-ink);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
   }
 
   &.is-active {
@@ -214,6 +224,12 @@
 
   &:hover {
     transform: scale(1.08);
+  }
+
+  &:focus-visible {
+    box-shadow:
+      inset 0 0 0 2px var(--color-canvas),
+      0 0 0 2px var(--color-ink);
   }
 
   &.is-active {

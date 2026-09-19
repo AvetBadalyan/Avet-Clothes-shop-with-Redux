@@ -42,6 +42,12 @@
       transform: scale(1.08);
     }
 
+    &:focus-visible {
+      box-shadow:
+        inset 0 0 0 2px var(--color-card-bg),
+        0 0 0 2px var(--color-ink);
+    }
+
     &.is-selected {
       box-shadow:
         inset 0 0 0 2px var(--color-card-bg),
@@ -154,7 +160,8 @@
     transition:
       transform $transition-fast $ease-out,
       color $transition-fast,
-      background $transition-fast;
+      background $transition-fast,
+      box-shadow $transition-fast;
 
     [data-theme='dark'] & {
       background: rgba(28, 30, 32, 0.9);
@@ -162,6 +169,10 @@
 
     &:hover {
       transform: scale(1.08);
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px var(--color-ink);
     }
 
     &.is-active {
@@ -192,10 +203,15 @@
     transition:
       opacity $transition-base $ease-out,
       transform $transition-base $ease-out,
-      background $transition-fast;
+      background $transition-fast,
+      box-shadow $transition-fast;
 
     &:hover {
       background: var(--color-accent-hover);
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.6);
     }
 
     @include bp-down(md) {

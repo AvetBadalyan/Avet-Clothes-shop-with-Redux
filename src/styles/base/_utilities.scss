@@ -164,7 +164,7 @@
     &:focus {
       outline: none;
       border-color: var(--color-ink);
-      box-shadow: 0 0 0 3px rgba(15, 15, 16, 0.08);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-ink) 12%, transparent);
     }
 
     &[aria-invalid='true'] {
