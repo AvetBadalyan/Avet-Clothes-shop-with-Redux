@@ -4,7 +4,7 @@
  * @param {string} size
  * @returns {string}
  */
-export const formatSize = (size) => (size === "OS" ? "One size" : size);
+export const formatSize = (size) => (size === 'OS' ? 'One size' : size)
 
 /**
  * True when a product has no real size choice (a single "OS" size), e.g.
@@ -13,4 +13,4 @@ export const formatSize = (size) => (size === "OS" ? "One size" : size);
  * @returns {boolean}
  */
 export const isOneSize = (product) =>
-  product.sizes.length === 1 && product.sizes[0] === "OS";
+  product.sizes.length === 1 && product.sizes[0] === 'OS'

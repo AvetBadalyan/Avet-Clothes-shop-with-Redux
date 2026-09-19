@@ -4,9 +4,9 @@
  */
 export default function ProductBadges({
   product,
-  className = "product-card__badges",
+  className = 'product-card__badges'
 }) {
-  if (!product.isNew && !product.onSale) return null;
+  if (!product.isNew && !product.onSale) return null
   return (
     <div className={className}>
       {product.isNew && <span className="badge badge--new">New</span>}
@@ -14,5 +14,5 @@ export default function ProductBadges({
         <span className="badge badge--sale">-{product.discountPct}%</span>
       )}
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import Icon from "@/components/common/Icon.jsx"
-import { BRANDS, PRICE_BOUNDS, PRODUCTS } from "@/data/products.js"
+import Icon from '@/components/common/Icon.jsx'
+import { BRANDS, PRICE_BOUNDS, PRODUCTS } from '@/data/products.js'
 import {
   resetFilters,
   selectActiveFilterCount,
@@ -8,24 +8,24 @@ import {
   setOnSaleOnly,
   setPriceMax,
   toggleArrayFilter
-} from "@/store/filtersSlice.js"
-import { useAppDispatch, useAppSelector } from "@/store/hooks.js"
-import { formatPrice } from "@/utils/formatPrice.js"
-import "./FilterSidebar.scss"
+} from '@/store/filtersSlice.js'
+import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
+import { formatPrice } from '@/utils/formatPrice.js'
+import './FilterSidebar.scss'
 
 // Derive the union of sizes and colors from the catalog.
 const ALL_SIZES = [
-  ...new Set(PRODUCTS.flatMap((product) => product.sizes)),
-].filter((size) => size !== "OS");
+  ...new Set(PRODUCTS.flatMap((product) => product.sizes))
+].filter((size) => size !== 'OS')
 const ALL_COLORS = (() => {
-  const colorMap = new Map();
+  const colorMap = new Map()
   PRODUCTS.forEach((product) =>
     product.colors.forEach((color) => {
-      if (!colorMap.has(color.name)) colorMap.set(color.name, color.hex);
+      if (!colorMap.has(color.name)) colorMap.set(color.name, color.hex)
     })
-  );
-  return [...colorMap.entries()].map(([name, hex]) => ({ name, hex }));
-})();
+  )
+  return [...colorMap.entries()].map(([name, hex]) => ({ name, hex }))
+})()
 
 function Section({ title, children }) {
   return (
@@ -33,13 +33,13 @@ function Section({ title, children }) {
       <h4 className="filter-section__title">{title}</h4>
       {children}
     </div>
-  );
+  )
 }
 
 export default function FilterSidebar() {
-  const dispatch = useAppDispatch();
-  const filters = useAppSelector(selectFilters);
-  const activeCount = useAppSelector(selectActiveFilterCount);
+  const dispatch = useAppDispatch()
+  const filters = useAppSelector(selectFilters)
+  const activeCount = useAppSelector(selectActiveFilterCount)
 
   return (
     <div className="filters">
@@ -66,7 +66,10 @@ export default function FilterSidebar() {
             onChange={(e) => dispatch(setNewOnly(e.target.checked))}
           />
           <span className="check__box">
-            <Icon name="check" size={13} />
+            <Icon
+              name="check"
+              size={13}
+            />
           </span>
           New arrivals
         </label>
@@ -77,7 +80,10 @@ export default function FilterSidebar() {
             onChange={(e) => dispatch(setOnSaleOnly(e.target.checked))}
           />
           <span className="check__box">
-            <Icon name="check" size={13} />
+            <Icon
+              name="check"
+              size={13}
+            />
           </span>
           On sale
         </label>
@@ -105,16 +111,22 @@ export default function FilterSidebar() {
       <Section title="Brand">
         <div className="filter-list">
           {BRANDS.map((brand) => (
-            <label className="check" key={brand}>
+            <label
+              className="check"
+              key={brand}
+            >
               <input
                 type="checkbox"
                 checked={filters.brands.includes(brand)}
                 onChange={() =>
-                  dispatch(toggleArrayFilter({ field: "brands", value: brand }))
+                  dispatch(toggleArrayFilter({ field: 'brands', value: brand }))
                 }
               />
               <span className="check__box">
-                <Icon name="check" size={13} />
+                <Icon
+                  name="check"
+                  size={13}
+                />
               </span>
               {brand}
             </label>
@@ -128,10 +140,10 @@ export default function FilterSidebar() {
             <button
               key={size}
               className={`size-chip ${
-                filters.sizes.includes(size) ? "is-active" : ""
+                filters.sizes.includes(size) ? 'is-active' : ''
               }`}
               onClick={() =>
-                dispatch(toggleArrayFilter({ field: "sizes", value: size }))
+                dispatch(toggleArrayFilter({ field: 'sizes', value: size }))
               }
               aria-pressed={filters.sizes.includes(size)}
             >
@@ -147,11 +159,13 @@ export default function FilterSidebar() {
             <button
               key={color.name}
               className={`color-chip ${
-                filters.colors.includes(color.name) ? "is-active" : ""
+                filters.colors.includes(color.name) ? 'is-active' : ''
               }`}
-              style={{ "--swatch": color.hex }}
+              style={{ '--swatch': color.hex }}
               onClick={() =>
-                dispatch(toggleArrayFilter({ field: "colors", value: color.name }))
+                dispatch(
+                  toggleArrayFilter({ field: 'colors', value: color.name })
+                )
               }
               aria-pressed={filters.colors.includes(color.name)}
               title={color.name}
@@ -161,5 +175,5 @@ export default function FilterSidebar() {
         </div>
       </Section>
     </div>
-  );
+  )
 }

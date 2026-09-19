@@ -1,13 +1,13 @@
 .not-found {
-	text-align: center;
+  text-align: center;
 
-	&__title {
-		font-size: clamp(4rem, 8vw, 8rem); // 40-80px
-		margin: $space-2 0;
-	}
+  &__title {
+    font-size: clamp(4rem, 8vw, 8rem); // 40-80px
+    margin: $space-2 0;
+  }
 
-	&__text {
-		color: var(--color-slate);
-		margin-bottom: $space-5;
-	}
+  &__text {
+    color: var(--color-slate);
+    margin-bottom: $space-5;
+  }
 }

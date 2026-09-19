@@ -1,26 +1,26 @@
-import { motion } from "framer-motion";
-import Icon from "@/components/common/Icon.jsx";
-import { formatPrice } from "@/utils/formatPrice.js";
-import { formatSize } from "@/utils/productHelpers.js";
-import { useAppDispatch } from "@/store/hooks.js";
-import {
-  incrementLine,
-  decrementLine,
-  removeLine,
-} from "@/store/cartSlice.js";
+import { motion } from 'framer-motion'
+import Icon from '@/components/common/Icon.jsx'
+import { formatPrice } from '@/utils/formatPrice.js'
+import { formatSize } from '@/utils/productHelpers.js'
+import { useAppDispatch } from '@/store/hooks.js'
+import { incrementLine, decrementLine, removeLine } from '@/store/cartSlice.js'
 
 export default function CartLine({ item }) {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   return (
     <motion.div
       className="cart-line"
       layout
       initial={{ opacity: 0, height: 0 }}
-      animate={{ opacity: 1, height: "auto" }}
+      animate={{ opacity: 1, height: 'auto' }}
       exit={{ opacity: 0, height: 0 }}
     >
-      <img className="cart-line__img" src={item.imageUrl} alt={item.name} />
+      <img
+        className="cart-line__img"
+        src={item.imageUrl}
+        alt={item.name}
+      />
       <div className="cart-line__body">
         <div className="cart-line__top">
           <div>
@@ -34,7 +34,10 @@ export default function CartLine({ item }) {
             onClick={() => dispatch(removeLine(item.key))}
             aria-label={`Remove ${item.name}`}
           >
-            <Icon name="trash" size={16} />
+            <Icon
+              name="trash"
+              size={16}
+            />
           </button>
         </div>
         <div className="cart-line__bottom">
@@ -43,14 +46,20 @@ export default function CartLine({ item }) {
               onClick={() => dispatch(decrementLine(item.key))}
               aria-label="Decrease quantity"
             >
-              <Icon name="minus" size={14} />
+              <Icon
+                name="minus"
+                size={14}
+              />
             </button>
             <span>{item.quantity}</span>
             <button
               onClick={() => dispatch(incrementLine(item.key))}
               aria-label="Increase quantity"
             >
-              <Icon name="plus" size={14} />
+              <Icon
+                name="plus"
+                size={14}
+              />
             </button>
           </div>
           <span className="cart-line__price">
@@ -59,5 +68,5 @@ export default function CartLine({ item }) {
         </div>
       </div>
     </motion.div>
-  );
+  )
 }

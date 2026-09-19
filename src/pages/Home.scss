@@ -1,254 +1,254 @@
 // --- Shared section header (used across pages) -----------------------------
 .section-head {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: $space-4;
-	margin-bottom: $space-6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-6;
 
-	&__title {
-		font-size: clamp(2.4rem, 4vw, 4rem); // 24-40px
-		margin-top: $space-1;
-		color: var(--color-ink);
-	}
+  &__title {
+    font-size: clamp(2.4rem, 4vw, 4rem); // 24-40px
+    margin-top: $space-1;
+    color: var(--color-ink);
+  }
 
-	&__link {
-		display: inline-flex;
-		align-items: center;
-		gap: $space-2;
-		font-size: 1.4rem; // 14px
-		font-weight: $fw-semibold;
-		color: var(--color-ink);
-		white-space: nowrap;
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: 1.4rem; // 14px
+    font-weight: $fw-semibold;
+    color: var(--color-ink);
+    white-space: nowrap;
 
-		svg {
-			transition: transform $transition-fast;
-		}
-		&:hover svg {
-			transform: translateX(3px);
-		}
-	}
+    svg {
+      transition: transform $transition-fast;
+    }
+    &:hover svg {
+      transform: translateX(3px);
+    }
+  }
 }
 
 .overline--sale {
-	color: var(--color-sale);
+  color: var(--color-sale);
 }
 
 // --- Hero ------------------------------------------------------------------
 .hero {
-	position: relative;
-	min-height: min(88vh, 760px);
-	display: flex;
-	align-items: center;
-	overflow: hidden;
+  position: relative;
+  min-height: min(88vh, 760px);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 
-	&__bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center 30%;
-		animation: hero-zoom 14s ease-out forwards;
-	}
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    animation: hero-zoom 14s ease-out forwards;
+  }
 
-	&__overlay {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			100deg,
-			rgba($color-ink, 0.6) 0%,
-			rgba($color-ink, 0.25) 45%,
-			rgba($color-ink, 0.05) 100%
-		);
-	}
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      rgba($color-ink, 0.6) 0%,
+      rgba($color-ink, 0.25) 45%,
+      rgba($color-ink, 0.05) 100%
+    );
+  }
 
-	&__content {
-		position: relative;
-		color: $color-white;
-		max-width: 640px;
-	}
+  &__content {
+    position: relative;
+    color: $color-white;
+    max-width: 640px;
+  }
 
-	&__eyebrow {
-		font-size: 1.4rem;
-		font-weight: $fw-semibold;
-		letter-spacing: 0.14em;
-		text-transform: uppercase;
-		color: rgba($color-white, 0.85);
-		margin-bottom: $space-4;
-	}
+  &__eyebrow {
+    font-size: 1.4rem;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba($color-white, 0.85);
+    margin-bottom: $space-4;
+  }
 
-	&__title {
-		font-size: clamp(4.8rem, 9vw, 9.6rem); // 48-96px
-		line-height: 0.98;
-		color: $color-white;
-	}
+  &__title {
+    font-size: clamp(4.8rem, 9vw, 9.6rem); // 48-96px
+    line-height: 0.98;
+    color: $color-white;
+  }
 
-	&__sub {
-		margin-block: $space-5;
-		max-width: 46ch;
-		font-size: 1.8rem; // 18px
-		color: rgba($color-white, 0.85);
-	}
+  &__sub {
+    margin-block: $space-5;
+    max-width: 46ch;
+    font-size: 1.8rem; // 18px
+    color: rgba($color-white, 0.85);
+  }
 
-	&__cta {
-		display: flex;
-		flex-wrap: wrap;
-		gap: $space-3;
-	}
+  &__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-3;
+  }
 
-	&__cta-alt {
-		--btn-fg: #{$color-white};
-		border-color: rgba($color-white, 0.8);
+  &__cta-alt {
+    --btn-fg: #{$color-white};
+    border-color: rgba($color-white, 0.8);
 
-		&:hover:not(:disabled) {
-			background: $color-white;
-			color: $color-ink;
-			border-color: $color-white;
-		}
-	}
+    &:hover:not(:disabled) {
+      background: $color-white;
+      color: $color-ink;
+      border-color: $color-white;
+    }
+  }
 }
 
 @keyframes hero-zoom {
-	from {
-		transform: scale(1.08);
-	}
-	to {
-		transform: scale(1);
-	}
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 // --- Category grid ---------------------------------------------------------
 .category-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: $space-4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-4;
 
-	@include bp(md) {
-		grid-template-columns: repeat(4, 1fr);
-		grid-auto-rows: 300px;
-	}
+  @include bp(md) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+  }
 }
 
 .category-card {
-	position: relative;
-	overflow: hidden;
-	border-radius: $radius-lg;
-	min-height: 220px;
-	text-align: left;
-	cursor: pointer;
-	isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  border-radius: $radius-lg;
+  min-height: 220px;
+  text-align: left;
+  cursor: pointer;
+  isolation: isolate;
 
-	&--wide {
-		@include bp(md) {
-			grid-column: span 2;
-			grid-row: span 1;
-		}
-	}
+  &--wide {
+    @include bp(md) {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
 
-	img {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.8s $ease-out;
-	}
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s $ease-out;
+  }
 
-	&:hover img {
-		transform: scale(1.06);
-	}
+  &:hover img {
+    transform: scale(1.06);
+  }
 
-	&__overlay {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(
-			to top,
-			rgba(15, 15, 16, 0.7),
-			rgba(15, 15, 16, 0.05) 60%
-		);
-	}
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(15, 15, 16, 0.7),
+      rgba(15, 15, 16, 0.05) 60%
+    );
+  }
 
-	&__body {
-		position: absolute;
-		inset: auto $space-5 $space-5 $space-5;
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		color: #ffffff;
-	}
+  &__body {
+    position: absolute;
+    inset: auto $space-5 $space-5 $space-5;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    color: #ffffff;
+  }
 
-	&__tag {
-		font-size: 1.4rem; // 14px - readable category tags
-		color: rgba(255, 255, 255, 0.8);
-	}
+  &__tag {
+    font-size: 1.4rem; // 14px - readable category tags
+    color: rgba(255, 255, 255, 0.8);
+  }
 
-	&__title {
-		font-family: $font-display;
-		font-size: 2.8rem; // 28px
-	}
+  &__title {
+    font-family: $font-display;
+    font-size: 2.8rem; // 28px
+  }
 
-	&__cta {
-		display: inline-flex;
-		align-items: center;
-		gap: $space-2;
-		margin-top: $space-2;
-		font-size: 1.4rem; // 14px
-		font-weight: $fw-semibold;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		opacity: 0;
-		transform: translateY(6px);
-		transition:
-			opacity $transition-base,
-			transform $transition-base;
-	}
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    margin-top: $space-2;
+    font-size: 1.4rem; // 14px
+    font-weight: $fw-semibold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity $transition-base,
+      transform $transition-base;
+  }
 
-	&:hover &__cta {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  &:hover &__cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 // --- Editorial banner ------------------------------------------------------
 .editorial {
-	position: relative;
-	display: grid;
-	align-items: center;
-	margin-block: $space-9;
-	min-height: 480px;
+  position: relative;
+  display: grid;
+  align-items: center;
+  margin-block: $space-9;
+  min-height: 480px;
 
-	@include bp(lg) {
-		grid-template-columns: 1.3fr 1fr;
-	}
+  @include bp(lg) {
+    grid-template-columns: 1.3fr 1fr;
+  }
 
-	&__img {
-		width: 100%;
-		height: 100%;
-		max-height: 560px;
-		object-fit: cover;
-	}
+  &__img {
+    width: 100%;
+    height: 100%;
+    max-height: 560px;
+    object-fit: cover;
+  }
 
-	&__panel {
-		padding: $space-7 $space-5;
-		display: flex;
-		flex-direction: column;
-		gap: $space-4;
-		align-items: flex-start;
+  &__panel {
+    padding: $space-7 $space-5;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+    align-items: flex-start;
 
-		@include bp(lg) {
-			padding: $space-8;
-		}
+    @include bp(lg) {
+      padding: $space-8;
+    }
 
-		h2 {
-			font-size: clamp(2.8rem, 4vw, 4.4rem); // 28-44px
-			max-width: 16ch;
-			color: var(--color-ink);
-		}
+    h2 {
+      font-size: clamp(2.8rem, 4vw, 4.4rem); // 28-44px
+      max-width: 16ch;
+      color: var(--color-ink);
+    }
 
-		p {
-			color: var(--color-slate);
-			max-width: 44ch;
-		}
-	}
+    p {
+      color: var(--color-slate);
+      max-width: 44ch;
+    }
+  }
 }

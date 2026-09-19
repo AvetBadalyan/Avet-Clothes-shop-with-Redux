@@ -12,17 +12,17 @@ const KEY = 'recentlyViewed'
 const MAX = 8
 
 export const recentlyViewedService = {
-	/** Ordered list of recently viewed product ids (newest first). */
-	list() {
-		return loadState(KEY, [])
-	},
+  /** Ordered list of recently viewed product ids (newest first). */
+  list() {
+    return loadState(KEY, [])
+  },
 
-	/** Record a view: move the id to the front, de-duplicated, capped at MAX. */
-	add(id) {
-		if (!id) return
-		const existing = loadState(KEY, []).filter(x => x !== id)
-		const next = [id, ...existing].slice(0, MAX)
-		saveState(KEY, next)
-		return next
-	}
+  /** Record a view: move the id to the front, de-duplicated, capped at MAX. */
+  add(id) {
+    if (!id) return
+    const existing = loadState(KEY, []).filter((x) => x !== id)
+    const next = [id, ...existing].slice(0, MAX)
+    saveState(KEY, next)
+    return next
+  }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 
 /**
  * Shared overlay behaviour for modals and drawers: closes on Escape and
@@ -11,17 +11,17 @@ import { useEffect, useRef } from "react";
  * @param {() => void} onClose - called when Escape is pressed
  */
 export function useModalDismiss(open, onClose) {
-  const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
 
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e) => e.key === "Escape" && onCloseRef.current();
-    window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
+    if (!open) return
+    const onKey = (e) => e.key === 'Escape' && onCloseRef.current()
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
     return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [open]);
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [open])
 }

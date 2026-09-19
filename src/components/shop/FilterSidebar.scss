@@ -1,214 +1,214 @@
 .filters {
-	display: flex;
-	flex-direction: column;
-	gap: $space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
 
-	&__head {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		font-size: 1.4rem;
-		font-weight: $fw-semibold;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--color-ink);
-	}
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    font-weight: $fw-semibold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
 
-	&__badge {
-		display: inline-grid;
-		place-items: center;
-		min-width: 18px;
-		height: 18px;
-		margin-left: $space-2;
-		padding: 0 5px;
-		font-size: 1.1rem; // 11px - small count badge
-		font-style: normal;
-		color: var(--color-canvas);
-		background: var(--color-ink);
-		border-radius: $radius-pill;
-	}
+  &__badge {
+    display: inline-grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    margin-left: $space-2;
+    padding: 0 5px;
+    font-size: 1.1rem; // 11px - small count badge
+    font-style: normal;
+    color: var(--color-canvas);
+    background: var(--color-ink);
+    border-radius: $radius-pill;
+  }
 
-	&__clear {
-		font-size: 1.4rem; // 14px - readable link
-		text-transform: none;
-		letter-spacing: 0;
-		color: var(--color-slate);
-		text-decoration: underline;
+  &__clear {
+    font-size: 1.4rem; // 14px - readable link
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--color-slate);
+    text-decoration: underline;
 
-		&:hover {
-			color: var(--color-ink);
-		}
-	}
+    &:hover {
+      color: var(--color-ink);
+    }
+  }
 
-	&__range-labels {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-top: $space-2;
-		font-size: 1.4rem;
-		color: var(--color-slate);
-	}
+  &__range-labels {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: $space-2;
+    font-size: 1.4rem;
+    color: var(--color-slate);
+  }
 
-	&__range-value {
-		font-weight: $fw-semibold;
-		color: var(--color-ink);
-	}
+  &__range-value {
+    font-weight: $fw-semibold;
+    color: var(--color-ink);
+  }
 }
 
 .filter-section {
-	padding-bottom: $space-5;
-	border-bottom: 1px solid var(--color-line);
+  padding-bottom: $space-5;
+  border-bottom: 1px solid var(--color-line);
 
-	&:last-child {
-		border-bottom: none;
-		padding-bottom: 0;
-	}
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
 
-	&__title {
-		font-family: $font-body;
-		font-size: 1.4rem; // 14px
-		font-weight: $fw-semibold;
-		margin-bottom: $space-3;
-		color: var(--color-ink);
-	}
+  &__title {
+    font-family: $font-body;
+    font-size: 1.4rem; // 14px
+    font-weight: $fw-semibold;
+    margin-bottom: $space-3;
+    color: var(--color-ink);
+  }
 }
 
 .filter-list {
-	display: flex;
-	flex-direction: column;
-	gap: $space-2;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
 }
 
 // --- Custom checkbox -------------------------------------------------------
 .check {
-	display: flex;
-	align-items: center;
-	gap: $space-3;
-	font-size: 1.4rem; // 14px
-	color: var(--color-charcoal);
-	cursor: pointer;
-	padding-block: 3px;
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  font-size: 1.4rem; // 14px
+  color: var(--color-charcoal);
+  cursor: pointer;
+  padding-block: 3px;
 
-	input {
-		position: absolute;
-		opacity: 0;
-		width: 0;
-		height: 0;
-	}
+  input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
 
-	&__box {
-		display: grid;
-		place-items: center;
-		width: 18px;
-		height: 18px;
-		border: 1.5px solid var(--color-line);
-		border-radius: 5px;
-		color: transparent;
-		transition: all $transition-fast;
-		flex-shrink: 0;
-	}
+  &__box {
+    display: grid;
+    place-items: center;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--color-line);
+    border-radius: 5px;
+    color: transparent;
+    transition: all $transition-fast;
+    flex-shrink: 0;
+  }
 
-	input:checked + &__box {
-		background: var(--color-ink);
-		border-color: var(--color-ink);
-		color: var(--color-canvas);
-	}
+  input:checked + &__box {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-canvas);
+  }
 
-	input:focus-visible + &__box {
-		outline: 2px solid var(--color-ink);
-		outline-offset: 2px;
-	}
+  input:focus-visible + &__box {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
 
-	&:hover {
-		color: var(--color-ink);
-	}
+  &:hover {
+    color: var(--color-ink);
+  }
 }
 
 // --- Range slider ----------------------------------------------------------
 .range {
-	-webkit-appearance: none;
-	appearance: none;
-	width: 100%;
-	height: 3px;
-	border-radius: $radius-pill;
-	background: var(--color-line);
-	cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 3px;
+  border-radius: $radius-pill;
+  background: var(--color-line);
+  cursor: pointer;
 
-	&::-webkit-slider-thumb {
-		-webkit-appearance: none;
-		appearance: none;
-		width: 18px;
-		height: 18px;
-		border-radius: 50%;
-		background: var(--color-ink);
-		border: 3px solid var(--color-canvas);
-		box-shadow: var(--shadow-sm);
-	}
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    border: 3px solid var(--color-canvas);
+    box-shadow: var(--shadow-sm);
+  }
 
-	&::-moz-range-thumb {
-		width: 18px;
-		height: 18px;
-		border-radius: 50%;
-		background: var(--color-ink);
-		border: 3px solid var(--color-canvas);
-	}
+  &::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    border: 3px solid var(--color-canvas);
+  }
 }
 
 // --- Size chips ------------------------------------------------------------
 .size-grid {
-	display: flex;
-	flex-wrap: wrap;
-	gap: $space-2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
 }
 
 .size-chip {
-	min-width: 44px;
-	padding: 0.8rem 1rem;
-	font-size: 1.4rem; // 14px
-	font-weight: $fw-medium;
-	text-align: center;
-	border: 1px solid var(--color-line);
-	border-radius: $radius-sm;
-	color: var(--color-ink);
-	background: transparent;
-	transition: all $transition-fast;
+  min-width: 44px;
+  padding: 0.8rem 1rem;
+  font-size: 1.4rem; // 14px
+  font-weight: $fw-medium;
+  text-align: center;
+  border: 1px solid var(--color-line);
+  border-radius: $radius-sm;
+  color: var(--color-ink);
+  background: transparent;
+  transition: all $transition-fast;
 
-	&:hover {
-		border-color: var(--color-ink);
-	}
+  &:hover {
+    border-color: var(--color-ink);
+  }
 
-	&.is-active {
-		background: var(--color-ink);
-		color: var(--color-canvas);
-		border-color: var(--color-ink);
-	}
+  &.is-active {
+    background: var(--color-ink);
+    color: var(--color-canvas);
+    border-color: var(--color-ink);
+  }
 }
 
 // --- Color chips -----------------------------------------------------------
 .color-grid {
-	display: flex;
-	flex-wrap: wrap;
-	gap: $space-3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
 }
 
 .color-chip {
-	width: 26px;
-	height: 26px;
-	border-radius: 50%;
-	background: var(--swatch);
-	border: 1px solid rgba(15, 15, 16, 0.18);
-	box-shadow: inset 0 0 0 2px var(--color-canvas);
-	transition:
-		transform $transition-fast,
-		box-shadow $transition-fast;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--swatch);
+  border: 1px solid rgba(15, 15, 16, 0.18);
+  box-shadow: inset 0 0 0 2px var(--color-canvas);
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
 
-	&:hover {
-		transform: scale(1.1);
-	}
+  &:hover {
+    transform: scale(1.1);
+  }
 
-	&.is-active {
-		box-shadow:
-			inset 0 0 0 2px var(--color-canvas),
-			0 0 0 2px var(--color-ink);
-	}
+  &.is-active {
+    box-shadow:
+      inset 0 0 0 2px var(--color-canvas),
+      0 0 0 2px var(--color-ink);
+  }
 }

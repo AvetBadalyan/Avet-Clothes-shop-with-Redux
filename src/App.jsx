@@ -19,80 +19,82 @@ const NotFound = lazy(() => import('@/pages/NotFound.jsx'))
 
 // Static pages (shipping, size guide, contact) - named exports need wrapper
 const ShippingReturns = lazy(() =>
-	import('@/pages/StaticPages.jsx').then(m => ({ default: m.ShippingReturns }))
+  import('@/pages/StaticPages.jsx').then((m) => ({
+    default: m.ShippingReturns
+  }))
 )
 const SizeGuidePage = lazy(() =>
-	import('@/pages/StaticPages.jsx').then(m => ({ default: m.SizeGuidePage }))
+  import('@/pages/StaticPages.jsx').then((m) => ({ default: m.SizeGuidePage }))
 )
 const Contact = lazy(() =>
-	import('@/pages/StaticPages.jsx').then(m => ({ default: m.Contact }))
+  import('@/pages/StaticPages.jsx').then((m) => ({ default: m.Contact }))
 )
 
 export default function App() {
-	const theme = useAppSelector(selectTheme)
+  const theme = useAppSelector(selectTheme)
 
-	// Apply the active theme to <html data-theme> whenever it changes. The
-	// initial value is also set in main.jsx before render to avoid a flash.
-	useEffect(() => {
-		document.documentElement.setAttribute('data-theme', theme)
-	}, [theme])
+  // Apply the active theme to <html data-theme> whenever it changes. The
+  // initial value is also set in main.jsx before render to avoid a flash.
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
 
-	return (
-		<ErrorBoundary>
-			<ScrollToTop />
-			<Suspense fallback={<RouteFallback />}>
-				<Routes>
-					<Route
-						path="/"
-						element={<Layout />}
-					>
-						<Route
-							index
-							element={<Home />}
-						/>
-						<Route
-							path="shop"
-							element={<Shop />}
-						/>
-						<Route
-							path="shop/:categoryId"
-							element={<Shop />}
-						/>
-						<Route
-							path="product/:productId"
-							element={<ProductDetail />}
-						/>
-						<Route
-							path="wishlist"
-							element={<Wishlist />}
-						/>
-						<Route
-							path="checkout"
-							element={<Checkout />}
-						/>
-						<Route
-							path="account"
-							element={<Auth />}
-						/>
-						<Route
-							path="shipping-returns"
-							element={<ShippingReturns />}
-						/>
-						<Route
-							path="size-guide"
-							element={<SizeGuidePage />}
-						/>
-						<Route
-							path="contact"
-							element={<Contact />}
-						/>
-						<Route
-							path="*"
-							element={<NotFound />}
-						/>
-					</Route>
-				</Routes>
-			</Suspense>
-		</ErrorBoundary>
-	)
+  return (
+    <ErrorBoundary>
+      <ScrollToTop />
+      <Suspense fallback={<RouteFallback />}>
+        <Routes>
+          <Route
+            path="/"
+            element={<Layout />}
+          >
+            <Route
+              index
+              element={<Home />}
+            />
+            <Route
+              path="shop"
+              element={<Shop />}
+            />
+            <Route
+              path="shop/:categoryId"
+              element={<Shop />}
+            />
+            <Route
+              path="product/:productId"
+              element={<ProductDetail />}
+            />
+            <Route
+              path="wishlist"
+              element={<Wishlist />}
+            />
+            <Route
+              path="checkout"
+              element={<Checkout />}
+            />
+            <Route
+              path="account"
+              element={<Auth />}
+            />
+            <Route
+              path="shipping-returns"
+              element={<ShippingReturns />}
+            />
+            <Route
+              path="size-guide"
+              element={<SizeGuidePage />}
+            />
+            <Route
+              path="contact"
+              element={<Contact />}
+            />
+            <Route
+              path="*"
+              element={<NotFound />}
+            />
+          </Route>
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
+  )
 }

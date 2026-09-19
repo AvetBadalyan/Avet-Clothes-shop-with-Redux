@@ -2,30 +2,30 @@ import { createSlice } from '@reduxjs/toolkit'
 import { loadState } from './storage.js'
 
 const initialState = {
-	ids: loadState('wishlist', [])
+  ids: loadState('wishlist', [])
 }
 
 const wishlistSlice = createSlice({
-	name: 'wishlist',
-	initialState,
-	reducers: {
-		toggleWishlist(state, action) {
-			const id = action.payload
-			if (state.ids.includes(id)) {
-				state.ids = state.ids.filter(x => x !== id)
-			} else {
-				state.ids.push(id)
-			}
-		},
-		clearWishlist(state) {
-			state.ids = []
-		}
-	}
+  name: 'wishlist',
+  initialState,
+  reducers: {
+    toggleWishlist(state, action) {
+      const id = action.payload
+      if (state.ids.includes(id)) {
+        state.ids = state.ids.filter((x) => x !== id)
+      } else {
+        state.ids.push(id)
+      }
+    },
+    clearWishlist(state) {
+      state.ids = []
+    }
+  }
 })
 
 export const { toggleWishlist, clearWishlist } = wishlistSlice.actions
 
 export default wishlistSlice.reducer
 
-export const selectWishlistIds = state => state.wishlist.ids
-export const selectWishlistCount = state => state.wishlist.ids.length
+export const selectWishlistIds = (state) => state.wishlist.ids
+export const selectWishlistCount = (state) => state.wishlist.ids.length
