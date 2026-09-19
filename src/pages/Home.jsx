@@ -89,7 +89,7 @@ export default function Home() {
               Shop Women
             </button>
             <button
-              className="btn btn--outline hero__cta-alt"
+              className="btn"
               onClick={() => goShop('men')}
             >
               Shop Men

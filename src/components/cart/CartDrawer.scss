@@ -303,9 +303,15 @@
       width: 30px;
       height: 30px;
       color: var(--color-ink);
+      transition: background $transition-fast;
 
-      &:hover {
-        color: var(--color-accent);
+      &:hover:not(:disabled) {
+        background: var(--color-cloud);
+      }
+
+      &:disabled {
+        color: var(--color-mist);
+        cursor: not-allowed;
       }
     }
 

@@ -48,7 +48,6 @@
   color: var(--btn-fg);
   border: 1px solid var(--btn-bg);
   transition:
-    transform $transition-fast $ease-out,
     background $transition-fast $ease-out,
     opacity $transition-fast $ease-out;
   outline: none;
@@ -59,12 +58,11 @@
   }
 
   &:hover:not(:disabled) {
-    transform: translateY(-1px);
     background: var(--color-ink-soft);
   }
 
   &:active:not(:disabled) {
-    transform: translateY(0);
+    opacity: 0.9;
   }
 
   &:disabled {

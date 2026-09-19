@@ -39,7 +39,7 @@
     cursor: pointer;
 
     &:hover {
-      transform: scale(1.12);
+      transform: scale(1.08);
     }
 
     &.is-selected {
@@ -130,7 +130,7 @@
   }
   &__media:hover &__img--hover {
     opacity: 1;
-    transform: scale(1.04);
+    transform: scale(1.03);
   }
 
   &__badges {
@@ -166,7 +166,7 @@
     }
 
     &:hover {
-      transform: scale(1.08);
+      transform: scale(1.05);
     }
 
     &.is-active {
@@ -185,31 +185,27 @@
     justify-content: center;
     gap: $space-2;
     padding: 1.2rem;
-    font-size: 1.4rem; // 14px
-    font-weight: $fw-semibold;
-    color: #ffffff;
-    background: rgba(15, 15, 16, 0.92);
+    font-size: 1.2rem; // 12px - compact like Motto
+    font-weight: $fw-bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #ffffff; // White text for premium look
+    background: var(--color-accent); // Terracotta - cohesive with sale badges
     border-radius: $radius-pill;
     opacity: 0;
     transform: translateY(8px);
     transition:
       opacity $transition-base,
-      transform $transition-base;
-    backdrop-filter: blur(4px);
+      transform $transition-base,
+      background $transition-fast;
 
-    [data-theme='dark'] & {
-      background: rgba(255, 255, 255, 0.92);
-      color: #141617;
+    &:hover {
+      background: var(--color-accent-hover);
     }
 
     @include bp-down(md) {
       opacity: 1;
       transform: none;
-      background: rgba(15, 15, 16, 0.82);
-
-      [data-theme='dark'] & {
-        background: rgba(255, 255, 255, 0.82);
-      }
     }
   }
 
