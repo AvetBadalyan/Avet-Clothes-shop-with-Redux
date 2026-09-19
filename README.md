@@ -71,6 +71,14 @@ self-contained and deployable as a static site.
 ## 📸 Screenshots
 
 <details>
+<summary><strong>Home Page (Light & Dark)</strong></summary>
+
+![Home Light](docs/screenshots/home-light.png)
+![Home Dark](docs/screenshots/home-dark.png)
+
+</details>
+
+<details>
 <summary><strong>Shop Page (Light & Dark)</strong></summary>
 
 ![Shop Light](docs/screenshots/shop-light.png)
@@ -79,7 +87,7 @@ self-contained and deployable as a static site.
 </details>
 
 <details>
-<summary><strong>Product Detail</strong></summary>
+<summary><strong>Product Detail (Light & Dark)</strong></summary>
 
 ![Product Light](docs/screenshots/product-light.png)
 ![Product Dark](docs/screenshots/product-dark.png)
@@ -90,12 +98,22 @@ self-contained and deployable as a static site.
 <summary><strong>Cart & Checkout</strong></summary>
 
 ![Cart Light](docs/screenshots/cart-light.png)
+![Cart Dark](docs/screenshots/cart-dark.png)
 ![Checkout Light](docs/screenshots/checkout-light.png)
+![Checkout Dark](docs/screenshots/checkout-dark.png)
 
 </details>
 
 <details>
-<summary><strong>Authentication</strong></summary>
+<summary><strong>Wishlist (Light & Dark)</strong></summary>
+
+![Wishlist Light](docs/screenshots/wishlist-light.png)
+![Wishlist Dark](docs/screenshots/wishlist-dark.png)
+
+</details>
+
+<details>
+<summary><strong>Authentication (Light & Dark)</strong></summary>
 
 ![Auth Light](docs/screenshots/auth-light.png)
 ![Auth Dark](docs/screenshots/auth-dark.png)
@@ -105,6 +123,7 @@ self-contained and deployable as a static site.
 <details>
 <summary><strong>Mobile Responsive</strong></summary>
 
+![Home Mobile](docs/screenshots/home-mobile.png)
 ![Shop Mobile](docs/screenshots/shop-mobile.png)
 ![Product Mobile](docs/screenshots/product-mobile.png)
 
