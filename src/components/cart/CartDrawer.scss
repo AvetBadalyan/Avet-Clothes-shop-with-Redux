@@ -30,7 +30,7 @@
 
 		h2 {
 			font-family: $font-body;
-			font-size: 1.05rem;
+			font-size: 1.8rem; // 18px
 			font-weight: $fw-semibold;
 			color: var(--color-ink);
 
@@ -48,7 +48,7 @@
 	&__ship {
 		padding: $space-4 $space-5;
 		background: var(--color-cloud);
-		font-size: 0.85rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 
 		strong {
@@ -102,7 +102,7 @@
 
 	&__upsell-title {
 		font-family: $font-body;
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-semibold;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
@@ -126,16 +126,16 @@
 
 	&__subtotal {
 		@include flex-between;
-		font-size: 1rem;
+		font-size: 1.6rem; // 16px
 		color: var(--color-ink);
 
 		strong {
-			font-size: 1.15rem;
+			font-size: 1.8rem; // 18px
 		}
 	}
 
 	&__note {
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 		margin-top: -$space-1;
 	}
@@ -157,7 +157,7 @@
 
 		h3 {
 			font-family: $font-body;
-			font-size: 1.2rem;
+			font-size: 2rem; // 20px
 			color: var(--color-ink);
 		}
 
@@ -191,7 +191,7 @@
 	}
 
 	&__name {
-		font-size: 0.85rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-medium;
 		color: var(--color-ink);
 		white-space: nowrap;
@@ -200,7 +200,7 @@
 	}
 
 	&__price {
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 	}
 
@@ -256,13 +256,13 @@
 
 	&__name {
 		font-weight: $fw-medium;
-		font-size: 0.92rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-ink);
 		@include clamp-lines(1);
 	}
 
 	&__variant {
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 		margin-top: 2px;
 	}
@@ -301,7 +301,7 @@
 		span {
 			min-width: 26px;
 			text-align: center;
-			font-size: 0.85rem;
+			font-size: 1.4rem; // 14px
 			font-weight: $fw-semibold;
 			color: var(--color-ink);
 		}

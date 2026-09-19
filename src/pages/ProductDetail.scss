@@ -5,7 +5,7 @@
 		flex-wrap: wrap;
 		gap: $space-2;
 		padding-block: $space-5 $space-4;
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 
 		a:hover {
@@ -114,12 +114,12 @@
 	}
 
 	&__name {
-		font-size: clamp(1.8rem, 4vw, 2.6rem);
+		font-size: clamp(2.8rem, 4vw, 4rem); // 28-40px
 		color: var(--color-ink);
 	}
 
 	&__price {
-		font-size: 1.5rem;
+		font-size: 2.4rem; // 24px
 	}
 
 	&__desc {
@@ -142,7 +142,7 @@
 	}
 
 	&__label {
-		font-size: 0.82rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-semibold;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
@@ -151,7 +151,7 @@
 
 	&__value {
 		color: var(--color-slate);
-		font-size: 0.9rem;
+		font-size: 1.4rem; // 14px
 	}
 
 	&__err {
@@ -163,7 +163,7 @@
 	}
 
 	&__guide {
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 		text-decoration: underline;
 		text-underline-offset: 3px;
@@ -248,7 +248,7 @@
 			display: flex;
 			align-items: center;
 			gap: $space-3;
-			font-size: 0.9rem;
+			font-size: 1.4rem; // 14px
 			color: var(--color-charcoal);
 
 			svg {
@@ -291,7 +291,7 @@
 		}
 
 		&__sticky-name {
-			font-size: 0.85rem;
+			font-size: 1.4rem; // 14px
 			font-weight: $fw-medium;
 			color: var(--color-ink);
 			white-space: nowrap;

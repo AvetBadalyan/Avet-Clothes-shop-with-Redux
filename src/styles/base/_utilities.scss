@@ -32,8 +32,8 @@
 	align-items: center;
 	justify-content: center;
 	gap: $space-2;
-	padding: 0.85rem 1.6rem;
-	font-size: 0.9rem;
+	padding: 1.4rem 2.6rem;
+	font-size: 1.4rem; // 14px
 	font-weight: $fw-semibold;
 	letter-spacing: 0.02em;
 	border-radius: $radius-pill;
@@ -86,8 +86,8 @@
 	}
 
 	&--sm {
-		padding: 0.55rem 1.1rem;
-		font-size: 0.82rem;
+		padding: 0.8rem 1.8rem;
+		font-size: 1.4rem; // 14px
 	}
 }
 
@@ -98,8 +98,8 @@
 .badge {
 	display: inline-flex;
 	align-items: center;
-	padding: 0.28rem 0.6rem;
-	font-size: 0.68rem;
+	padding: 0.4rem 1rem;
+	font-size: 1.1rem; // 11px - small badge text is fine
 	font-weight: $fw-semibold;
 	letter-spacing: 0.08em;
 	text-transform: uppercase;
@@ -125,7 +125,7 @@
 	gap: $space-2;
 
 	span {
-		font-size: 0.82rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-medium;
 		color: var(--color-charcoal);
 	}
@@ -133,12 +133,12 @@
 	input,
 	textarea,
 	select {
-		padding: 0.8rem 0.95rem;
+		padding: 1.2rem 1.6rem;
 		border: 1px solid var(--color-line);
 		border-radius: $radius-sm;
 		background: var(--color-input-bg);
 		color: var(--color-ink);
-		font-size: 0.95rem;
+		font-size: 1.6rem; // 16px
 		transition:
 			border-color $transition-fast,
 			box-shadow $transition-fast;
@@ -160,7 +160,7 @@
 
 	&__err {
 		font-style: normal;
-		font-size: 0.78rem;
+		font-size: 1.4rem; // 14px - readable error messages
 		color: var(--color-sale);
 	}
 }

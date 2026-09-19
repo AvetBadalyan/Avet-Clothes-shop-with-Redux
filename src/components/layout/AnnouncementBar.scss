@@ -2,14 +2,14 @@
   overflow: hidden;
   background: $color-ink;
   color: $color-white;
-  font-size: 0.76rem;
+  font-size: 1.4rem; // 14px - readable on all devices
   letter-spacing: 0.06em;
 
   &__track {
     display: flex;
     width: max-content;
     gap: $space-8;
-    padding-block: 0.55rem;
+    padding-block: 0.8rem;
     padding-left: $space-8;
     animation: announcement-scroll 28s linear infinite;
   }

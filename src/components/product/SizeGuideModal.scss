@@ -31,7 +31,7 @@
 
 		h2 {
 			font-family: $font-body;
-			font-size: 1.3rem;
+			font-size: 2rem; // 20px
 			font-weight: $fw-semibold;
 			color: var(--color-ink);
 		}
@@ -59,7 +59,7 @@
 	&__table {
 		width: 100%;
 		border-collapse: collapse;
-		font-size: 0.9rem;
+		font-size: 1.4rem; // 14px
 
 		th,
 		td {
@@ -91,7 +91,7 @@
 
 	&__note {
 		margin-top: $space-5;
-		font-size: 0.82rem;
+		font-size: 1.4rem; // 14px
 		line-height: 1.5;
 		color: var(--color-slate);
 	}
@@ -127,7 +127,7 @@
 
 			td:first-child {
 				grid-column: 1 / -1;
-				font-size: 1rem;
+				font-size: 1.6rem; // 16px
 
 				&::before {
 					content: 'Size';

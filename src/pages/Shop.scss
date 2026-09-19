@@ -7,7 +7,7 @@
 		display: flex;
 		align-items: center;
 		gap: $space-2;
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 		margin-bottom: $space-3;
 
@@ -17,7 +17,7 @@
 	}
 
 	&__title {
-		font-size: clamp(2rem, 5vw, 3rem);
+		font-size: clamp(3.2rem, 5vw, 4.8rem); // 32-48px
 		color: var(--color-ink);
 	}
 
@@ -65,9 +65,9 @@
 		display: inline-flex;
 		align-items: center;
 		gap: $space-2;
-		font-size: 0.86rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-medium;
-		padding: 0.5rem 0.9rem;
+		padding: 0.8rem 1.4rem;
 		border: 1px solid var(--color-line);
 		border-radius: $radius-pill;
 		color: var(--color-ink);
@@ -80,7 +80,7 @@
 			height: 18px;
 			padding: 0 5px;
 			font-style: normal;
-			font-size: 0.7rem;
+			font-size: 1.1rem; // 11px - small count badge
 			color: var(--color-canvas);
 			background: var(--color-ink);
 			border-radius: $radius-pill;
@@ -92,7 +92,7 @@
 	}
 
 	&__count {
-		font-size: 0.85rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 		margin-right: auto;
 		margin-left: $space-3;
@@ -107,15 +107,15 @@
 		display: inline-flex;
 		align-items: center;
 		gap: $space-2;
-		font-size: 0.85rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 
 		select {
 			appearance: none;
 			border: 1px solid var(--color-line);
 			border-radius: $radius-pill;
-			padding: 0.5rem 2.2rem 0.5rem 0.9rem;
-			font-size: 0.85rem;
+			padding: 0.8rem 3.5rem 0.8rem 1.4rem;
+			font-size: 1.4rem; // 14px
 			font-weight: $fw-medium;
 			color: var(--color-ink);
 			background: var(--color-input-bg);
@@ -124,7 +124,7 @@
 
 		svg {
 			position: absolute;
-			right: 0.7rem;
+			right: 1.2rem;
 			pointer-events: none;
 			color: var(--color-ink);
 		}
@@ -135,7 +135,7 @@
 		align-items: center;
 		gap: $space-3;
 		margin-bottom: $space-5;
-		font-size: 0.9rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 
 		button {
@@ -144,7 +144,7 @@
 			gap: 4px;
 			color: var(--color-ink);
 			text-decoration: underline;
-			font-size: 0.82rem;
+			font-size: 1.4rem; // 14px
 		}
 	}
 
@@ -164,7 +164,7 @@
 
 		h3 {
 			font-family: $font-body;
-			font-size: 1.2rem;
+			font-size: 2rem; // 20px
 			color: var(--color-ink);
 		}
 
@@ -209,7 +209,7 @@
 
 		h3 {
 			font-family: $font-body;
-			font-size: 1rem;
+			font-size: 1.6rem; // 16px
 			color: var(--color-ink);
 		}
 	}

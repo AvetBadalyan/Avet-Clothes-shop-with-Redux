@@ -30,7 +30,7 @@
     }
 
     span {
-      font-size: 0.85rem;
+      font-size: 1.4rem; // 14px
       color: rgba($color-white, 0.6);
     }
   }
@@ -47,7 +47,7 @@
 
   &__logo {
     font-family: $font-display;
-    font-size: 1.6rem;
+    font-size: 2.4rem; // 24px
     letter-spacing: 0.2em;
     color: $color-white;
   }
@@ -55,7 +55,7 @@
   &__brand p {
     margin-top: $space-3;
     max-width: 32ch;
-    font-size: 0.9rem;
+    font-size: 1.4rem; // 14px
     color: rgba($color-white, 0.6);
   }
 
@@ -66,7 +66,7 @@
 
     h4 {
       font-family: $font-body;
-      font-size: 0.78rem;
+      font-size: 1.4rem; // 14px - readable section headers
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba($color-white, 0.55);
@@ -74,7 +74,7 @@
     }
 
     a {
-      font-size: 0.9rem;
+      font-size: 1.4rem; // 14px
       color: rgba($color-white, 0.82);
       transition: color $transition-fast;
 
@@ -87,7 +87,7 @@
   &__newsletter {
     h4 {
       font-family: $font-body;
-      font-size: 0.78rem;
+      font-size: 1.4rem; // 14px - readable section headers
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba($color-white, 0.55);
@@ -95,7 +95,7 @@
 
     p {
       margin-block: $space-3;
-      font-size: 0.9rem;
+      font-size: 1.4rem; // 14px
       color: rgba($color-white, 0.6);
     }
 
@@ -131,7 +131,7 @@
     align-items: center;
     gap: $space-2;
     color: $color-white;
-    font-size: 0.9rem;
+    font-size: 1.4rem; // 14px
   }
 
   &__bottom {
@@ -140,7 +140,7 @@
     gap: $space-2;
     padding-block: $space-4;
     border-top: 1px solid rgba($color-white, 0.1);
-    font-size: 0.78rem;
+    font-size: 1.4rem; // 14px - readable copyright
     color: rgba($color-white, 0.5);
   }
 }

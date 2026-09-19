@@ -5,7 +5,7 @@
 		padding-block: $space-6 $space-5;
 
 		h1 {
-			font-size: clamp(2rem, 5vw, 3rem);
+			font-size: clamp(3.2rem, 5vw, 4.8rem); // 32-48px
 			margin-top: $space-1;
 			color: var(--color-ink);
 		}
@@ -35,7 +35,7 @@
 		padding: $space-4;
 		background: var(--color-cloud);
 		border-radius: $radius-md;
-		font-size: 0.9rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-charcoal);
 
 		a {
@@ -52,7 +52,7 @@
 		gap: $space-4;
 
 		legend {
-			font-size: 0.82rem;
+			font-size: 1.4rem; // 14px
 			font-weight: $fw-semibold;
 			letter-spacing: 0.1em;
 			text-transform: uppercase;
@@ -75,7 +75,7 @@
 	}
 
 	&__disclaimer {
-		font-size: 0.8rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-mist);
 		text-align: center;
 	}
@@ -94,7 +94,7 @@
 
 		h2 {
 			font-family: $font-body;
-			font-size: 1.05rem;
+			font-size: 1.8rem; // 18px
 			font-weight: $fw-semibold;
 			margin-bottom: $space-4;
 			color: var(--color-ink);
@@ -139,7 +139,7 @@
 		min-width: 20px;
 		height: 20px;
 		padding: 0 5px;
-		font-size: 0.7rem;
+		font-size: 1.1rem; // 11px - small badge count
 		font-weight: $fw-bold;
 		color: var(--color-canvas);
 		background: var(--color-ink);
@@ -151,21 +151,21 @@
 		min-width: 0;
 
 		p {
-			font-size: 0.9rem;
+			font-size: 1.4rem; // 14px
 			font-weight: $fw-medium;
 			color: var(--color-ink);
 			@include clamp-lines(1);
 		}
 
 		span {
-			font-size: 0.8rem;
+			font-size: 1.4rem; // 14px
 			color: var(--color-slate);
 		}
 	}
 
 	&__line-price {
 		font-weight: $fw-semibold;
-		font-size: 0.9rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-ink);
 	}
 
@@ -177,7 +177,7 @@
 
 		div {
 			@include flex-between;
-			font-size: 0.92rem;
+			font-size: 1.4rem; // 14px
 			color: var(--color-slate);
 
 			dd {
@@ -190,7 +190,7 @@
 	&__grand {
 		padding-top: $space-3;
 		border-top: 1px solid var(--color-line);
-		font-size: 1.1rem;
+		font-size: 1.8rem; // 18px
 
 		dt {
 			font-weight: $fw-semibold;
@@ -198,7 +198,7 @@
 		}
 
 		dd {
-			font-size: 1.25rem;
+			font-size: 2rem; // 20px
 			font-weight: $fw-bold;
 		}
 	}
@@ -220,7 +220,7 @@
 	}
 
 	h1 {
-		font-size: 2rem;
+		font-size: 3.2rem; // 32px
 		color: var(--color-ink);
 	}
 
@@ -242,7 +242,7 @@
 		gap: $space-2;
 
 		h1 {
-			font-size: clamp(1.8rem, 5vw, 2.6rem);
+			font-size: clamp(2.8rem, 5vw, 4rem); // 28-40px
 			color: var(--color-ink);
 		}
 	}
@@ -305,13 +305,13 @@
 
 		strong {
 			display: block;
-			font-size: 0.95rem;
+			font-size: 1.6rem; // 16px
 			color: var(--color-ink);
 			margin-bottom: $space-1;
 		}
 
 		p {
-			font-size: 0.85rem;
+			font-size: 1.4rem; // 14px
 			color: var(--color-slate);
 			margin: 0;
 		}

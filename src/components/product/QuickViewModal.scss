@@ -6,8 +6,8 @@
 
 	&__chip {
 		min-width: 48px;
-		padding: 0.6rem 0.8rem;
-		font-size: 0.85rem;
+		padding: 1rem 1.2rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-medium;
 		border: 1px solid var(--color-line);
 		border-radius: $radius-sm;
@@ -126,16 +126,16 @@
 	}
 
 	&__name {
-		font-size: 1.6rem;
+		font-size: 2.4rem; // 24px
 		color: var(--color-ink);
 	}
 
 	&__price {
-		font-size: 1.25rem;
+		font-size: 2rem; // 20px
 	}
 
 	&__desc {
-		font-size: 0.92rem;
+		font-size: 1.4rem; // 14px
 		color: var(--color-slate);
 		line-height: 1.6;
 	}
@@ -148,7 +148,7 @@
 	}
 
 	&__label {
-		font-size: 0.82rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-semibold;
 		letter-spacing: 0.04em;
 		text-transform: uppercase;
@@ -200,7 +200,7 @@
 		align-items: center;
 		gap: $space-2;
 		margin-top: $space-2;
-		font-size: 0.88rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-semibold;
 		color: var(--color-ink);
 		text-decoration: underline;

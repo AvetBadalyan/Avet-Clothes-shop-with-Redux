@@ -50,7 +50,7 @@
 	}
 
 	&__more {
-		font-size: 0.72rem;
+		font-size: 1.4rem; // 14px - readable text
 		color: var(--color-slate);
 	}
 }
@@ -81,7 +81,7 @@
 	}
 
 	&__count {
-		font-size: 0.78rem;
+		font-size: 1.4rem; // 14px - readable review count
 		color: var(--color-slate);
 	}
 }
@@ -175,8 +175,8 @@
 		align-items: center;
 		justify-content: center;
 		gap: $space-2;
-		padding: 0.7rem;
-		font-size: 0.82rem;
+		padding: 1.2rem;
+		font-size: 1.4rem; // 14px
 		font-weight: $fw-semibold;
 		color: #ffffff;
 		background: rgba(15, 15, 16, 0.92);
@@ -217,12 +217,12 @@
 
 	&__brand {
 		@include overline;
-		font-size: 0.68rem;
+		font-size: 1.4rem; // 14px - readable brand
 	}
 
 	&__name {
 		font-family: $font-body;
-		font-size: 0.98rem;
+		font-size: 1.6rem; // 16px
 		font-weight: $fw-medium;
 		letter-spacing: 0;
 		color: var(--color-ink);

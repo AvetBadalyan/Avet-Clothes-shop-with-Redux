@@ -62,7 +62,7 @@ $breakpoints: (
 }
 
 @mixin overline {
-  font-size: 0.72rem;
+  font-size: 1.4rem; // 14px - readable labels
   font-weight: $fw-semibold;
   letter-spacing: 0.14em;
   text-transform: uppercase;
