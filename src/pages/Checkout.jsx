@@ -11,6 +11,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { addToast } from '@/store/uiSlice.js'
 import { formatPrice } from '@/utils/formatPrice.js'
+import { formatSize } from '@/utils/productHelpers.js'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -390,7 +391,7 @@ export default function Checkout() {
 								<div className="checkout__line-info">
 									<p>{item.name}</p>
 									<span>
-										{item.color} · {item.size === 'OS' ? 'One size' : item.size}
+										{item.color} · {formatSize(item.size)}
 									</span>
 								</div>
 								<span className="checkout__line-price">

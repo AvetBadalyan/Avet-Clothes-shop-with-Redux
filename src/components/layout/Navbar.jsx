@@ -41,14 +41,6 @@ export default function Navbar() {
 		return () => window.removeEventListener('scroll', onScroll)
 	}, [])
 
-	// Lock body scroll when the mobile menu is open.
-	useEffect(() => {
-		document.body.style.overflow = menuOpen ? 'hidden' : ''
-		return () => {
-			document.body.style.overflow = ''
-		}
-	}, [menuOpen])
-
 	// Close mobile menu when resizing to desktop (prevents menu staying open after resize).
 	useEffect(() => {
 		const mql = window.matchMedia('(min-width: 1024px)')

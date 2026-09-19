@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Icon from "@/components/common/Icon.jsx";
 import { formatPrice } from "@/utils/formatPrice.js";
+import { formatSize } from "@/utils/productHelpers.js";
 import { useAppDispatch } from "@/store/hooks.js";
 import {
   incrementLine,
@@ -25,7 +26,7 @@ export default function CartLine({ item }) {
           <div>
             <p className="cart-line__name">{item.name}</p>
             <p className="cart-line__variant">
-              {item.color} · {item.size === "OS" ? "One size" : item.size}
+              {item.color} · {formatSize(item.size)}
             </p>
           </div>
           <button

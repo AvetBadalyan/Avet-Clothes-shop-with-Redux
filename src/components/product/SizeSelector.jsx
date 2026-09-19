@@ -1,19 +1,21 @@
+import { formatSize } from "@/utils/productHelpers.js";
+
 // Renders selectable size chips. For accessories the only size is "OS",
 // which we present as a single non-critical chip.
 export default function SizeSelector({ sizes, selected, onSelect, error }) {
   return (
     <div className={`size-selector ${error ? "has-error" : ""}`}>
-      {sizes.map((s) => (
+      {sizes.map((size) => (
         <button
-          key={s}
+          key={size}
           type="button"
           className={`size-selector__chip ${
-            selected === s ? "is-selected" : ""
+            selected === size ? "is-selected" : ""
           }`}
-          onClick={() => onSelect(s)}
-          aria-pressed={selected === s}
+          onClick={() => onSelect(size)}
+          aria-pressed={selected === size}
         >
-          {s === "OS" ? "One size" : s}
+          {formatSize(size)}
         </button>
       ))}
     </div>

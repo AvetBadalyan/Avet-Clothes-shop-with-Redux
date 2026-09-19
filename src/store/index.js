@@ -16,23 +16,27 @@ export const store = configureStore({
   },
 });
 
-// Persist cart + wishlist to localStorage on change (throttled by shallow ref
-// checks so we only write when the relevant slice actually changed).
-let lastCart;
-let lastWishlist;
-let lastTheme;
-store.subscribe(() => {
-  const state = store.getState();
-  if (state.cart.items !== lastCart) {
-    lastCart = state.cart.items;
-    saveState("cart", state.cart.items);
-  }
-  if (state.wishlist.ids !== lastWishlist) {
-    lastWishlist = state.wishlist.ids;
-    saveState("wishlist", state.wishlist.ids);
-  }
-  if (state.ui.theme !== lastTheme) {
-    lastTheme = state.ui.theme;
-    saveState("theme", state.ui.theme);
-  }
-});
+// Persist a few slices to localStorage whenever they change.
+//
+// Redux Toolkit returns a brand-new array reference only when the data
+// actually changes, so comparing the current value to the previous one with
+// `!==` tells us whether we need to write. This avoids saving on every
+// unrelated dispatch (e.g. opening the cart drawer).
+const persist = (key, getValue) => {
+  let previous = getValue(store.getState());
+  return () => {
+    const current = getValue(store.getState());
+    if (current !== previous) {
+      previous = current;
+      saveState(key, current);
+    }
+  };
+};
+
+const persisters = [
+  persist("cart", (state) => state.cart.items),
+  persist("wishlist", (state) => state.wishlist.ids),
+  persist("theme", (state) => state.ui.theme),
+];
+
+store.subscribe(() => persisters.forEach((run) => run()));
