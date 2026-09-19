@@ -112,7 +112,7 @@
     padding: $space-3;
     font-size: 1.4rem; // 14px
     color: var(--color-sale);
-    background: rgba(192, 57, 43, 0.08);
+    background: color-mix(in srgb, var(--color-sale) 10%, transparent);
     border-radius: $radius-sm;
   }
 

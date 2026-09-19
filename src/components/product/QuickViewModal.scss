@@ -35,7 +35,7 @@
   }
 
   &.has-error &__chip {
-    border-color: rgba(192, 57, 43, 0.6);
+    border-color: color-mix(in srgb, var(--color-sale) 60%, transparent);
   }
 }
 
@@ -211,7 +211,7 @@
 
     &.is-active {
       color: var(--color-sale);
-      border-color: rgba(192, 57, 43, 0.5);
+      border-color: color-mix(in srgb, var(--color-sale) 50%, transparent);
     }
   }
 
