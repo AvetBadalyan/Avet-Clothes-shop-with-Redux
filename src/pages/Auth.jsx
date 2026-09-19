@@ -55,8 +55,13 @@ export default function Auth() {
 		user ? 'My Account' : mode === 'login' ? 'Sign In' : 'Create Account'
 	)
 
-	// Order history for the signed-in user (empty when logged out).
-	const orders = orderService.list(user?.email)
+	// Order history for the signed-in user (empty when logged out). Loaded in
+	// effect rather than during render so this mirrors a real data-fetch and
+	// refreshes when the user or the active tab changes.
+	const [orders, setOrders] = useState([])
+	useEffect(() => {
+		setOrders(user ? orderService.list(user.email) : [])
+	}, [user, activeTab])
 
 	useEffect(() => {
 		dispatch(clearAuthError())

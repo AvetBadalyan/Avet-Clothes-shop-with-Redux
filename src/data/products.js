@@ -622,9 +622,6 @@ export const PRODUCTS = RAW.map(p => ({
 
 export const getProductById = id => PRODUCTS.find(p => p.id === id)
 
-export const getProductsByCategory = categoryId =>
-	PRODUCTS.filter(p => p.category === categoryId)
-
 export const getRelated = (product, limit = 4) =>
 	PRODUCTS.filter(
 		p => p.category === product.category && p.id !== product.id

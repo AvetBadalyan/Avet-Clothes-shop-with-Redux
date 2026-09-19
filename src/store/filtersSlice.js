@@ -1,5 +1,5 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { PRODUCTS, PRICE_BOUNDS } from "@/data/products.js";
+import { PRICE_BOUNDS, PRODUCTS } from "@/data/products.js";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   category: "all", // 'all' | category id
@@ -126,13 +126,13 @@ export const selectFilteredProducts = createSelector(
 );
 
 // How many filters are active (for the "clear" affordance / badge).
-export const selectActiveFilterCount = createSelector([selectFilters], (f) => {
-  let n = 0;
-  n += f.brands.length;
-  n += f.sizes.length;
-  n += f.colors.length;
-  if (f.onSaleOnly) n += 1;
-  if (f.newOnly) n += 1;
-  if (f.priceMax < PRICE_BOUNDS.max) n += 1;
-  return n;
+export const selectActiveFilterCount = createSelector([selectFilters], (filters) => {
+  let count = 0;
+  count += filters.brands.length;
+  count += filters.sizes.length;
+  count += filters.colors.length;
+  if (filters.onSaleOnly) count += 1;
+  if (filters.newOnly) count += 1;
+  if (filters.priceMax < PRICE_BOUNDS.max) count += 1;
+  return count;
 });

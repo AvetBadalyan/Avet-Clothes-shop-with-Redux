@@ -41,14 +41,6 @@
 		}
 	}
 
-	&__burger {
-		display: flex;
-
-		@include bp(lg) {
-			display: none;
-		}
-	}
-
 	&__logo {
 		font-family: $font-display;
 		font-weight: $fw-semibold;
@@ -125,6 +117,13 @@
 		}
 	}
 
+	// Burger button - must come AFTER __icon-btn so display:none wins via cascade
+	&__burger {
+		@include bp(lg) {
+			display: none;
+		}
+	}
+
 	&__theme-toggle {
 		svg {
 			transition: transform 0.3s ease;
@@ -194,7 +193,7 @@
 		}
 	}
 
-	// --- Mobile menu ---------------------------------------------------------
+	// --- Mobile menu (rendered via portal to document.body) -----------------
 	&__scrim {
 		position: fixed;
 		inset: 0;
@@ -210,7 +209,7 @@
 		position: fixed;
 		top: 0;
 		left: 0;
-		z-index: $z-drawer;
+		z-index: $z-drawer + 1; // Above the scrim
 		width: min(82vw, 340px);
 		height: 100%;
 		background: var(--color-canvas);
@@ -222,6 +221,11 @@
 
 		[data-theme='dark'] & {
 			background: var(--color-card-bg);
+		}
+
+		// Hide on desktop as a safety net (menu should already be closed via JS).
+		@include bp(lg) {
+			display: none;
 		}
 	}
 

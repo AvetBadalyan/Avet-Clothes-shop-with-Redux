@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
-import { loadState, saveState } from './storage.js'
+import { loadState } from './storage.js'
 
 // Detect user's system preference
 const getSystemTheme = () => {
@@ -57,16 +57,13 @@ const uiSlice = createSlice({
 		dismissToast(state, action) {
 			state.toasts = state.toasts.filter(t => t.id !== action.payload)
 		},
+		// Reducers stay pure: persistence + the <html data-theme> attribute are
+		// handled as side effects (store subscription + a useEffect in App).
 		setTheme(state, action) {
 			state.theme = action.payload
-			saveState('theme', action.payload)
-			document.documentElement.setAttribute('data-theme', action.payload)
 		},
 		toggleTheme(state) {
-			const newTheme = state.theme === 'light' ? 'dark' : 'light'
-			state.theme = newTheme
-			saveState('theme', newTheme)
-			document.documentElement.setAttribute('data-theme', newTheme)
+			state.theme = state.theme === 'light' ? 'dark' : 'light'
 		}
 	}
 })

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import cartReducer from "./cartSlice.js";
-import wishlistReducer from "./wishlistSlice.js";
-import filtersReducer from "./filtersSlice.js";
 import authReducer from "./authSlice.js";
-import uiReducer from "./uiSlice.js";
+import cartReducer from "./cartSlice.js";
+import filtersReducer from "./filtersSlice.js";
 import { saveState } from "./storage.js";
+import uiReducer from "./uiSlice.js";
+import wishlistReducer from "./wishlistSlice.js";
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +20,7 @@ export const store = configureStore({
 // checks so we only write when the relevant slice actually changed).
 let lastCart;
 let lastWishlist;
+let lastTheme;
 store.subscribe(() => {
   const state = store.getState();
   if (state.cart.items !== lastCart) {
@@ -29,5 +30,9 @@ store.subscribe(() => {
   if (state.wishlist.ids !== lastWishlist) {
     lastWishlist = state.wishlist.ids;
     saveState("wishlist", state.wishlist.ids);
+  }
+  if (state.ui.theme !== lastTheme) {
+    lastTheme = state.ui.theme;
+    saveState("theme", state.ui.theme);
   }
 });

@@ -86,14 +86,15 @@ h4 {
 	color: var(--color-canvas);
 }
 
-// Respect reduced motion preferences
+// Respect reduced motion preferences (accessibility requirement)
+// !important is intentional here to override all animations for users with vestibular disorders
 @media (prefers-reduced-motion: reduce) {
 	*,
 	*::before,
 	*::after {
-		animation-duration: 0.001ms !important;
+		animation-duration: 0s !important;
 		animation-iteration-count: 1 !important;
-		transition-duration: 0.001ms !important;
+		transition-duration: 0s !important;
 		scroll-behavior: auto !important;
 	}
 }

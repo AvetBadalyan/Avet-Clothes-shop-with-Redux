@@ -1,18 +1,19 @@
 import Icon from '@/components/common/Icon.jsx'
 import { useFocusTrap } from '@/hooks/useFocusTrap.js'
+import { useModalDismiss } from '@/hooks/useModalDismiss.js'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import './SizeGuideModal.scss'
 
 // Reference measurement tables. Values are illustrative for a demo store.
 const APPAREL_TABLE = {
 	head: ['Size', 'Chest (in)', 'Waist (in)', 'Hip (in)'],
 	rows: [
-		['XS', '32–34', '25–27', '35–37'],
-		['S', '35–37', '28–30', '38–40'],
-		['M', '38–40', '31–33', '41–43'],
-		['L', '41–43', '34–36', '44–46'],
-		['XL', '44–46', '37–40', '47–49']
+		['XS', '32-34', '25-27', '35-37'],
+		['S', '35-37', '28-30', '38-40'],
+		['M', '38-40', '31-33', '41-43'],
+		['L', '41-43', '34-36', '44-46'],
+		['XL', '44-46', '37-40', '47-49']
 	]
 }
 
@@ -32,18 +33,7 @@ const SHOE_TABLE = {
 export default function SizeGuideModal({ open, onClose, category }) {
 	const panelRef = useRef(null)
 	useFocusTrap(panelRef, open)
-
-	// Close on Escape and lock body scroll while open.
-	useEffect(() => {
-		if (!open) return
-		const onKey = e => e.key === 'Escape' && onClose()
-		window.addEventListener('keydown', onKey)
-		document.body.style.overflow = 'hidden'
-		return () => {
-			window.removeEventListener('keydown', onKey)
-			document.body.style.overflow = ''
-		}
-	}, [open, onClose])
+	useModalDismiss(open, onClose)
 
 	const isShoes = category === 'shoes'
 	const table = isShoes ? SHOE_TABLE : APPAREL_TABLE

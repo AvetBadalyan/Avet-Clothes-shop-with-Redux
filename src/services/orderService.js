@@ -35,7 +35,10 @@ export const orderService = {
 		const all = readAll()
 		const bucket = bucketFor(checkoutEmail)
 		all[bucket] = [order, ...(all[bucket] ?? [])]
-		saveState(ORDERS_KEY, all)
+		const saved = saveState(ORDERS_KEY, all)
+		if (!saved) {
+			throw new Error('We could not save your order. Please try again.')
+		}
 		return order
 	}
 }

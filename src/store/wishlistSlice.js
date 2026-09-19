@@ -1,4 +1,4 @@
-import { createSelector, createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { loadState } from './storage.js'
 
 const initialState = {
@@ -33,11 +33,3 @@ export default wishlistSlice.reducer
 
 export const selectWishlistIds = state => state.wishlist.ids
 export const selectWishlistCount = state => state.wishlist.ids.length
-
-/**
- * Memoized per-id selector factory. Returns a stable selector function
- * for each id so useAppSelector can bail out when ids haven't changed.
- * Usage: const wished = useAppSelector(selectIsWished(product.id))
- */
-export const selectIsWished = id =>
-	createSelector(selectWishlistIds, ids => ids.includes(id))
