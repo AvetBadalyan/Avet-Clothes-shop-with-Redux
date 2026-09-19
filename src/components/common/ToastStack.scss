@@ -46,6 +46,7 @@
   &__close {
     color: rgba(255, 255, 255, 0.6);
     display: inline-flex;
+    transition: color $transition-fast;
 
     &:hover {
       color: #ffffff;

@@ -30,7 +30,7 @@
     border: 1px solid rgba(15, 15, 16, 0.18);
     box-shadow: inset 0 0 0 2px var(--color-card-bg);
     transition:
-      transform $transition-fast,
+      transform $transition-fast $ease-out,
       box-shadow $transition-fast;
     padding: 0;
   }
@@ -157,7 +157,7 @@
     color: var(--color-ink);
     backdrop-filter: blur(4px);
     transition:
-      transform $transition-fast,
+      transform $transition-fast $ease-out,
       color $transition-fast,
       background $transition-fast;
 
@@ -166,7 +166,7 @@
     }
 
     &:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     &.is-active {
@@ -195,8 +195,8 @@
     opacity: 0;
     transform: translateY(8px);
     transition:
-      opacity $transition-base,
-      transform $transition-base,
+      opacity $transition-base $ease-out,
+      transform $transition-base $ease-out,
       background $transition-fast;
 
     &:hover {

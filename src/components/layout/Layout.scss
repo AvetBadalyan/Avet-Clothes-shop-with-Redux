@@ -16,9 +16,10 @@
   color: var(--color-canvas);
   padding: $space-2 $space-4;
   z-index: $z-modal + 1;
-  transition: top 0.2s;
+  transition: top $transition-fast;
 
-  &:focus {
+  &:focus,
+  &:focus-visible {
     top: 0;
   }
 }

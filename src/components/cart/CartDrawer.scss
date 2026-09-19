@@ -44,6 +44,16 @@
 
     button {
       color: var(--color-ink);
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: background $transition-fast;
+
+      &:hover {
+        background: var(--color-cloud);
+      }
     }
   }
 
@@ -219,6 +229,7 @@
     color: var(--color-ink);
     transition:
       background $transition-fast,
+      color $transition-fast,
       border-color $transition-fast;
     outline: none;
 
@@ -279,6 +290,7 @@
   &__remove {
     color: var(--color-mist);
     height: fit-content;
+    transition: color $transition-fast;
 
     &:hover {
       color: var(--color-sale);

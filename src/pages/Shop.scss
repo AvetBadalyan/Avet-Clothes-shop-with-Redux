@@ -11,8 +11,12 @@
     color: var(--color-slate);
     margin-bottom: $space-3;
 
-    a:hover {
-      color: var(--color-ink);
+    a {
+      transition: color $transition-fast;
+
+      &:hover {
+        color: var(--color-ink);
+      }
     }
   }
 
@@ -74,6 +78,14 @@
     border-radius: $radius-pill;
     color: var(--color-ink);
     background: transparent;
+    transition:
+      border-color $transition-fast,
+      background $transition-fast;
+
+    &:hover {
+      border-color: var(--color-ink);
+      background: var(--color-cloud);
+    }
 
     em {
       display: inline-grid;
@@ -122,6 +134,11 @@
       color: var(--color-ink);
       background: var(--color-input-bg);
       cursor: pointer;
+      transition: border-color $transition-fast;
+
+      &:hover {
+        border-color: var(--color-ink);
+      }
     }
 
     svg {

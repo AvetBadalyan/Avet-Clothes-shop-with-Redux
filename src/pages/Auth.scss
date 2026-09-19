@@ -77,7 +77,14 @@
       font-weight: $fw-semibold;
       color: var(--color-slate);
       border-radius: $radius-pill;
-      transition: all $transition-fast;
+      transition:
+        background $transition-fast,
+        color $transition-fast,
+        box-shadow $transition-fast;
+
+      &:hover:not(.is-active) {
+        color: var(--color-ink);
+      }
 
       &.is-active {
         background: var(--color-card-bg);
@@ -212,7 +219,9 @@
       color: var(--color-slate);
       border-bottom: 2px solid transparent;
       white-space: nowrap;
-      transition: all $transition-fast;
+      transition:
+        color $transition-fast,
+        border-color $transition-fast;
 
       &:hover {
         color: var(--color-ink);
@@ -467,7 +476,7 @@
   display: flex;
   flex-direction: column;
   gap: $space-2;
-  transition: transform $transition-fast;
+  transition: transform $transition-fast $ease-out;
 
   &:hover {
     transform: translateY(-2px);

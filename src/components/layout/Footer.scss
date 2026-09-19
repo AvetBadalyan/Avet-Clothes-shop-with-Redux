@@ -114,14 +114,27 @@
         &::placeholder {
           color: rgba($color-white, 0.45);
         }
+        // Focus ring is not needed here — the parent form's bottom border
+        // acts as the focus indicator. Remove the default outline only for
+        // mouse users; keyboard users still get a visible underline change.
         &:focus {
           outline: none;
+        }
+        &:focus-visible {
+          outline: 2px solid rgba($color-white, 0.6);
+          outline-offset: 2px;
+          border-radius: 2px;
         }
       }
 
       button {
         color: $color-white;
         display: inline-flex;
+        transition: opacity $transition-fast;
+
+        &:hover {
+          opacity: 0.7;
+        }
       }
     }
   }

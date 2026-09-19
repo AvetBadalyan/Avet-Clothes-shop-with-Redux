@@ -9,8 +9,12 @@
     color: var(--color-slate);
     margin-bottom: $space-5;
 
-    a:hover {
-      color: var(--color-ink);
+    a {
+      transition: color $transition-fast;
+
+      &:hover {
+        color: var(--color-ink);
+      }
     }
   }
 
@@ -101,8 +105,12 @@
       color: var(--color-charcoal);
     }
 
-    tbody tr:hover {
-      background: var(--color-cloud);
+    tbody tr {
+      transition: background $transition-fast;
+
+      &:hover {
+        background: var(--color-cloud);
+      }
     }
   }
 
@@ -184,11 +192,12 @@
         content: '▼';
         font-size: 1rem; // 10px - small arrow icon
         color: var(--color-slate);
-        transition: transform $transition-fast;
+        transition: transform $transition-fast $ease-out;
       }
 
+      // Consistent with all other text-link hovers throughout the app
       &:hover {
-        color: var(--color-accent);
+        color: var(--color-ink);
       }
     }
 
