@@ -23,23 +23,13 @@ const filtersSlice = createSlice({
     setSearch(state, action) {
       state.search = action.payload;
     },
-    toggleBrand(state, action) {
-      const b = action.payload;
-      state.brands = state.brands.includes(b)
-        ? state.brands.filter((x) => x !== b)
-        : [...state.brands, b];
-    },
-    toggleSize(state, action) {
-      const s = action.payload;
-      state.sizes = state.sizes.includes(s)
-        ? state.sizes.filter((x) => x !== s)
-        : [...state.sizes, s];
-    },
-    toggleColor(state, action) {
-      const c = action.payload;
-      state.colors = state.colors.includes(c)
-        ? state.colors.filter((x) => x !== c)
-        : [...state.colors, c];
+    // Toggle a value in one of the array filters (brands | sizes | colors).
+    toggleArrayFilter(state, action) {
+      const { field, value } = action.payload;
+      const current = state[field];
+      state[field] = current.includes(value)
+        ? current.filter((x) => x !== value)
+        : [...current, value];
     },
     setPriceMax(state, action) {
       state.priceMax = action.payload;
@@ -62,9 +52,7 @@ const filtersSlice = createSlice({
 export const {
   setCategory,
   setSearch,
-  toggleBrand,
-  toggleSize,
-  toggleColor,
+  toggleArrayFilter,
   setPriceMax,
   setOnSaleOnly,
   setNewOnly,
@@ -77,51 +65,56 @@ export default filtersSlice.reducer;
 // --- Selectors -------------------------------------------------------------
 export const selectFilters = (state) => state.filters;
 
-const sortProducts = (list, sort) => {
-  const arr = [...list];
+const sortProducts = (products, sort) => {
+  const sorted = [...products];
   switch (sort) {
     case "price-asc":
-      return arr.sort((a, b) => a.price - b.price);
+      return sorted.sort((a, b) => a.price - b.price);
     case "price-desc":
-      return arr.sort((a, b) => b.price - a.price);
+      return sorted.sort((a, b) => b.price - a.price);
     case "newest":
-      return arr.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
+      return sorted.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     case "rating":
-      return arr.sort((a, b) => b.rating - a.rating);
+      return sorted.sort((a, b) => b.rating - a.rating);
     case "popular":
     default:
-      return arr.sort((a, b) => b.popularity - a.popularity);
+      return sorted.sort((a, b) => b.popularity - a.popularity);
   }
 };
 
 // Memoized product list derived from the active filters.
 export const selectFilteredProducts = createSelector(
   [selectFilters],
-  (f) => {
-    const term = f.search.trim().toLowerCase();
-    const filtered = PRODUCTS.filter((p) => {
-      if (f.category !== "all" && p.category !== f.category) return false;
-      if (term) {
+  (filters) => {
+    const searchTerm = filters.search.trim().toLowerCase();
+    const filtered = PRODUCTS.filter((product) => {
+      if (filters.category !== "all" && product.category !== filters.category)
+        return false;
+      if (searchTerm) {
         const haystack =
-          `${p.name} ${p.brand} ${p.categoryTitle} ${p.tags.join(" ")}`.toLowerCase();
-        if (!haystack.includes(term)) return false;
+          `${product.name} ${product.brand} ${product.categoryTitle} ${product.tags.join(" ")}`.toLowerCase();
+        if (!haystack.includes(searchTerm)) return false;
       }
-      if (f.brands.length && !f.brands.includes(p.brand)) return false;
-      if (f.sizes.length && !f.sizes.some((s) => p.sizes.includes(s)))
+      if (filters.brands.length && !filters.brands.includes(product.brand))
         return false;
       if (
-        f.colors.length &&
-        !f.colors.some((c) => p.colors.some((pc) => pc.name === c))
+        filters.sizes.length &&
+        !filters.sizes.some((size) => product.sizes.includes(size))
       )
         return false;
-      if (p.price > f.priceMax) return false;
-      if (f.onSaleOnly && !p.onSale) return false;
-      if (f.newOnly && !p.isNew) return false;
+      if (
+        filters.colors.length &&
+        !filters.colors.some((color) =>
+          product.colors.some((productColor) => productColor.name === color)
+        )
+      )
+        return false;
+      if (product.price > filters.priceMax) return false;
+      if (filters.onSaleOnly && !product.onSale) return false;
+      if (filters.newOnly && !product.isNew) return false;
       return true;
     });
-    return sortProducts(filtered, f.sort);
+    return sortProducts(filtered, filters.sort);
   }
 );
 

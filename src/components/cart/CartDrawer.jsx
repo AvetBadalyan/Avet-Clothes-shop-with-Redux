@@ -4,6 +4,8 @@ import {
 	getProductById,
 	getRelated
 } from '@/data/products.js'
+import { useFocusTrap } from '@/hooks/useFocusTrap.js'
+import { useModalDismiss } from '@/hooks/useModalDismiss.js'
 import {
 	selectCartCount,
 	selectCartItems,
@@ -13,7 +15,7 @@ import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { closeCart, openQuickView, selectCartOpen } from '@/store/uiSlice.js'
 import { formatPrice } from '@/utils/formatPrice.js'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CartDrawer.scss'
 import CartLine from './CartLine.jsx'
@@ -51,16 +53,9 @@ export default function CartDrawer() {
 	const subtotal = useAppSelector(selectCartSubtotal)
 	const count = useAppSelector(selectCartCount)
 
-	useEffect(() => {
-		if (!open) return
-		const onKey = e => e.key === 'Escape' && dispatch(closeCart())
-		window.addEventListener('keydown', onKey)
-		document.body.style.overflow = 'hidden'
-		return () => {
-			window.removeEventListener('keydown', onKey)
-			document.body.style.overflow = ''
-		}
-	}, [open, dispatch])
+	const panelRef = useRef(null)
+	useFocusTrap(panelRef, open)
+	useModalDismiss(open, () => dispatch(closeCart()))
 
 	const remaining = Math.max(0, FREE_SHIP_THRESHOLD - subtotal)
 	const progress = Math.min(100, (subtotal / FREE_SHIP_THRESHOLD) * 100)
@@ -92,6 +87,7 @@ export default function CartDrawer() {
 					/>
 					<motion.aside
 						className="cart-drawer"
+						ref={panelRef}
 						role="dialog"
 						aria-modal="true"
 						aria-label="Shopping bag"

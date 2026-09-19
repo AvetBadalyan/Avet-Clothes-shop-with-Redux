@@ -6,16 +6,17 @@ import ProductCard from '@/components/product/ProductCard.jsx'
 import SizeGuideModal from '@/components/product/SizeGuideModal.jsx'
 import SizeSelector from '@/components/product/SizeSelector.jsx'
 import {
-	getCompleteTheLook,
-	getProductById,
-	getRelated
+    getCompleteTheLook,
+    getProductById,
+    getRelated
 } from '@/data/products.js'
 import { usePageTitle } from '@/hooks/usePageTitle.js'
 import { recentlyViewedService } from '@/services/recentlyViewedService.js'
 import { addToCart } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { addToast, openCart } from '@/store/uiSlice.js'
-import { selectWishlistIds, toggleWishlist } from '@/store/wishlistSlice.js'
+import { toggleWishlist } from '@/store/wishlistSlice.js'
+import { isOneSize } from '@/utils/productHelpers.js'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
@@ -30,9 +31,12 @@ const perks = [
 export default function ProductDetail() {
 	const { productId } = useParams()
 	const dispatch = useAppDispatch()
-	const wishlistIds = useAppSelector(selectWishlistIds)
 
 	const product = getProductById(productId)
+	// Select only the boolean this page needs (narrow subscription).
+	const wished = useAppSelector(state =>
+		product ? state.wishlist.ids.includes(product.id) : false
+	)
 
 	// Hooks must be called unconditionally — use a fallback title when no product
 	usePageTitle(product?.name ?? 'Product Not Found')
@@ -78,11 +82,10 @@ export default function ProductDetail() {
 		)
 	}
 
-	const wished = wishlistIds.includes(product.id)
 	const gallery = [product.imageUrl, product.hoverImageUrl]
 	const related = getRelated(product)
 	const look = getCompleteTheLook(product)
-	const isAccessory = product.sizes.length === 1 && product.sizes[0] === 'OS'
+	const isAccessory = isOneSize(product)
 	const recentlyViewed = recentIds
 		.filter(id => id !== product.id)
 		.map(getProductById)
@@ -154,14 +157,10 @@ export default function ProductDetail() {
 							src={gallery[activeImg]}
 							alt={product.name}
 						/>
-						<div className="pdp__badges">
-							{product.isNew && <span className="badge badge--new">New</span>}
-							{product.onSale && (
-								<span className="badge badge--sale">
-									-{product.discountPct}%
-								</span>
-							)}
-						</div>
+						<ProductBadges
+							product={product}
+							className="pdp__badges"
+						/>
 					</motion.div>
 				</div>
 

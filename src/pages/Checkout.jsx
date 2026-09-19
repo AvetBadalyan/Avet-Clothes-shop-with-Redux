@@ -4,9 +4,9 @@ import { authService } from '@/services/authService.js'
 import { createOrder, orderService } from '@/services/orderService.js'
 import { selectUser } from '@/store/authSlice.js'
 import {
-	clearCart,
-	selectCartItems,
-	selectCartSubtotal
+    clearCart,
+    selectCartItems,
+    selectCartSubtotal
 } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import { addToast } from '@/store/uiSlice.js'
@@ -40,6 +40,7 @@ export default function Checkout() {
 	const [errors, setErrors] = useState({})
 	const [placed, setPlaced] = useState(false)
 	const [orderData, setOrderData] = useState(null)
+	const [isPlacing, setIsPlacing] = useState(false)
 
 	// Auto-fill form from saved address (for signed-in users) or basic user info
 	useEffect(() => {
@@ -87,8 +88,10 @@ export default function Checkout() {
 		return Object.keys(next).length === 0
 	}
 
-	const placeOrder = e => {
+	const placeOrder = async e => {
 		e.preventDefault()
+		// Guard against double-submit (double-click / Enter spam creating dupes).
+		if (isPlacing) return
 		if (!validate()) {
 			dispatch(addToast('Please check the highlighted fields', 'error'))
 			return
@@ -111,18 +114,33 @@ export default function Checkout() {
 			total,
 			shippingAddress
 		})
-		orderService.add(newOrder)
 
-		// Save shipping address for signed-in users (faster future checkouts)
-		if (user) {
-			authService.saveAddress(user.email, shippingAddress)
+		setIsPlacing(true)
+		try {
+			// orderService.add throws if persistence fails (e.g. storage full).
+			orderService.add(newOrder)
+
+			// Save shipping address for signed-in users (faster future checkouts)
+			if (user) {
+				authService.saveAddress(user.email, shippingAddress)
+			}
+
+			// Only show the confirmation once the order is safely persisted.
+			setOrderData(newOrder)
+			setPlaced(true)
+			dispatch(clearCart())
+			dispatch(addToast('Order placed successfully'))
+			window.scrollTo({ top: 0 })
+		} catch (err) {
+			dispatch(
+				addToast(
+					err.message ?? 'Something went wrong placing your order',
+					'error'
+				)
+			)
+		} finally {
+			setIsPlacing(false)
 		}
-
-		setPlaced(true)
-		setOrderData(newOrder)
-		dispatch(clearCart())
-		dispatch(addToast('Order placed successfully'))
-		window.scrollTo({ top: 0 })
 	}
 
 	// --- Confirmation --------------------------------------------------------
@@ -337,12 +355,16 @@ export default function Checkout() {
 					<button
 						className="btn btn--block checkout__submit"
 						type="submit"
+						disabled={isPlacing}
+						aria-busy={isPlacing}
 					>
 						<Icon
 							name="shield"
 							size={18}
 						/>{' '}
-						Place order · {formatPrice(total)}
+						{isPlacing
+							? 'Placing order…'
+							: `Place order · ${formatPrice(total)}`}
 					</button>
 					<p className="checkout__disclaimer">
 						This is a demo store. No payment is taken and no order is shipped.

@@ -2,24 +2,25 @@ import Icon from '@/components/common/Icon.jsx'
 import ProductCard from '@/components/product/ProductCard.jsx'
 import FilterSidebar from '@/components/shop/FilterSidebar.jsx'
 import { CATEGORIES, SORT_OPTIONS } from '@/data/products.js'
+import { useFocusTrap } from '@/hooks/useFocusTrap.js'
 import { usePageTitle } from '@/hooks/usePageTitle.js'
 import {
-	resetFilters,
-	selectActiveFilterCount,
-	selectFilteredProducts,
-	selectFilters,
-	setCategory,
-	setSearch,
-	setSort
+    resetFilters,
+    selectActiveFilterCount,
+    selectFilteredProducts,
+    selectFilters,
+    setCategory,
+    setSearch,
+    setSort
 } from '@/store/filtersSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import {
-	closeFilters,
-	selectFiltersOpen,
-	toggleFilters
+    closeFilters,
+    selectFiltersOpen,
+    toggleFilters
 } from '@/store/uiSlice.js'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import './Shop.scss'
 
@@ -43,6 +44,10 @@ export default function Shop() {
 			document.body.style.overflow = ''
 		}
 	}, [filtersOpen])
+
+	// Trap focus inside the mobile filter drawer while it is open.
+	const filterDrawerRef = useRef(null)
+	useFocusTrap(filterDrawerRef, filtersOpen)
 
 	const category = CATEGORIES.find(c => c.id === filters.category)
 	const heading = category ? category.title : 'All Products'
@@ -177,6 +182,10 @@ export default function Shop() {
 						/>
 						<motion.aside
 							className="shop__drawer"
+							ref={filterDrawerRef}
+							role="dialog"
+							aria-modal="true"
+							aria-label="Filters"
 							initial={{ x: '100%' }}
 							animate={{ x: 0 }}
 							exit={{ x: '100%' }}

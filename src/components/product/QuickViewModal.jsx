@@ -2,17 +2,20 @@ import ColorSwatches from '@/components/common/ColorSwatches.jsx'
 import Icon from '@/components/common/Icon.jsx'
 import Price from '@/components/common/Price.jsx'
 import StarRating from '@/components/common/StarRating.jsx'
+import ProductBadges from '@/components/product/ProductBadges.jsx'
 import { getProductById } from '@/data/products.js'
 import { useFocusTrap } from '@/hooks/useFocusTrap.js'
+import { useModalDismiss } from '@/hooks/useModalDismiss.js'
 import { addToCart } from '@/store/cartSlice.js'
 import { useAppDispatch, useAppSelector } from '@/store/hooks.js'
 import {
-	addToast,
-	closeQuickView,
-	openCart,
-	selectQuickViewId
+    addToast,
+    closeQuickView,
+    openCart,
+    selectQuickViewId
 } from '@/store/uiSlice.js'
-import { selectWishlistIds, toggleWishlist } from '@/store/wishlistSlice.js'
+import { toggleWishlist } from '@/store/wishlistSlice.js'
+import { isOneSize } from '@/utils/productHelpers.js'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -22,8 +25,10 @@ import SizeSelector from './SizeSelector.jsx'
 export default function QuickViewModal() {
 	const dispatch = useAppDispatch()
 	const id = useAppSelector(selectQuickViewId)
-	const wishlistIds = useAppSelector(selectWishlistIds)
 	const product = id ? getProductById(id) : null
+	const wished = useAppSelector(state =>
+		product ? state.wishlist.ids.includes(product.id) : false
+	)
 
 	const panelRef = useRef(null)
 	useFocusTrap(panelRef, Boolean(product))
@@ -41,19 +46,7 @@ export default function QuickViewModal() {
 		}
 	}, [product])
 
-	// Close on Escape.
-	useEffect(() => {
-		if (!id) return
-		const onKey = e => e.key === 'Escape' && dispatch(closeQuickView())
-		window.addEventListener('keydown', onKey)
-		document.body.style.overflow = 'hidden'
-		return () => {
-			window.removeEventListener('keydown', onKey)
-			document.body.style.overflow = ''
-		}
-	}, [id, dispatch])
-
-	const wished = product && wishlistIds.includes(product.id)
+	useModalDismiss(Boolean(id), () => dispatch(closeQuickView()))
 
 	const handleAdd = () => {
 		if (!size) {
@@ -101,14 +94,10 @@ export default function QuickViewModal() {
 								src={product.imageUrl}
 								alt={product.name}
 							/>
-							<div className="quickview__badges">
-								{product.isNew && <span className="badge badge--new">New</span>}
-								{product.onSale && (
-									<span className="badge badge--sale">
-										-{product.discountPct}%
-									</span>
-								)}
-							</div>
+							<ProductBadges
+								product={product}
+								className="quickview__badges"
+							/>
 						</div>
 
 						<div className="quickview__info">
@@ -137,7 +126,7 @@ export default function QuickViewModal() {
 								/>
 							</div>
 
-							{!(product.sizes.length === 1 && product.sizes[0] === 'OS') && (
+							{!isOneSize(product) && (
 								<div className="quickview__row">
 									<span className="quickview__label">
 										Size{' '}

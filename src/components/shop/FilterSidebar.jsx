@@ -1,32 +1,30 @@
-import { useAppDispatch, useAppSelector } from "@/store/hooks.js";
+import Icon from "@/components/common/Icon.jsx"
+import { BRANDS, PRICE_BOUNDS, PRODUCTS } from "@/data/products.js"
 import {
-  selectFilters,
-  selectActiveFilterCount,
-  toggleBrand,
-  toggleSize,
-  toggleColor,
-  setPriceMax,
-  setOnSaleOnly,
-  setNewOnly,
   resetFilters,
-} from "@/store/filtersSlice.js";
-import { BRANDS, PRICE_BOUNDS, PRODUCTS } from "@/data/products.js";
-import { formatPrice } from "@/utils/formatPrice.js";
-import Icon from "@/components/common/Icon.jsx";
-import "./FilterSidebar.scss";
+  selectActiveFilterCount,
+  selectFilters,
+  setNewOnly,
+  setOnSaleOnly,
+  setPriceMax,
+  toggleArrayFilter
+} from "@/store/filtersSlice.js"
+import { useAppDispatch, useAppSelector } from "@/store/hooks.js"
+import { formatPrice } from "@/utils/formatPrice.js"
+import "./FilterSidebar.scss"
 
 // Derive the union of sizes and colors from the catalog.
 const ALL_SIZES = [
-  ...new Set(PRODUCTS.flatMap((p) => p.sizes)),
-].filter((s) => s !== "OS");
+  ...new Set(PRODUCTS.flatMap((product) => product.sizes)),
+].filter((size) => size !== "OS");
 const ALL_COLORS = (() => {
-  const map = new Map();
-  PRODUCTS.forEach((p) =>
-    p.colors.forEach((c) => {
-      if (!map.has(c.name)) map.set(c.name, c.hex);
+  const colorMap = new Map();
+  PRODUCTS.forEach((product) =>
+    product.colors.forEach((color) => {
+      if (!colorMap.has(color.name)) colorMap.set(color.name, color.hex);
     })
   );
-  return [...map.entries()].map(([name, hex]) => ({ name, hex }));
+  return [...colorMap.entries()].map(([name, hex]) => ({ name, hex }));
 })();
 
 function Section({ title, children }) {
@@ -40,7 +38,7 @@ function Section({ title, children }) {
 
 export default function FilterSidebar() {
   const dispatch = useAppDispatch();
-  const f = useAppSelector(selectFilters);
+  const filters = useAppSelector(selectFilters);
   const activeCount = useAppSelector(selectActiveFilterCount);
 
   return (
@@ -64,7 +62,7 @@ export default function FilterSidebar() {
         <label className="check">
           <input
             type="checkbox"
-            checked={f.newOnly}
+            checked={filters.newOnly}
             onChange={(e) => dispatch(setNewOnly(e.target.checked))}
           />
           <span className="check__box">
@@ -75,7 +73,7 @@ export default function FilterSidebar() {
         <label className="check">
           <input
             type="checkbox"
-            checked={f.onSaleOnly}
+            checked={filters.onSaleOnly}
             onChange={(e) => dispatch(setOnSaleOnly(e.target.checked))}
           />
           <span className="check__box">
@@ -91,30 +89,34 @@ export default function FilterSidebar() {
           type="range"
           min={PRICE_BOUNDS.min}
           max={PRICE_BOUNDS.max}
-          value={f.priceMax}
+          value={filters.priceMax}
           onChange={(e) => dispatch(setPriceMax(Number(e.target.value)))}
+          aria-label="Maximum price"
+          aria-valuetext={formatPrice(filters.priceMax)}
         />
         <div className="filters__range-labels">
           <span>{formatPrice(PRICE_BOUNDS.min)}</span>
           <span className="filters__range-value">
-            Up to {formatPrice(f.priceMax)}
+            Up to {formatPrice(filters.priceMax)}
           </span>
         </div>
       </Section>
 
       <Section title="Brand">
         <div className="filter-list">
-          {BRANDS.map((b) => (
-            <label className="check" key={b}>
+          {BRANDS.map((brand) => (
+            <label className="check" key={brand}>
               <input
                 type="checkbox"
-                checked={f.brands.includes(b)}
-                onChange={() => dispatch(toggleBrand(b))}
+                checked={filters.brands.includes(brand)}
+                onChange={() =>
+                  dispatch(toggleArrayFilter({ field: "brands", value: brand }))
+                }
               />
               <span className="check__box">
                 <Icon name="check" size={13} />
               </span>
-              {b}
+              {brand}
             </label>
           ))}
         </div>
@@ -122,14 +124,18 @@ export default function FilterSidebar() {
 
       <Section title="Size">
         <div className="size-grid">
-          {ALL_SIZES.map((s) => (
+          {ALL_SIZES.map((size) => (
             <button
-              key={s}
-              className={`size-chip ${f.sizes.includes(s) ? "is-active" : ""}`}
-              onClick={() => dispatch(toggleSize(s))}
-              aria-pressed={f.sizes.includes(s)}
+              key={size}
+              className={`size-chip ${
+                filters.sizes.includes(size) ? "is-active" : ""
+              }`}
+              onClick={() =>
+                dispatch(toggleArrayFilter({ field: "sizes", value: size }))
+              }
+              aria-pressed={filters.sizes.includes(size)}
             >
-              {s}
+              {size}
             </button>
           ))}
         </div>
@@ -137,17 +143,19 @@ export default function FilterSidebar() {
 
       <Section title="Color">
         <div className="color-grid">
-          {ALL_COLORS.map((c) => (
+          {ALL_COLORS.map((color) => (
             <button
-              key={c.name}
+              key={color.name}
               className={`color-chip ${
-                f.colors.includes(c.name) ? "is-active" : ""
+                filters.colors.includes(color.name) ? "is-active" : ""
               }`}
-              style={{ "--swatch": c.hex }}
-              onClick={() => dispatch(toggleColor(c.name))}
-              aria-pressed={f.colors.includes(c.name)}
-              title={c.name}
-              aria-label={c.name}
+              style={{ "--swatch": color.hex }}
+              onClick={() =>
+                dispatch(toggleArrayFilter({ field: "colors", value: color.name }))
+              }
+              aria-pressed={filters.colors.includes(color.name)}
+              title={color.name}
+              aria-label={color.name}
             />
           ))}
         </div>

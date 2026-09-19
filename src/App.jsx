@@ -2,7 +2,9 @@ import ErrorBoundary from '@/components/common/ErrorBoundary.jsx'
 import RouteFallback from '@/components/common/RouteFallback.jsx'
 import ScrollToTop from '@/components/common/ScrollToTop.jsx'
 import Layout from '@/components/layout/Layout.jsx'
-import { lazy, Suspense } from 'react'
+import { useAppSelector } from '@/store/hooks.js'
+import { selectTheme } from '@/store/uiSlice.js'
+import { lazy, Suspense, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 // Route-level code splitting: each page ships as its own chunk so the initial
@@ -27,6 +29,14 @@ const Contact = lazy(() =>
 )
 
 export default function App() {
+	const theme = useAppSelector(selectTheme)
+
+	// Apply the active theme to <html data-theme> whenever it changes. The
+	// initial value is also set in main.jsx before render to avoid a flash.
+	useEffect(() => {
+		document.documentElement.setAttribute('data-theme', theme)
+	}, [theme])
+
 	return (
 		<ErrorBoundary>
 			<ScrollToTop />

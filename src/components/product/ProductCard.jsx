@@ -1,17 +1,23 @@
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import Icon from "@/components/common/Icon.jsx";
-import Price from "@/components/common/Price.jsx";
-import ColorSwatches from "@/components/common/ColorSwatches.jsx";
-import { useAppDispatch, useAppSelector } from "@/store/hooks.js";
-import { toggleWishlist, selectWishlistIds } from "@/store/wishlistSlice.js";
-import { openQuickView, addToast } from "@/store/uiSlice.js";
-import "./ProductCard.scss";
+import ColorSwatches from "@/components/common/ColorSwatches.jsx"
+import Icon from "@/components/common/Icon.jsx"
+import Price from "@/components/common/Price.jsx"
+import ProductBadges from "@/components/product/ProductBadges.jsx"
+import { useAppDispatch, useAppSelector } from "@/store/hooks.js"
+import { addToast, openQuickView } from "@/store/uiSlice.js"
+import { toggleWishlist } from "@/store/wishlistSlice.js"
+import { motion } from "framer-motion"
+import { memo } from "react"
+import { Link } from "react-router-dom"
+import "./ProductCard.scss"
 
-export default function ProductCard({ product, index = 0 }) {
+function ProductCard({ product, index = 0 }) {
   const dispatch = useAppDispatch();
-  const wishlistIds = useAppSelector(selectWishlistIds);
-  const wished = wishlistIds.includes(product.id);
+  // Select only the boolean this card needs so react-redux can bail out of
+  // re-rendering cards whose wished state didn't change (avoids re-rendering
+  // the whole grid on any wishlist toggle).
+  const wished = useAppSelector((state) =>
+    state.wishlist.ids.includes(product.id)
+  );
 
   const onWish = (e) => {
     e.preventDefault();
@@ -52,12 +58,7 @@ export default function ProductCard({ product, index = 0 }) {
           className="product-card__img product-card__img--hover"
         />
 
-        <div className="product-card__badges">
-          {product.isNew && <span className="badge badge--new">New</span>}
-          {product.onSale && (
-            <span className="badge badge--sale">-{product.discountPct}%</span>
-          )}
-        </div>
+        <ProductBadges product={product} />
 
         <button
           className={`product-card__wish ${wished ? "is-active" : ""}`}
@@ -85,3 +86,5 @@ export default function ProductCard({ product, index = 0 }) {
     </motion.article>
   );
 }
+
+export default memo(ProductCard);
